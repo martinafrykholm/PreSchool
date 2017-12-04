@@ -25,6 +25,8 @@ namespace PreSchoolApp
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }
     }
