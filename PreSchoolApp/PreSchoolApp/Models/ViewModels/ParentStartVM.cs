@@ -8,6 +8,7 @@ namespace PreSchoolApp.Models.ViewModels
 {
     public class ParentStartVM
     {
+        //public List<Child>  Children { get; set; }
         public Calendar ChildSchedule { get; set; }
     }
 }
