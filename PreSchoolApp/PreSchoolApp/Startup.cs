@@ -20,6 +20,7 @@ namespace PreSchoolApp
         public void ConfigureServices(IServiceCollection services)
         {
             var connString = @"Server=tcp:preschoolserver.database.windows.net,1433;Initial Catalog=PreSchoolDB;Persist Security Info=False;User ID=preschoolAdmin;Password=Grupp1C#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
+            //services.AddDbContext<PreSchoolAppContext>(o => o.UseSqlServer(connString));
             services.AddDbContext<IdentityDbContext>(o => o.UseSqlServer(connString));
 
             services.AddIdentity<IdentityUser, IdentityRole>(
