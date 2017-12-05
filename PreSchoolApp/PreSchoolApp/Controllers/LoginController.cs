@@ -41,7 +41,7 @@ namespace PreSchoolApp.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(HomeLoginVM loginVM)
+        public async Task<IActionResult> Login(LoginVM loginVM)
         {
             if (!ModelState.IsValid)
                 return View(loginVM);
@@ -53,11 +53,11 @@ namespace PreSchoolApp.Controllers
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(
-                    nameof(HomeLoginVM.UserName), "Felaktigt namn eller lösenord"); //lägger in felmeddelande                
+                    nameof(LoginVM.UserName), "Felaktigt namn eller lösenord"); //lägger in felmeddelande                
                 return View(loginVM);
             }
 
-            return RedirectToAction(nameof(Search));
+            return RedirectToAction(nameof(TeacherController));
         }
     }
 }
