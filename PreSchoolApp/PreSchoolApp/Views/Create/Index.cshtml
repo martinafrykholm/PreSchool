@@ -2,7 +2,7 @@
 
 <center>
     @*fixa asp-action!*@
-    <form asp-controller="Create" asp-action="Login">
+    <form asp-controller="Create" asp-action="Create">
         <label asp-for="UserName"></label>
         <input asp-for="UserName" />
         <span asp-validation-for="UserName"></span>
@@ -16,7 +16,8 @@
         <span asp-validation-for="ChildCode"></span>
 
         <br />
-        <a href="~/Create/">Skapa!</a><br />
+        <input type="submit" style="background-color:white" value="Skapa!" />
+        
     </form>
 
     
