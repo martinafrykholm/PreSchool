@@ -18,12 +18,12 @@ namespace PreSchoolApp.Controllers
         IdentityDbContext identityContext;
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
-        RoleManager<IdentityUser> roleManager;
+        RoleManager<IdentityRole> roleManager;
 
         public LoginController(IdentityDbContext identityContext,
         UserManager<IdentityUser> userManager,
         SignInManager<IdentityUser> signInManager,
-        RoleManager<IdentityUser> roleManager)
+        RoleManager<IdentityRole> roleManager)
         {
             this.identityContext = identityContext;
             this.userManager = userManager;

@@ -35,6 +35,8 @@ namespace PreSchoolApp
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(o => o.LoginPath = "/Login/index");
 
+
+
             //services.ConfigureApplicationCookie(o => o.LoginPath = "/Home/Login")
             //Använd denna om Identity är använd och URL:en annan äb /Account/Login
             services.AddMvc();
