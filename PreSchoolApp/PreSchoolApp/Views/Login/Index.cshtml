@@ -1,0 +1,18 @@
+﻿@model LoginVM
+
+<center>
+    <form asp-controller="Home" asp-action="Login">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName"></span>
+
+        <label asp-for="Password"></label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+
+        <br />
+        <input type="submit" style="background-color:white" value="Login" />
+    </form>
+
+    <a href="Create">Skapa ny inloggning</a>
+</center>

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Create\" />
     <Folder Include="wwwroot\Scripts\" />
   </ItemGroup>
 
