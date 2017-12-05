@@ -19,7 +19,7 @@ namespace PreSchoolApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var connString = "";
+            var connString = @"Server=tcp:preschoolserver.database.windows.net,1433;Initial Catalog=PreSchoolDB;Persist Security Info=False;User ID=preschoolAdmin;Password=Grupp1C#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
             services.AddDbContext<IdentityDbContext>(o => o.UseSqlServer(connString));
 
             services.AddIdentity<IdentityUser, IdentityRole>(
@@ -33,7 +33,7 @@ namespace PreSchoolApp
 
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(o => o.LoginPath = "/Account/Login");
+                .AddCookie(o => o.LoginPath = "/Login/index");
 
             //services.ConfigureApplicationCookie(o => o.LoginPath = "/Home/Login")
             //Använd denna om Identity är använd och URL:en annan äb /Account/Login
