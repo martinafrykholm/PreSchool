@@ -1,0 +1,23 @@
+﻿@model CreateUserVM
+
+<center>
+    @*fixa asp-action!*@
+    <form asp-controller="Create" asp-action="Login">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName"></span>
+
+        <label asp-for="PassWord"></label>
+        <input asp-for="PassWord" />
+        <span asp-validation-for="PassWord"></span>
+
+        <label asp-for="ChildCode"></label>
+        <input asp-for="ChildCode" />
+        <span asp-validation-for="ChildCode"></span>
+
+        <br />
+        <a href="~/Create/">Skapa!</a><br />
+    </form>
+
+    
+</center>
