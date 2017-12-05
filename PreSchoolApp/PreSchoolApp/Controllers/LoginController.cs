@@ -16,22 +16,22 @@ namespace PreSchoolApp.Controllers
     {
 
         LoginVM login;
-        IdentityDbContext identityContext;
+        //IdentityDbContext identityContext;
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
         RoleManager<IdentityRole> roleManager;
 
-        public LoginController(IdentityDbContext identityContext,
+        public LoginController(//IdentityDbContext identityContext,
         UserManager<IdentityUser> userManager,
         SignInManager<IdentityUser> signInManager,
         RoleManager<IdentityRole> roleManager)
         {
-            this.identityContext = identityContext;
+            //this.identityContext = identityContext;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
 
-            identityContext.Database.EnsureCreated();
+           // identityContext.Database.EnsureCreated();
         }
         // GET: /<controller>/
         public IActionResult Index()
