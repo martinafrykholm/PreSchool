@@ -14,6 +14,7 @@ namespace PreSchoolApp.Models.ViewModels
 
         [Required(ErrorMessage = "Ange ett lösenord")]
         [Display(Name ="Lösenord")]
+        [DataType(DataType.Password)]
         public string PassWord { get; set; }
 
         [Display(Name = "Kod")]

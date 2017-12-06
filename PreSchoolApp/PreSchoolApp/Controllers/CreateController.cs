@@ -13,6 +13,9 @@ namespace PreSchoolApp.Controllers
 {
     public class CreateController : Controller
     {
+
+        IdentityErrorDescriber errorDescriber = new IdentityErrorDescriber();
+        IdentityError error = new IdentityError();
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
         RoleManager<IdentityRole> roleManager;
@@ -30,6 +33,7 @@ namespace PreSchoolApp.Controllers
         }
 
         // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -37,15 +41,31 @@ namespace PreSchoolApp.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Create(CreateUserVM createUserVM)
+        public async Task<IActionResult> Index(CreateUserVM createUserVM)
         {
-            if(!ModelState.IsValid)
-            
+            if (!ModelState.IsValid)
+            {
                 return View();
-            
-
+            }
             var result =
                 await userManager.CreateAsync(new IdentityUser(createUserVM.UserName), createUserVM.PassWord);
+
+            if (!result.Succeeded)
+            {
+                //var needsUpper = errorDescriber.PasswordRequiresUpper();
+                //ModelState.AddModelError(
+                //    nameof(CreateUserVM.PassWord), needsUpper.ToString());
+
+                ModelState.AddModelError(
+                    nameof(CreateUserVM.PassWord), "Felaktigt lösenord");
+                //var toShort = errorDescriber.PasswordTooShort(7);
+                //ModelState.AddModelError(
+                //    nameof(CreateUserVM.PassWord), toShort.ToString());
+                         
+                return View();
+
+            }
+
 
             return RedirectToAction(nameof(Index));
         }

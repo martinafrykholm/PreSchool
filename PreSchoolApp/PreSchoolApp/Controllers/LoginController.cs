@@ -14,6 +14,7 @@ namespace PreSchoolApp.Controllers
 {
     public class LoginController : Controller
     {
+        
         //IdentityDbContext identityContext;
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
@@ -55,6 +56,8 @@ namespace PreSchoolApp.Controllers
                 ModelState.AddModelError(
                     nameof(LoginVM.UserName), "Felaktigt namn eller lösenord"); //lägger in felmeddelande                
                 return View();
+
+                
             }
 
             return RedirectToAction(nameof(TeacherController));
