@@ -15,7 +15,7 @@ namespace PreSchoolApp.Controllers
         public IActionResult Index()
         {
             var model = TestChildrenRepo.GetAllChildren();
-            return View();
+            return View(model);
         }
     }
 }
