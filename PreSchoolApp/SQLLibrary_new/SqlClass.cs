@@ -25,6 +25,14 @@ namespace SQLLibrary_new
             sqlCommand.Parameters.Add(CreateNVarCharParameter("@lastName", lastName, 50));
             sqlCommand.Parameters.Add(CreateNVarCharParameter("@AspId", aspId, 450));
             sqlCommand.Parameters.Add(CreateIntParameter("@ChildID", childId));
+
+            SqlParameter idParam = new SqlParameter();
+            idParam.Direction = ParameterDirection.Output;//Detta är vår outputvariabel
+            idParam.ParameterName = "@id";
+            idParam.SqlDbType = SqlDbType.Int;
+
+            sqlCommand.Parameters.Add(idParam);
+
             int rowsAffected;
 
             try
@@ -57,6 +65,14 @@ namespace SQLLibrary_new
             sqlCommand.Parameters.Add(CreateNVarCharParameter("@lastName", lastName, 50));
             sqlCommand.Parameters.Add(CreateNVarCharParameter("@AspId", aspId, 450));
             sqlCommand.Parameters.Add(CreateIntParameter("@UnitsID", unitId));
+
+            SqlParameter idParam = new SqlParameter();
+            idParam.Direction = ParameterDirection.Output;//Detta är vår outputvariabel
+            idParam.ParameterName = "@id";
+            idParam.SqlDbType = SqlDbType.Int;
+
+            sqlCommand.Parameters.Add(idParam);
+
             int rowsAffected;
 
             try
@@ -88,6 +104,14 @@ namespace SQLLibrary_new
             sqlCommand.Parameters.Add(CreateNVarCharParameter("@firstName", firstName, 50));
             sqlCommand.Parameters.Add(CreateNVarCharParameter("@lastName", lastName, 50));
             sqlCommand.Parameters.Add(CreateIntParameter("@unitsId", unitId));
+
+            SqlParameter idParam = new SqlParameter();
+            idParam.Direction = ParameterDirection.Output;//Detta är vår outputvariabel
+            idParam.ParameterName = "@id";
+            idParam.SqlDbType = SqlDbType.Int;
+
+            sqlCommand.Parameters.Add(idParam);
+
             int rowsAffected;
 
             try
@@ -116,7 +140,13 @@ namespace SQLLibrary_new
             sqlCommand.Connection = sqlConnection;
 
             sqlCommand.Parameters.Add(CreateNVarCharParameter("@PreSchoolName", preschoolName, 100));
-            
+
+            SqlParameter idParam = new SqlParameter();
+            idParam.Direction = ParameterDirection.Output;//Detta är vår outputvariabel
+            idParam.ParameterName = "@id";
+            idParam.SqlDbType = SqlDbType.Int;
+
+            sqlCommand.Parameters.Add(idParam);
             int rowsAffected;
 
             try
@@ -147,6 +177,12 @@ namespace SQLLibrary_new
             sqlCommand.Parameters.Add(CreateNVarCharParameter("@UnitName", unitName, 100));
             sqlCommand.Parameters.Add(CreateIntParameter("@PreSchoolID", preschoolID));
 
+            SqlParameter idParam = new SqlParameter();
+            idParam.Direction = ParameterDirection.Output;//Detta är vår outputvariabel
+            idParam.ParameterName = "@id";
+            idParam.SqlDbType = SqlDbType.Int;
+
+            sqlCommand.Parameters.Add(idParam);
 
             int rowsAffected;
 
