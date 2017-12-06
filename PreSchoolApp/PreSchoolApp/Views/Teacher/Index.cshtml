@@ -1,9 +1,11 @@
 ﻿@model TeacherStartVM[]
-Teacher
 
-<ul>
-    @foreach (var item in Model)
-    {
-        <li>@item.Child.FirstName</li>
-    }
-</ul>
+<center>
+Teacher
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Child.FirstName</li>
+        }
+    </ul>
+</center>
