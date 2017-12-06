@@ -34,17 +34,19 @@ namespace PreSchoolApp.Controllers
            // identityContext.Database.EnsureCreated();
         }
         // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginVM loginVM)
+        public async Task<IActionResult> Index(LoginVM loginVM)
         {
             if (!ModelState.IsValid)
-                return View(loginVM);
+                return View();
 
             //Här skapas cookien
             var result = await signInManager.PasswordSignInAsync(
@@ -54,7 +56,7 @@ namespace PreSchoolApp.Controllers
             {
                 ModelState.AddModelError(
                     nameof(LoginVM.UserName), "Felaktigt namn eller lösenord"); //lägger in felmeddelande                
-                return View(loginVM);
+                return View();
             }
 
             return RedirectToAction(nameof(TeacherController));
