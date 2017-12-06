@@ -14,8 +14,6 @@ namespace PreSchoolApp.Controllers
 {
     public class LoginController : Controller
     {
-
-        LoginVM login;
         //IdentityDbContext identityContext;
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;

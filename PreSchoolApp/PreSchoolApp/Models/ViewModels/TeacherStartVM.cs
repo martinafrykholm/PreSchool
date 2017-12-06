@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PreSchoolApp.Models.Entities;
+using PreSchoolApp.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +9,13 @@ namespace PreSchoolApp.Models.ViewModels
 {
     public class TeacherStartVM
     {
-        //public List<Child> Children { get; set; }
+        public Children Child { get; set; }
+        public Schedules Schedule { get; set; }
+
+       
     }
+
+    
 }
+
+

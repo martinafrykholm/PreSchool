@@ -1,4 +1,5 @@
 ﻿using PreSchoolApp.Models.Entities;
+using PreSchoolApp.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace PreSchoolApp.Models
     public class TestChildrenRepo
     {        
         //static List<Schedules> schedules = TestSchedulesRepo.GetSchedule();
-        static List<Children> customers = new List<Children>
+        static List<Children> children = new List<Children>
         {
             new Children{Id = 1, FirstName = "Sara", LastName = "Andersson", IsPresent = false, UnitsId = 1},
             new Children{Id = 2, FirstName = "Kalle", LastName = "Johansson", IsPresent = false, UnitsId = 1},
@@ -18,7 +19,16 @@ namespace PreSchoolApp.Models
             new Children{Id = 5, FirstName = "Pelle", LastName = "Eriksson", IsPresent = false, UnitsId = 1}
         };
 
-
+        //public TeacherStartVM[] GetAllChildren()
+        //{
+        //    return children
+        //        .Select(c => new TeacherStartVM
+        //        {
+        //            CompanyName = c.CompanyName,
+        //            IsVip = c.CompanyName.StartsWith("S")
+        //        })
+        //        .ToArray();
+        //}
         //public CustomersIndexVM[] GetAllCustomers()
         //{
         //    return customers
@@ -28,6 +38,7 @@ namespace PreSchoolApp.Models
         //            IsVip = c.CompanyName.StartsWith("S")
         //        })
         //        .ToArray();
-        //}        
+        //}       
+
     }
 }

@@ -13,6 +13,7 @@ namespace PreSchoolApp.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            //var model = 
             return View();
         }
     }
