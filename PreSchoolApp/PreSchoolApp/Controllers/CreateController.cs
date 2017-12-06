@@ -39,10 +39,15 @@ namespace PreSchoolApp.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Create(CreateUserVM createUserVM)
         {
+            if(!ModelState.IsValid)
+            
+                return View();
+            
+
             var result =
                 await userManager.CreateAsync(new IdentityUser(createUserVM.UserName), createUserVM.PassWord);
 
-            return RedirectToAction(nameof(TeacherController));
+            return RedirectToAction(nameof(Index));
         }
     }
 }
