@@ -24,8 +24,8 @@ namespace PreSchoolApp.Models.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer(@"Server=tcp:preschoolserver.database.windows.net,1433;Initial Catalog=PreSchoolDB;Persist Security Info=False;User ID=preschoolAdmin;Password=Grupp1C#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer(@"Server=tcp:preschoolserver.database.windows.net,1433;Initial Catalog=PreSchoolDB;Persist Security Info=False;User ID=preschoolAdmin;Password=Grupp1C#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30");
             }
         }
 
@@ -139,13 +139,13 @@ namespace PreSchoolApp.Models.Entities
                     .WithMany(p => p.C2p)
                     .HasForeignKey(d => d.Cid)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__C2P__CID__7B5B524B");
+                    .HasConstraintName("FK__C2P__CID__1AD3FDA4");
 
                 entity.HasOne(d => d.U)
                     .WithMany(p => p.C2p)
                     .HasForeignKey(d => d.Uid)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__C2P__UID__7A672E12");
+                    .HasConstraintName("FK__C2P__UID__19DFD96B");
             });
 
             modelBuilder.Entity<Children>(entity =>
@@ -163,7 +163,7 @@ namespace PreSchoolApp.Models.Entities
                 entity.HasOne(d => d.Units)
                     .WithMany(p => p.Children)
                     .HasForeignKey(d => d.UnitsId)
-                    .HasConstraintName("FK__Children__UnitsI__778AC167");
+                    .HasConstraintName("FK__Children__UnitsI__0C85DE4D");
             });
 
             modelBuilder.Entity<PreSchools>(entity =>
@@ -180,21 +180,17 @@ namespace PreSchoolApp.Models.Entities
                 entity.ToTable("Schedules", "PRS");
 
                 entity.HasIndex(e => new { e.Weekdays, e.ChildrenId })
-                    .HasName("UQ__Schedule__052ACB7EBA1D2EAC")
+                    .HasName("UQ__Schedule__052ACB7E9BAE8327")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.ChildrenId).HasColumnName("ChildrenID");
 
-                entity.Property(e => e.Weekdays)
-                    .IsRequired()
-                    .HasMaxLength(7);
-
                 entity.HasOne(d => d.Children)
                     .WithMany(p => p.Schedules)
                     .HasForeignKey(d => d.ChildrenId)
-                    .HasConstraintName("FK__Schedules__Child__7F2BE32F");
+                    .HasConstraintName("FK__Schedules__Child__123EB7A3");
             });
 
             modelBuilder.Entity<Units>(entity =>
@@ -211,7 +207,7 @@ namespace PreSchoolApp.Models.Entities
                     .WithMany(p => p.Units)
                     .HasForeignKey(d => d.PreSchoolsId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Units__PreSchool__6FE99F9F");
+                    .HasConstraintName("FK__Units__PreSchool__09A971A2");
             });
 
             modelBuilder.Entity<Users>(entity =>
@@ -219,7 +215,7 @@ namespace PreSchoolApp.Models.Entities
                 entity.ToTable("Users", "PRS");
 
                 entity.HasIndex(e => e.AspId)
-                    .HasName("UQ__Users__446BE1C4C49C459C")
+                    .HasName("UQ__Users__446BE1C48F972FED")
                     .IsUnique();
 
                 entity.Property(e => e.Id).HasColumnName("ID");
@@ -238,12 +234,12 @@ namespace PreSchoolApp.Models.Entities
                     .WithOne(p => p.Users)
                     .HasForeignKey<Users>(d => d.AspId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Users__AspID__73BA3083");
+                    .HasConstraintName("FK__Users__AspID__160F4887");
 
                 entity.HasOne(d => d.Units)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.UnitsId)
-                    .HasConstraintName("FK__Users__UnitsID__74AE54BC");
+                    .HasConstraintName("FK__Users__UnitsID__17036CC0");
             });
         }
     }
