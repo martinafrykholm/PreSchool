@@ -23,18 +23,35 @@ namespace PreSchoolApp.Models
         static TimeSpan dropOff2 = new TimeSpan(9, 00, 00);
         static TimeSpan pickUp2 = new TimeSpan(17, 00, 00);
 
-        static List<Schedules> schedules = new List<Schedules>
+        static List<Schedules> schedules1 = new List<Schedules>
         {
             new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 1},
             new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 2},
-            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 1},
-            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 5},
+            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 3},
             new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 4},
-            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 3},
-            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 5},
-            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 4},
-            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 3},
-            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 2},
+            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 5},            
         };
+
+        static List<Schedules> schedules2 = new List<Schedules>
+        {            
+            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 1},
+            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 2},
+            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 3},
+            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 4},
+            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 5},
+        };
+
+        public static List<Schedules> GetChildSchedule(int id)
+        {
+            if (id == 1)
+            {
+                return schedules1;
+            }
+
+            else
+            {
+                return schedules2;
+            }
+        }
     }
 }

@@ -10,7 +10,6 @@ namespace PreSchoolApp.Models.ViewModels
     public class TeacherStartVM
     {
         public Children Child { get; set; }
-        public Schedules Schedule { get; set; }       
     }    
 }
 
