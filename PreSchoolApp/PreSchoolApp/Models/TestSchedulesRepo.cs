@@ -26,6 +26,8 @@ namespace PreSchoolApp.Models
             new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = "Wednesd"},
             new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = "Thursda"},
             new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = "Friday"},
-        };        
+        };
+        
+        
     }
 }
