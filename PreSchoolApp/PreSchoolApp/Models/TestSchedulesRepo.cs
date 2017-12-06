@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace PreSchoolApp.Models
 {
+    public enum Weekdays
+    {
+        Monday = 1,
+        Tuesday = 2,
+        Wednesday = 3,
+        Thursday = 4,
+        Friday = 5
+    }
+
 
     public class TestSchedulesRepo
     {
@@ -16,18 +25,16 @@ namespace PreSchoolApp.Models
 
         static List<Schedules> schedules = new List<Schedules>
         {
-            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = "Monday"},
-            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = "Tuesday"},
-            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = "Wednesd"},
-            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = "Thursda"},
-            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = "Friday"},
-            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = "Monday"},
-            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = "Tuesday"},
-            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = "Wednesd"},
-            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = "Thursda"},
-            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = "Friday"},
+            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 1},
+            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 2},
+            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 1},
+            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 5},
+            new Schedules{Id = 1, ChildrenId = 1, Dropoff = dropOff1, PickUp = pickUp1, Weekdays = 4},
+            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 3},
+            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 5},
+            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 4},
+            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 3},
+            new Schedules{Id = 2, ChildrenId = 2, Dropoff = dropOff2, PickUp = pickUp2, Weekdays = 2},
         };
-        
-        
     }
 }
