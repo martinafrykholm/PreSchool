@@ -31,7 +31,7 @@ namespace PreSchoolApp.Models
 
             for (int i = 0; i < children.Count; i++)
             {
-                teacherStartVM[i].Child = children[i];
+                //teacherStartVM[i].Child = children[i];
             }
             return teacherStartVM;
         }

@@ -6,14 +6,61 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
+
 namespace SQLLibrary_new
 {
    static public class SqlClass
     {
-        const int seconds = 0;
+        private const int seconds = 0;
         static string connString = @"Server=tcp:preschoolserver.database.windows.net,1433;Initial Catalog=PreSchoolDB;Persist Security Info=False;User ID=preschoolAdmin;Password=Grupp1C#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
         static SqlConnection sqlConnection = new SqlConnection(connString);
 
+
+        //public static List<Children> GetAllChildrenAndSchedules()
+        //{
+
+
+        //    //List<Children> children = new List<Children>();
+        //    //SqlCommand sqlCommand = new SqlCommand();
+        //    ////skapa ny sqlcommand för varje metod
+        //    //sqlCommand.CommandText = "Select*from PRS.Children";
+        //    //sqlCommand.CommandType = CommandType.Text;
+        //    //sqlCommand.Connection = sqlConnection;
+
+
+        //    //try
+        //    //{
+        //    //    sqlConnection.Open();
+        //    //    SqlDataReader reader = sqlCommand.ExecuteReader();
+        //    //    while (reader.Read())
+        //    //    {
+        //    //        Contact contact = new Contact();
+        //    //        contact.ID = (int)reader["ID"];//Här gör vi en casting//Tolkar det som en int
+        //    //        contact.Firstname = (string)reader["Firstname"];
+        //    //        contact.Lastname = (string)reader["Lastname"];
+        //    //        contact.SSN = (string)reader["SSN"];
+
+        //    //        contacts.Add(contact);
+
+        //    //    }
+
+
+
+        //    //}
+        //    //catch
+        //    //{
+        //    //    //F¨år inte använda console här eftersom det är ett klassbibliotek
+        //    //    contacts = null;
+        //    //}
+
+        //    //finally
+        //    //{
+        //    //    sqlConnection.Close();
+        //    //}
+
+        //    //return children;
+
+        //}
 
         public static int AddParent(string firstName, string lastName, string aspId, int childId)
         {
@@ -132,6 +179,9 @@ namespace SQLLibrary_new
 
             return rowsAffected;
         }
+
+
+        
 
         public static int AddPreSchool(string preschoolName)
         {
@@ -255,25 +305,14 @@ namespace SQLLibrary_new
             sqlCommand.Parameters.Add(CreateIntParameter("@childId", childId));
             sqlCommand.Parameters.Add(CreateIntParameter("@weekdayNr", weekDayID));
 
-            
-
-
-            //SqlParameter scheduleIdParam = new SqlParameter();
-            //scheduleIdParam.Direction = ParameterDirection.Output;
-            //scheduleIdParam.ParameterName = "@scheduleID";
-            ////scheduleIdParam.SqlDbType = SqlDbType.Int;
-
-            //sqlCommand.Parameters.Add(scheduleIdParam);
 
             try
             {
                 sqlConnection.Open();
                 SqlDataReader reader = sqlCommand.ExecuteReader();
-                //scheduleID = int.Parse(sqlCommand.Parameters["@scheduleID"].Value.ToString());
 
                 while (reader.Read())
                 {
-                    /*contact.ID = (int)reader["ID"];*///Här gör vi en casting//Tolkar det som en int
                     scheduleID = (int)reader["ID"];
                 }
 

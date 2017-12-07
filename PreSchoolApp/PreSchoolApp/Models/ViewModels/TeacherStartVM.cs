@@ -9,8 +9,18 @@ namespace PreSchoolApp.Models.ViewModels
 {
     public class TeacherStartVM
     {
-        public Children Child { get; set; }
-    }    
+        public int PresentChildrenCount { get; set; }
+        public TeacherStartChildItemVM[] ChildItems { get; set; }
+    }
+    
+    public class TeacherStartChildItemVM
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public TimeSpan DropOfTime { get; set; }
+        public TimeSpan PickupTime { get; set; }
+        public bool IsPresent { get; set; }
+    }
 }
 
 
