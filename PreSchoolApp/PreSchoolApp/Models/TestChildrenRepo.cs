@@ -14,7 +14,7 @@ namespace PreSchoolApp.Models
         {
 
             TimeSpan dropOff1 = new TimeSpan(8, 00, 00);
-            TimeSpan pickUp1 = new TimeSpan(16, 00, 00);
+            TimeSpan pickUp1 = new TimeSpan(18, 00, 00);
             TimeSpan dropOff2 = new TimeSpan(9, 00, 00);
             TimeSpan pickUp2 = new TimeSpan(17, 00, 00);
 
@@ -31,6 +31,17 @@ namespace PreSchoolApp.Models
             TeacherStartVM teacherStartVM = new TeacherStartVM();
 
             teacherStartVM.ChildItems = children;
+
+            int counter = 0;
+            foreach (var item in children)
+            {
+                if (item.IsPresent)
+                {
+                    counter++;
+                }
+            }
+
+            teacherStartVM.PresentChildrenCount = counter;
 
             return teacherStartVM;
         }
