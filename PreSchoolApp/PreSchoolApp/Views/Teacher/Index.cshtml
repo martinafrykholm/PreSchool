@@ -1,11 +1,35 @@
 ﻿@model TeacherStartVM[]
-
 <center>
-Teacher
+    Teacher
+    <div id="counterDiv">
+        
+    </div>
     <ul>
-        @foreach (var item in Model)
+        @foreach (var child in Model)
         {
-            <li>@item.Child.FirstName</li>
+            
+                //@child.Child.FirstName
+                @foreach (var childSchedule in child.Child.Schedules)
+                {
+                    if (childSchedule.Weekdays == (int)DateTime.Now.DayOfWeek)
+                    {
+                        if (child.Child.IsPresent)
+                        {
+                            <li class="IsPresent">@child.Child.FirstName @childSchedule.PickUp</li>
+                        }
+                        else
+                        {
+                            <li class="NotPresent">@child.Child.FirstName @childSchedule.Dropoff</li>
+                        }
+                    }
+                }
+
         }
     </ul>
 </center>
+
+<script>    
+    $(document).ready(function () { 
+        $("#counterDiv").text($("ul li[class=IsPresent]").length);
+    });
+</script>
