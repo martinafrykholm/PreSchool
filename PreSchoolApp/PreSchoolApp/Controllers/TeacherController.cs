@@ -11,10 +11,17 @@ namespace PreSchoolApp.Controllers
 {
     public class TeacherController : Controller
     {
+        PreSchoolDBRepository repository;
+
+        public TeacherController(PreSchoolDBRepository repository)
+        {
+            this.repository = repository;
+        }
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var model = TestChildrenRepo.GetTestData();
+            //var model = TestChildrenRepo.GetTestData();
+            var model = repository.GetTodaysSchedules();
             return View(model);
         }
     }
