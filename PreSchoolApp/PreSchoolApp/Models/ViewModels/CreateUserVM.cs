@@ -21,6 +21,5 @@ namespace PreSchoolApp.Models.ViewModels
         [Display(Name = "Kod")]
         public string ChildCode { get; set; }
 
-
     }
 }

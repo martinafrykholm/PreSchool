@@ -47,8 +47,7 @@ namespace PreSchoolApp.Controllers
             if (!ModelState.IsValid)
             {
                 return View();
-            }
-            
+            }         
             var result =
                 await userManager.CreateAsync(new IdentityUser(createUserVM.UserName), createUserVM.PassWord);
 
@@ -67,10 +66,7 @@ namespace PreSchoolApp.Controllers
                 return View();
 
             }
-
-           
-
-
+            
             return RedirectToAction(nameof(EditUser));
         }
 
@@ -87,10 +83,10 @@ namespace PreSchoolApp.Controllers
             {
                 return View();
             }
-
-            SqlClass.AddParent(editUserVM.FirstName, editUserVM.LastName, editUserVM.PhoneNumber, editUserVM.ChildID);
-
-            return RedirectToAction(nameof(Index));
+            
+            SqlClass.AddParent(editUserVM.FirstName, editUserVM.LastName, "32", editUserVM.ChildID);
+            
+            return RedirectToAction("/Teacher/Index");
         }
     }
 }
