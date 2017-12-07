@@ -58,11 +58,8 @@ namespace PreSchoolApp.Controllers
                 ModelState.AddModelError(
                     nameof(LoginVM.UserName), "Felaktigt namn eller lösenord"); //lägger in felmeddelande                
                 return View();
-
                 
             }
-           
- 
             return RedirectToAction(nameof(TeacherController));
         }
 

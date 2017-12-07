@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using PreSchoolApp.Models.Entities;
 
 namespace PreSchoolApp.Models.ViewModels
 {
     public class EditUserVM
     {
+       PreSchoolAppContext context;
+        public EditUserVM(PreSchoolAppContext context)
+        {
+            this.context = context;
+        }
+       
         [Required(ErrorMessage ="Ange ditt förnamn")]
         [Display(Name = "Förnamn")]
         public string FirstName { get; set; }
@@ -25,5 +32,14 @@ namespace PreSchoolApp.Models.ViewModels
         public string EmailAdress { get; set; }
 
         public int ChildID { get; set; }
+
+        public string GetASPID(string username)
+        {
+            var aspId = context.AspNetUsers
+                .Where(c => c.UserName == username)
+                .Select(c => c.Id);
+            
+            return aspId.ToString();
+        }
     }
 }
