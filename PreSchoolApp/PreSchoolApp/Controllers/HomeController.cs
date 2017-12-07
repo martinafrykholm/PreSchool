@@ -11,9 +11,9 @@ namespace PreSchoolApp.Controllers
 {
     public class HomeController : Controller
     {
-        ChildrenDBRepository repository;
+        PreSchoolDBRepository repository;
 
-        public HomeController(ChildrenDBRepository repository)
+        public HomeController(PreSchoolDBRepository repository)
         {
             this.repository = repository;
         }

@@ -71,7 +71,7 @@ namespace PreSchoolApp.Controllers
            
 
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(EditUser));
         }
 
         [HttpGet]
