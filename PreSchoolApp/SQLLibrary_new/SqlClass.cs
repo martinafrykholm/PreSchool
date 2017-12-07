@@ -8,7 +8,7 @@ using System.Data;
 
 namespace SQLLibrary_new
 {
-    public class SqlClass
+   static public class SqlClass
     {
         static string connString = @"Server=tcp:preschoolserver.database.windows.net,1433;Initial Catalog=PreSchoolDB;Persist Security Info=False;User ID=preschoolAdmin;Password=Grupp1C#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
         static SqlConnection sqlConnection = new SqlConnection(connString);
