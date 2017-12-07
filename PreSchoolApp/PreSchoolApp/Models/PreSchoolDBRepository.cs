@@ -10,7 +10,7 @@ namespace PreSchoolApp.Models
 {
     public class PreSchoolDBRepository
     {
-
+        private const int seconds = 0;
         PreSchoolAppContext context;
 
         public PreSchoolDBRepository(PreSchoolAppContext context)
@@ -53,27 +53,80 @@ namespace PreSchoolApp.Models
                 LastName = lastName,
                 UnitsId = unitId
             });
+            context.SaveChanges();
 
         }
 
         public void AddPreSchool(string preschoolName)
         {
             context.PreSchools.Add(new PreSchools { PreSchoolName = preschoolName });
-
+            context.SaveChanges();
         }
 
         public void AddUnit(string unitName, int preschoolID)
         {
             context.Units.Add(new Units {UnitName= unitName, PreSchoolsId= preschoolID });
-
+            context.SaveChanges();
         }
 
         public void AddTeacher(string firstName, string lastName, string aspId, int unitId)
         {
             context.Users.Add(new Users { FirstName = firstName, LastName = lastName, AspId = aspId, UnitsId = unitId });
+            context.SaveChanges();
         }
 
         //private int Get
+        public string GetASPID(string username)
+        {
+            var aspId = context.AspNetUsers
+                .Where(c => c.UserName == username)
+                .Select(c => c.Id);
+
+            return aspId.ToString();
+        }
+
+        private int GetScheduleID(int childId, int weekDayNr)
+        {
+
+            var scheduleID=context.Schedules
+.SingleOrDefault(x => x.Weekdays == weekDayNr && x.ChildrenId == childId);
+
+            return Convert.ToInt32(scheduleID);
+        }
+
+
+        public void EditSchedule(int dropOffHrs, int dropOffMins, int pickUpHrs, int pickUpMins, int weekdayNr, int childId)
+        {
+
+            int scheduleItemId = GetScheduleID(childId, weekdayNr);
+
+            TimeSpan dropOff = new TimeSpan(dropOffHrs, dropOffMins, seconds);
+            TimeSpan pickUp = new TimeSpan(pickUpHrs, pickUpMins, seconds);
+
+            var itemToUpdate=context.Schedules
+                .SingleOrDefault(x => x.Id == scheduleItemId);
+
+            itemToUpdate.Dropoff = dropOff;
+            itemToUpdate.PickUp = pickUp;
+
+            context.SaveChanges();
+
+        }
+
+        public void AddParent(string firstName, string lastName, string aspId, int childId)
+        {
+
+            context.Users.Add(new Users {FirstName= firstName, LastName= lastName, AspId= aspId });
+            
+            
+            context.SaveChanges();
+
+            var userID = context.Users.SingleOrDefault(x => x.AspId == aspId);
+
+
+            context.C2p.Add(new C2p { Uid = userID.Id, Cid = childId });
+            context.SaveChanges();
+        }
 
     }
 }
