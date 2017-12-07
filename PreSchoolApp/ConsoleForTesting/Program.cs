@@ -19,11 +19,21 @@ namespace ConsoleForTesting
             //int rowsaffected = SqlClass.AddPreSchool("Byängen");
             //Console.WriteLine(rowsaffected);
 
-            int rowsaffected2 = SqlClass.AddUnit("Grönan", 4);
-            Console.WriteLine(rowsaffected2);
+            //int rowsaffected2 = SqlClass.AddUnit("Grönan", 4);
+            //Console.WriteLine(rowsaffected2);
+
+            //int rowsaffected1 = SqlClass.AddChild("Annie", "Martinsson", 3);
+            //Console.WriteLine(rowsaffected1);
 
 
 
+            //SqlClass.AddParent()
+            //TimeSpan pickUp = new TimeSpan(8, 30, 00);
+
+
+            //Console.WriteLine(pickUp);
+            //Console.ReadKey();
+            //SqlClass.EditSchedule(8, 30, 16, 30, 3, 7);
 
 
         }
