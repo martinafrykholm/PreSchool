@@ -10,6 +10,7 @@ namespace SQLLibrary_new
 {
     public class SqlClass
     {
+        const int seconds = 0;
         static string connString = @"Server=tcp:preschoolserver.database.windows.net,1433;Initial Catalog=PreSchoolDB;Persist Security Info=False;User ID=preschoolAdmin;Password=Grupp1C#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
         static SqlConnection sqlConnection = new SqlConnection(connString);
 
@@ -204,8 +205,16 @@ namespace SQLLibrary_new
             return rowsAffected;
         }
 
-        public static void EditSchedule(TimeSpan dropOff, TimeSpan pickUp, int scheduleItemId)
+        public static void EditSchedule(int dropOffHrs, int dropOffMins, int pickUpHrs, int pickUpMins, int weekdayNr, int childId)
         {
+            int scheduleItemId = GetScheduleID(childId, weekdayNr);
+
+
+            TimeSpan dropOff = new TimeSpan(dropOffHrs, dropOffMins, seconds);
+            TimeSpan pickUp = new TimeSpan(pickUpHrs, pickUpMins, seconds);
+
+            //TimeSpan pickUp,
+
             SqlCommand sqlCommand = new SqlCommand();
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.CommandText = "EditSchedule";
@@ -232,6 +241,53 @@ namespace SQLLibrary_new
             }
 
             
+        }
+
+        private static int GetScheduleID(int childId, int weekDayID)
+        {
+            int scheduleID = 0;
+
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.Connection = sqlConnection;
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.CommandText = "GetScheduleID";
+
+            sqlCommand.Parameters.Add(CreateIntParameter("@childId", childId));
+            sqlCommand.Parameters.Add(CreateIntParameter("@weekdayNr", weekDayID));
+
+            
+
+
+            //SqlParameter scheduleIdParam = new SqlParameter();
+            //scheduleIdParam.Direction = ParameterDirection.Output;
+            //scheduleIdParam.ParameterName = "@scheduleID";
+            ////scheduleIdParam.SqlDbType = SqlDbType.Int;
+
+            //sqlCommand.Parameters.Add(scheduleIdParam);
+
+            try
+            {
+                sqlConnection.Open();
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                //scheduleID = int.Parse(sqlCommand.Parameters["@scheduleID"].Value.ToString());
+
+                while (reader.Read())
+                {
+                    /*contact.ID = (int)reader["ID"];*///Här gör vi en casting//Tolkar det som en int
+                    scheduleID = (int)reader["ID"];
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+            return scheduleID;
         }
 
 
