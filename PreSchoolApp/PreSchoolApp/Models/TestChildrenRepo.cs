@@ -9,7 +9,7 @@ namespace PreSchoolApp.Models
 {
     public class TestChildrenRepo
     {
-        static List<Children> children = new List<Children>
+        public static List<Children> children = new List<Children>
         {
             new Children{Id = 1, FirstName = "Sara", LastName = "Andersson", IsPresent = false, UnitsId = 1},
             new Children{Id = 2, FirstName = "Kalle", LastName = "Johansson", IsPresent = false, UnitsId = 1},
@@ -24,6 +24,10 @@ namespace PreSchoolApp.Models
             children[1].Schedules = TestSchedulesRepo.GetChildSchedule(2);
 
             TeacherStartVM[] teacherStartVM = new TeacherStartVM[children.Count];
+            TeacherStartVM teacherStartVM1 = new TeacherStartVM();
+            TeacherStartVM teacherStartVM2 = new TeacherStartVM();
+            teacherStartVM[0] = teacherStartVM1;
+            teacherStartVM[1] = teacherStartVM2;
 
             for (int i = 0; i < children.Count; i++)
             {
@@ -31,9 +35,5 @@ namespace PreSchoolApp.Models
             }
             return teacherStartVM;
         }
-
-       
-       
-
     }
 }
