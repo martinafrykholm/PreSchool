@@ -1,6 +1,9 @@
 ﻿@model TeacherStartVM
 <center>
     Teacher
+    <br/>
+    Counter = @Model.PresentChildrenCount
+
     @foreach (var item in Model.ChildItems)
     {
         if (item.IsPresent == false)
@@ -9,14 +12,15 @@
 
         }
     }
-    @foreach (var item2 in Model.ChildItems)
-    {
-        if (item2.IsPresent == true)
+    <ul>
+        @foreach (var item2 in Model.ChildItems)
         {
-            <li>@item2.FirstName @item2.LastName @item2.PickupTime</li>
-
+            if (item2.IsPresent == true)
+            {
+                <li>@item2.FirstName @item2.LastName @item2.PickupTime</li>
+            }
         }
-    }
+    </ul>
     @*<div id="counterDiv">
 
         </div>
