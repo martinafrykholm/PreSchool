@@ -7,6 +7,7 @@ using PreSchoolApp.Models.ViewModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using SQLLibrary_new;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,6 +16,7 @@ namespace PreSchoolApp.Controllers
     public class LoginController : Controller
     {
         
+       
         //IdentityDbContext identityContext;
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
@@ -59,8 +61,11 @@ namespace PreSchoolApp.Controllers
 
                 
             }
-
+           
+ 
             return RedirectToAction(nameof(TeacherController));
         }
+
+
     }
 }
