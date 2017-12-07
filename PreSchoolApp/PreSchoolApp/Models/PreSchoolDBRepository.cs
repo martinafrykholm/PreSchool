@@ -8,12 +8,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PreSchoolApp.Models
 {
-    public class ChildrenDBRepository
+    public class PreSchoolDBRepository
     {
 
         PreSchoolAppContext context;
 
-        public ChildrenDBRepository(PreSchoolAppContext context)
+        public PreSchoolDBRepository(PreSchoolAppContext context)
         {
             this.context = context;
         }
