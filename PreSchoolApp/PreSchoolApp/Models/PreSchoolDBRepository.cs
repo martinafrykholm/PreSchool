@@ -44,5 +44,36 @@ namespace PreSchoolApp.Models
             return ret;
         }
 
+
+        public void AddChild(string firstName, string lastName, int unitId)
+        {
+            context.Children.Add(new Children
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                UnitsId = unitId
+            });
+
+        }
+
+        public void AddPreSchool(string preschoolName)
+        {
+            context.PreSchools.Add(new PreSchools { PreSchoolName = preschoolName });
+
+        }
+
+        public void AddUnit(string unitName, int preschoolID)
+        {
+            context.Units.Add(new Units {UnitName= unitName, PreSchoolsId= preschoolID });
+
+        }
+
+        public void AddTeacher(string firstName, string lastName, string aspId, int unitId)
+        {
+            context.Users.Add(new Users { FirstName = firstName, LastName = lastName, AspId = aspId, UnitsId = unitId });
+        }
+
+        //private int Get
+
     }
 }
