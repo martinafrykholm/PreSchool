@@ -1,11 +1,19 @@
 ﻿@model TeacherStartVM[]
-
 <center>
-Teacher
+    Teacher
     <ul>
-        @foreach (var item in Model)
+        @foreach (var child in Model)
         {
-            <li>@item.Child.FirstName</li>
+            <li>
+                @child.Child.FirstName
+            @foreach (var childSchedule in child.Child.Schedules)
+            {
+                if (childSchedule.Weekdays == (int)DateTime.Now.DayOfWeek)
+                {
+                    @childSchedule.Dropoff
+                }
+            }
+        </li>
         }
     </ul>
 </center>
