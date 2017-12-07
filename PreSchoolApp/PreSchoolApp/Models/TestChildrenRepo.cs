@@ -40,12 +40,22 @@ namespace PreSchoolApp.Models
             teacherStartVM[3] = teacherStartVM4;
             teacherStartVM[4] = teacherStartVM5;
 
+            SortListByTime();
 
             for (int i = 0; i < children.Count; i++)
             {
                 teacherStartVM[i].Child = children[i];
             }
+
             return teacherStartVM;
+        }
+
+        private static void SortListByTime()
+        {
+            List<Children> presentList = new List<Children>();
+
+            presentList = children.Where(x => x.IsPresent == true).ToList();
+
         }
     }
 }
