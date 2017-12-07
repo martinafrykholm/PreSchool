@@ -9,53 +9,31 @@ namespace PreSchoolApp.Models
 {
     public class TestChildrenRepo
     {
-        public static List<Children> children = new List<Children>
+
+        public static TeacherStartVM GetTestData()
         {
-            new Children{Id = 1, FirstName = "Sara", LastName = "Andersson", IsPresent = true, UnitsId = 1},
-            new Children{Id = 2, FirstName = "Kalle", LastName = "Johansson", IsPresent = true, UnitsId = 1},
-            new Children{Id = 3, FirstName = "Olle", LastName = "Lundmark", IsPresent = false, UnitsId = 1},
-            new Children{Id = 4, FirstName = "Anna", LastName = "Marklund", IsPresent = true, UnitsId = 1},
-            new Children{Id = 5, FirstName = "Pelle", LastName = "Eriksson", IsPresent = false, UnitsId = 1}
-        };
 
-        public static TeacherStartVM[] GetAllChildren()
-        {
-            children[0].Schedules = TestSchedulesRepo.GetChildSchedule(1);
-            children[1].Schedules = TestSchedulesRepo.GetChildSchedule(2);
-            children[2].Schedules = TestSchedulesRepo.GetChildSchedule(2);
-            children[3].Schedules = TestSchedulesRepo.GetChildSchedule(1);
-            children[4].Schedules = TestSchedulesRepo.GetChildSchedule(2);
+            TimeSpan dropOff1 = new TimeSpan(8, 00, 00);
+            TimeSpan pickUp1 = new TimeSpan(16, 00, 00);
+            TimeSpan dropOff2 = new TimeSpan(9, 00, 00);
+            TimeSpan pickUp2 = new TimeSpan(17, 00, 00);
 
-
-            TeacherStartVM[] teacherStartVM = new TeacherStartVM[children.Count];
-            TeacherStartVM teacherStartVM1 = new TeacherStartVM();
-            TeacherStartVM teacherStartVM2 = new TeacherStartVM();
-            TeacherStartVM teacherStartVM3 = new TeacherStartVM();
-            TeacherStartVM teacherStartVM4 = new TeacherStartVM();
-            TeacherStartVM teacherStartVM5 = new TeacherStartVM();
-
-            teacherStartVM[0] = teacherStartVM1;
-            teacherStartVM[1] = teacherStartVM2;
-            teacherStartVM[2] = teacherStartVM3;
-            teacherStartVM[3] = teacherStartVM4;
-            teacherStartVM[4] = teacherStartVM5;
-
-            SortListByTime();
-
-            for (int i = 0; i < children.Count; i++)
+            TeacherStartChildItemVM[] children = new TeacherStartChildItemVM[5]
             {
-                //teacherStartVM[i].Child = children[i];
-            }
+            new TeacherStartChildItemVM{FirstName = "Sara", LastName = "Andersson", IsPresent = true, DropOfTime = dropOff1, PickupTime = pickUp1},
+            new TeacherStartChildItemVM{FirstName = "Kalle", LastName = "Johansson", IsPresent = false, DropOfTime = dropOff1, PickupTime = pickUp2},
+            new TeacherStartChildItemVM{FirstName = "Olle", LastName = "Lundmark", IsPresent = true, DropOfTime = dropOff2, PickupTime = pickUp1},
+            new TeacherStartChildItemVM{FirstName = "Anna", LastName = "Marklund", IsPresent = false, DropOfTime = dropOff1, PickupTime = pickUp2},
+            new TeacherStartChildItemVM{FirstName = "Pelle", LastName = "Eriksson", IsPresent = true, DropOfTime = dropOff2, PickupTime = pickUp2}
+
+            };
+
+            TeacherStartVM teacherStartVM = new TeacherStartVM();
+
+            teacherStartVM.ChildItems = children;
 
             return teacherStartVM;
         }
-
-        private static void SortListByTime()
-        {
-            List<Children> presentList = new List<Children>();
-
-            presentList = children.Where(x => x.IsPresent == true).ToList();
-
-        }
     }
 }
+

@@ -14,7 +14,7 @@ namespace PreSchoolApp.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var model = TestChildrenRepo.GetAllChildren();
+            var model = TestChildrenRepo.GetTestData();
             return View(model);
         }
     }

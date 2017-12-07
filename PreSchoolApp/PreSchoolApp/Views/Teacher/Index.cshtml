@@ -1,35 +1,51 @@
-﻿@model TeacherStartVM[]
+﻿@model TeacherStartVM
 <center>
     Teacher
-    <div id="counterDiv">
-        
-    </div>
-    <ul>
-        @foreach (var child in Model)
+    @foreach (var item in Model.ChildItems)
+    {
+        if (item.IsPresent == false)
         {
-            
-                //@child.Child.FirstName
-                @foreach (var childSchedule in child.Child.Schedules)
-                {
-                    if (childSchedule.Weekdays == (int)DateTime.Now.DayOfWeek)
-                    {
-                        if (child.Child.IsPresent)
-                        {
-                            <li class="IsPresent">@child.Child.FirstName @childSchedule.PickUp</li>
-                        }
-                        else
-                        {
-                            <li class="NotPresent">@child.Child.FirstName @childSchedule.Dropoff</li>
-                        }
-                    }
-                }
+            <li>@item.FirstName @item.LastName @item.DropOfTime</li>
 
         }
-    </ul>
+    }
+    @foreach (var item2 in Model.ChildItems)
+    {
+        if (item2.IsPresent == true)
+        {
+            <li>@item2.FirstName @item2.LastName @item2.PickupTime</li>
+
+        }
+    }
+    @*<div id="counterDiv">
+
+        </div>
+        <ul>
+            @foreach (var child in Model)
+            {
+
+                    //@child.Child.FirstName
+                    @foreach (var childSchedule in child.Child.Schedules)
+                    {
+                        if (childSchedule.Weekdays == (int)DateTime.Now.DayOfWeek)
+                        {
+                            if (child.Child.IsPresent)
+                            {
+                                <li class="IsPresent">@child.Child.FirstName @childSchedule.PickUp</li>
+                            }
+                            else
+                            {
+                                <li class="NotPresent">@child.Child.FirstName @childSchedule.Dropoff</li>
+                            }
+                        }
+                    }
+
+            }
+        </ul>*@
 </center>
 
-<script>    
-    $(document).ready(function () { 
-        $("#counterDiv").text($("ul li[class=IsPresent]").length);
-    });
-</script>
+@*<script>
+        $(document).ready(function () {
+            $("#counterDiv").text($("ul li[class=IsPresent]").length);
+        });
+    </script>*@
