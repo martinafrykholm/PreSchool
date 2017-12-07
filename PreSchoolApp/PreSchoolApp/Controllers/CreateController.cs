@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using PreSchoolApp.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using SQLLibrary_new;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -47,6 +48,7 @@ namespace PreSchoolApp.Controllers
             {
                 return View();
             }
+            
             var result =
                 await userManager.CreateAsync(new IdentityUser(createUserVM.UserName), createUserVM.PassWord);
 
@@ -57,7 +59,7 @@ namespace PreSchoolApp.Controllers
                 //    nameof(CreateUserVM.PassWord), needsUpper.ToString());
 
                 ModelState.AddModelError(
-                    nameof(CreateUserVM.PassWord), "Felaktigt lösenord");
+                    nameof(CreateUserVM.PassWord), "Felaktigt format på lösenord");
                 //var toShort = errorDescriber.PasswordTooShort(7);
                 //ModelState.AddModelError(
                 //    nameof(CreateUserVM.PassWord), toShort.ToString());
@@ -66,6 +68,27 @@ namespace PreSchoolApp.Controllers
 
             }
 
+           
+
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult EditUser()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult EditUser(EditUserVM editUserVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            SqlClass.AddParent(editUserVM.FirstName, editUserVM.LastName, editUserVM.PhoneNumber, editUserVM.ChildID);
 
             return RedirectToAction(nameof(Index));
         }

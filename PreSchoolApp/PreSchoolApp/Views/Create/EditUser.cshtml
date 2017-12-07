@@ -1,0 +1,33 @@
+﻿@model EditUserVM
+
+
+<center>
+   
+    <form asp-controller="Create" asp-action="EditUser">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" />
+        <span asp-validation-for="FirstName"></span>
+
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" />
+        <span asp-validation-for="LastName"></span>
+
+        <label asp-for="PhoneNumber"></label>
+        <input asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber"></span>
+
+        <label asp-for="EmailAdress"></label>
+        <input asp-for="EmailAdress" />
+        <span asp-validation-for="EmailAdress"></span>
+
+        <label asp-for="ChildID"></label>
+        <input asp-for="ChildID" />
+        <span asp-validation-for="ChildID"></span>
+
+        <br />
+        <input type="submit" style="background-color:white" value="Spara" />
+
+    </form>
+
+
+</center>
