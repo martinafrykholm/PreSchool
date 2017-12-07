@@ -11,8 +11,17 @@ namespace PreSchoolApp.Controllers
     public class HomeController : Controller
     {
         // GET: /<controller>/
+        public IActionResult Index(int temp)
+        {
+           
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult Index()
         {
+
+            int temp = SQLLibrary_new.SqlClass.AddChild("Nova", "Lo", 4);
             return View();
         }
     }
