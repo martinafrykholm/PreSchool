@@ -154,20 +154,45 @@ namespace PreSchoolApp.Models
 
         }
 
-        public void AddParent(EditUserVM edituser
-            )
+        public void AddParent(EditUserVM edituser)           
         {
             string aspnetId = GetASPID(edituser.FirstName);
-            context.Users.Add(new Users { FirstName = edituser.FirstName, LastName = edituser.LastName, AspId = aspnetId });
-
-
+            context.Users.Add(new Users {FirstName= edituser.FirstName, LastName= edituser.LastName, AspId = aspnetId });
+            
             context.SaveChanges();
 
             var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
-
-
+            
             context.C2p.Add(new C2p { Uid = userID.Id, Cid = edituser.ChildID });
             context.SaveChanges();
+        }
+
+
+        public bool IsParent(LoginVM loginVM)
+        {
+            string aspId = GetASPID(loginVM.UserName);
+            int userId = GetUserID(aspId);
+
+
+            //int childId = GetChildId(userId);
+
+            return context.C2p
+                .Any(x => x.Uid == userId);
+
+
+        }
+
+        private int GetUserID(string aspId)
+        {
+            return context.Users
+                .SingleOrDefault(x => x.AspId == aspId).Id;
+        }
+
+        private int GetChildId(int userId)
+        {
+
+            return context.C2p
+                .SingleOrDefault(x => x.Uid == userId).Cid;
         }
     }
 }
