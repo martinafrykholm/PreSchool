@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using PreSchoolApp.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using SQLLibrary_new;
+using PreSchoolApp.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,17 +21,20 @@ namespace PreSchoolApp.Controllers
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
         RoleManager<IdentityRole> roleManager;
+        PreSchoolDBRepository repository;
 
         public CreateController
             (
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            RoleManager<IdentityRole> roleManager
+            RoleManager<IdentityRole> roleManager,
+            PreSchoolDBRepository repository
             )
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.repository = repository;
         }
 
         // GET: /<controller>/
@@ -84,7 +88,8 @@ namespace PreSchoolApp.Controllers
                 return View();
             }
             
-            SqlClass.AddParent(editUserVM.FirstName, editUserVM.LastName, "32", editUserVM.ChildID);
+            
+            
             
             return RedirectToAction("/Teacher/Index");
         }
