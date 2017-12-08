@@ -5,15 +5,29 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+
+    <link href="~/Styles/Styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div id="headBlock">
+            <div id="headerDiv"><p id="Logotext">Barntider</p></div>
+            
+            <div id="LogoPicture">
+<img id="logoPic" src="~/Images and icons/pupils.png" /></div>
+
+        </div>
+        <div id="contentBlock">
+            <div id="bodyDiv">
+                @RenderBody()
+            </div>
+
+
+        </div>
+       
+    </div>
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.0.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
-</head>
-<body>
-    <div>
-        @RenderBody()
-    </div>
-
-
 </body>
 </html>
