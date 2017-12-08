@@ -10,6 +10,7 @@ namespace PreSchoolApp.Models.ViewModels
     public class TeacherStartVM
     {
         public int PresentChildrenCount { get; set; }
+        public int NotPresentChildrenCount { get; set; }
         public TeacherStartChildItemVM[] ChildItems { get; set; }
     }
     

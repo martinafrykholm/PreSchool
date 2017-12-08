@@ -1,26 +1,30 @@
 ﻿@model TeacherStartVM
 <center>
     Teacher
-    <br/>
-    Counter = @Model.PresentChildrenCount
+    <br />
 
+    <p>Ej incheckade (@Model.PresentChildrenCount)</p>
     @foreach (var item in Model.ChildItems)
     {
         if (item.IsPresent == false)
         {
-            <li>@item.FirstName @item.LastName @item.DropOfTime</li>
+            <p>@item.FirstName @item.DropOfTime<input type="button" style="background-color:white" value="Checka in" /></p><br />
 
         }
     }
-    <ul>
-        @foreach (var item2 in Model.ChildItems)
+
+    <p>Incheckade (@Model.PresentChildrenCount)</p>
+    @foreach (var item2 in Model.ChildItems)
+    {
+        if (item2.IsPresent == true)
         {
-            if (item2.IsPresent == true)
-            {
-                <li>@item2.FirstName @item2.LastName @item2.PickupTime</li>
-            }
+            <p>@item2.FirstName @item2.PickupTime<input type="button" style="background-color:white" value="Checka ut" /></p><br />
         }
-    </ul>
+    }
+
+    <p>Utcheckade</p>
+    
+
     @*<div id="counterDiv">
 
         </div>
