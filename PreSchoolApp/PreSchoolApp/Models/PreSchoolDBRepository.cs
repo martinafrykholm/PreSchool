@@ -33,14 +33,15 @@ namespace PreSchoolApp.Models
                         IsPresent = o.Children.IsPresent,
                         FirstName = o.Children.FirstName,
                         LastName = o.Children.LastName,
-                        Id = o.Children.Id
+                        Id = o.Children.Id,
+                        IsActive = (bool)o.Children.IsIll
                     })
                     .OrderBy(o => o.IsPresent)
                     .ToArray()
             };
 
             ret.PresentChildrenCount = ret.ChildItems
-                .Count(o => o.IsPresent);
+                .Count(o => o.IsPresent && o.IsActive == false);
 
             ret.NotPresentChildrenCount = ret.ChildItems
                 .Count(o => o.IsPresent == false);
@@ -56,12 +57,19 @@ namespace PreSchoolApp.Models
             var itemToUpdate = context.Children
                 .SingleOrDefault(x => x.Id == childId);
 
-            if (itemToUpdate.IsPresent)
+            if (itemToUpdate.IsPresent == false && itemToUpdate.IsIll == false)
             {
+                itemToUpdate.IsPresent = true;
+            }
+            else if (itemToUpdate.IsPresent == true && itemToUpdate.IsIll == false)
+            {
+                itemToUpdate.IsIll = true;
+            }
+            else if (itemToUpdate.IsIll == true && itemToUpdate.IsPresent == true)
+            {
+                itemToUpdate.IsIll = false;
                 itemToUpdate.IsPresent = false;
             }
-            else
-                itemToUpdate.IsPresent = true;
 
             context.SaveChanges();
         }
@@ -99,10 +107,10 @@ namespace PreSchoolApp.Models
         public string GetASPID(string username)
         {
             var aspId = context.AspNetUsers
-                .Where(c => c.UserName == username)
-                .Select(c => c.Id);
+                .Single(c => c.UserName == username)
+                .Id;
 
-            return aspId.ToString();
+            return aspId;
         }
 
         private int GetScheduleID(int childId, int weekDayNr)
@@ -133,18 +141,19 @@ namespace PreSchoolApp.Models
 
         }
 
-        public void AddParent(string firstName, string lastName, string aspId, int childId)
+        public void AddParent(EditUserVM edituser
+            )
         {
-
-            context.Users.Add(new Users { FirstName = firstName, LastName = lastName, AspId = aspId });
-
-
+            string aspnetId = GetASPID(edituser.FirstName);
+            context.Users.Add(new Users {FirstName= edituser.FirstName, LastName= edituser.LastName, AspId = aspnetId });
+            
+            
             context.SaveChanges();
 
-            var userID = context.Users.SingleOrDefault(x => x.AspId == aspId);
+            var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
 
 
-            context.C2p.Add(new C2p { Uid = userID.Id, Cid = childId });
+            context.C2p.Add(new C2p { Uid = userID.Id, Cid = edituser.ChildID });
             context.SaveChanges();
         }
     }
