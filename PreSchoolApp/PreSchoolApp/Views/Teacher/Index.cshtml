@@ -1,55 +1,28 @@
 ﻿@model TeacherStartVM
 <center>
     Teacher
-    <br/>
-    Counter = @Model.PresentChildrenCount
+    <br />
 
-    @foreach (var item in Model.ChildItems)
-    {
-        if (item.IsPresent == false)
+    <p>Ej incheckade (@Model.NotPresentChildrenCount)</p>
+    @*<form asp-controller="Teacher" asp-action="Index">*@
+        @foreach (var item in Model.ChildItems)
         {
-            <li>@item.FirstName @item.LastName @item.DropOfTime</li>
-
+            if (item.IsPresent == false)
+            {
+                <p>@item.FirstName @item.DropOfTime<input type="submit" value="Checka in" /></p><br />
+            }
         }
-    }
-    <ul>
+
+        <p>Incheckade (@Model.PresentChildrenCount)</p>
         @foreach (var item2 in Model.ChildItems)
         {
             if (item2.IsPresent == true)
             {
-                <li>@item2.FirstName @item2.LastName @item2.PickupTime</li>
+                <p>@item2.FirstName @item2.PickupTime<input type="submit" value="Checka ut" /></p><br />
             }
         }
-    </ul>
-    @*<div id="counterDiv">
 
-        </div>
-        <ul>
-            @foreach (var child in Model)
-            {
-
-                    //@child.Child.FirstName
-                    @foreach (var childSchedule in child.Child.Schedules)
-                    {
-                        if (childSchedule.Weekdays == (int)DateTime.Now.DayOfWeek)
-                        {
-                            if (child.Child.IsPresent)
-                            {
-                                <li class="IsPresent">@child.Child.FirstName @childSchedule.PickUp</li>
-                            }
-                            else
-                            {
-                                <li class="NotPresent">@child.Child.FirstName @childSchedule.Dropoff</li>
-                            }
-                        }
-                    }
-
-            }
-        </ul>*@
+        <p>Utcheckade (@Model.NotActiveCount)</p>
+    @*</form>*@
 </center>
 
-@*<script>
-        $(document).ready(function () {
-            $("#counterDiv").text($("ul li[class=IsPresent]").length);
-        });
-    </script>*@

@@ -13,4 +13,8 @@
     <ProjectReference Include="..\SQLLibrary_new\SQLLibrary_new.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images and icons\" />
+  </ItemGroup>
+
 </Project>

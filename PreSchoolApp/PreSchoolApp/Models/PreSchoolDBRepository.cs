@@ -32,7 +32,8 @@ namespace PreSchoolApp.Models
                         PickupTime = o.PickUp.Value,
                         IsPresent = o.Children.IsPresent,
                         FirstName = o.Children.FirstName,
-                        LastName = o.Children.LastName
+                        LastName = o.Children.LastName,
+                        Id = o.Children.Id
                     })
                     .OrderBy(o => o.IsPresent)
                     .ToArray()
@@ -41,9 +42,29 @@ namespace PreSchoolApp.Models
             ret.PresentChildrenCount = ret.ChildItems
                 .Count(o => o.IsPresent);
 
+            ret.NotPresentChildrenCount = ret.ChildItems
+                .Count(o => o.IsPresent == false);
+
+            ret.NotActiveCount = ret.ChildItems
+                .Count(o => o.IsActive);
+
             return ret;
         }
 
+        public void SetChildPresence(int childId)
+        {
+            var itemToUpdate = context.Children
+                .SingleOrDefault(x => x.Id == childId);
+
+            if (itemToUpdate.IsPresent)
+            {
+                itemToUpdate.IsPresent = false;
+            }
+            else
+                itemToUpdate.IsPresent = true;
+
+            context.SaveChanges();
+        }
 
         public void AddChild(string firstName, string lastName, int unitId)
         {
@@ -54,7 +75,6 @@ namespace PreSchoolApp.Models
                 UnitsId = unitId
             });
             context.SaveChanges();
-
         }
 
         public void AddPreSchool(string preschoolName)
@@ -65,7 +85,7 @@ namespace PreSchoolApp.Models
 
         public void AddUnit(string unitName, int preschoolID)
         {
-            context.Units.Add(new Units {UnitName= unitName, PreSchoolsId= preschoolID });
+            context.Units.Add(new Units { UnitName = unitName, PreSchoolsId = preschoolID });
             context.SaveChanges();
         }
 
@@ -88,7 +108,7 @@ namespace PreSchoolApp.Models
         private int GetScheduleID(int childId, int weekDayNr)
         {
 
-            var scheduleID=context.Schedules
+            var scheduleID = context.Schedules
 .SingleOrDefault(x => x.Weekdays == weekDayNr && x.ChildrenId == childId);
 
             return Convert.ToInt32(scheduleID);
@@ -103,7 +123,7 @@ namespace PreSchoolApp.Models
             TimeSpan dropOff = new TimeSpan(dropOffHrs, dropOffMins, seconds);
             TimeSpan pickUp = new TimeSpan(pickUpHrs, pickUpMins, seconds);
 
-            var itemToUpdate=context.Schedules
+            var itemToUpdate = context.Schedules
                 .SingleOrDefault(x => x.Id == scheduleItemId);
 
             itemToUpdate.Dropoff = dropOff;
@@ -128,8 +148,5 @@ namespace PreSchoolApp.Models
             context.C2p.Add(new C2p { Uid = userID.Id, Cid = edituser.ChildID });
             context.SaveChanges();
         }
-
-      
-
     }
 }

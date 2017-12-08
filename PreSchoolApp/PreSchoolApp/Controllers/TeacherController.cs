@@ -18,11 +18,19 @@ namespace PreSchoolApp.Controllers
             this.repository = repository;
         }
         // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index()
         {
             //var model = TestChildrenRepo.GetTestData();
             var model = repository.GetTodaysSchedules();
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Index(int id)
+        {
+            repository.SetChildPresence(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
