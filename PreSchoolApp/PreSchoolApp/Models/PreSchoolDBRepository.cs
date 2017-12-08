@@ -41,7 +41,7 @@ namespace PreSchoolApp.Models
             };
 
             ret.PresentChildrenCount = ret.ChildItems
-                .Count(o => o.IsPresent);
+                .Count(o => o.IsPresent && o.IsActive == false);
 
             ret.NotPresentChildrenCount = ret.ChildItems
                 .Count(o => o.IsPresent == false);
@@ -154,6 +154,32 @@ namespace PreSchoolApp.Models
             context.SaveChanges();
         }
 
-        
+
+        public bool IsParent(LoginVM loginVM)
+        {
+            string aspId = GetASPID(loginVM.UserName);
+            int userId = GetUserID(aspId);
+
+
+            //int childId = GetChildId(userId);
+
+            return context.C2p
+                .Any(x => x.Uid == userId);
+
+
+        }
+
+        private int GetUserID(string aspId)
+        {
+            return context.Users
+                .SingleOrDefault(x => x.AspId == aspId).Id;
+        }
+
+        private int GetChildId(int userId)
+        {
+
+            return context.C2p
+                .SingleOrDefault(x => x.Uid == userId).Cid;
+        }
     }
 }
