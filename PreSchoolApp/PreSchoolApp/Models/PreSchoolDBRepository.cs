@@ -79,10 +79,10 @@ namespace PreSchoolApp.Models
         public string GetASPID(string username)
         {
             var aspId = context.AspNetUsers
-                .Where(c => c.UserName == username)
-                .Select(c => c.Id);
+                .Single(c => c.UserName == username)
+                .Id;
 
-            return aspId.ToString();
+            return aspId;
         }
 
         private int GetScheduleID(int childId, int weekDayNr)
@@ -113,18 +113,19 @@ namespace PreSchoolApp.Models
 
         }
 
-        public void AddParent(string firstName, string lastName, string aspId, int childId)
+        public void AddParent(EditUserVM edituser
+            )
         {
-
-            context.Users.Add(new Users {FirstName= firstName, LastName= lastName, AspId= aspId });
+            string aspnetId = GetASPID(edituser.FirstName);
+            context.Users.Add(new Users {FirstName= edituser.FirstName, LastName= edituser.LastName, AspId = aspnetId });
             
             
             context.SaveChanges();
 
-            var userID = context.Users.SingleOrDefault(x => x.AspId == aspId);
+            var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
 
 
-            context.C2p.Add(new C2p { Uid = userID.Id, Cid = childId });
+            context.C2p.Add(new C2p { Uid = userID.Id, Cid = edituser.ChildID });
             context.SaveChanges();
         }
 

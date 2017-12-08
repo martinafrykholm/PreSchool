@@ -9,11 +9,6 @@ namespace PreSchoolApp.Models.ViewModels
 {
     public class EditUserVM
     {
-       PreSchoolAppContext context;
-        public EditUserVM(PreSchoolAppContext context)
-        {
-            this.context = context;
-        }
        
         [Required(ErrorMessage ="Ange ditt förnamn")]
         [Display(Name = "Förnamn")]
