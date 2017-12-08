@@ -33,7 +33,8 @@ namespace PreSchoolApp.Models
                         IsPresent = o.Children.IsPresent,
                         FirstName = o.Children.FirstName,
                         LastName = o.Children.LastName,
-                        Id = o.Children.Id
+                        Id = o.Children.Id,
+                        IsActive = (bool)o.Children.IsIll
                     })
                     .OrderBy(o => o.IsPresent)
                     .ToArray()
@@ -56,12 +57,19 @@ namespace PreSchoolApp.Models
             var itemToUpdate = context.Children
                 .SingleOrDefault(x => x.Id == childId);
 
-            if (itemToUpdate.IsPresent)
+            if (itemToUpdate.IsPresent == false && itemToUpdate.IsIll == false)
             {
+                itemToUpdate.IsPresent = true;
+            }
+            else if (itemToUpdate.IsPresent == true && itemToUpdate.IsIll == false)
+            {
+                itemToUpdate.IsIll = true;
+            }
+            else if (itemToUpdate.IsIll == true && itemToUpdate.IsPresent == true)
+            {
+                itemToUpdate.IsIll = false;
                 itemToUpdate.IsPresent = false;
             }
-            else
-                itemToUpdate.IsPresent = true;
 
             context.SaveChanges();
         }
