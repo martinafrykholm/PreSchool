@@ -1,0 +1,59 @@
+﻿.container {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    border-color: black;
+    background-color:#305473;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+#headBlock {
+    border-color: black;
+    background-color: #FEFFE7;
+    border-radius: 15px;
+}
+
+
+#bodyDiv {
+    margin-left: auto;
+    margin-right: auto;
+    align-content:center;
+}
+
+#contentBlock {
+    width: 380px;
+    margin-top: 10px;
+    display: block;
+    border-color: black;
+    background-color: cornsilk;
+    border-radius: 15px;
+}
+
+
+
+#logoPic {
+    height: 100px;
+    width: 200px;
+    resize: both;
+    border-color: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+#Logotext {
+    text-align: center;
+    font-size: 70px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: -10px;
+}
+
+#headerDiv {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
