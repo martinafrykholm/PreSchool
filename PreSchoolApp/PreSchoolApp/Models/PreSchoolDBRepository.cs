@@ -18,6 +18,19 @@ namespace PreSchoolApp.Models
             this.context = context;
         }
 
+        //public ParentStartVM GetYourChild(LoginVM loginVM)
+        //{
+        //    int weekDay = (int)DateTime.Today.DayOfWeek;
+
+        //    var childrenOfParent = context.Users
+        //        .Where(o => o.Id == loginVM.UserName)
+        //        .SelectMany(o => o.C2p.Select(op => op.Cid))
+                
+            
+
+        //    return null;
+        //}
+
         public TeacherStartVM GetTodaysSchedules()
         {
             int weekDay = (int)DateTime.Today.DayOfWeek;
@@ -145,9 +158,9 @@ namespace PreSchoolApp.Models
             )
         {
             string aspnetId = GetASPID(edituser.FirstName);
-            context.Users.Add(new Users {FirstName= edituser.FirstName, LastName= edituser.LastName, AspId = aspnetId });
-            
-            
+            context.Users.Add(new Users { FirstName = edituser.FirstName, LastName = edituser.LastName, AspId = aspnetId });
+
+
             context.SaveChanges();
 
             var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);

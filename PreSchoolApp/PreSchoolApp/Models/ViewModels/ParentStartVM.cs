@@ -8,5 +8,10 @@ namespace PreSchoolApp.Models.ViewModels
 {
     public class ParentStartVM
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Id { get; set; }
+        public TimeSpan DropOfTime { get; set; }
+        public TimeSpan PickupTime { get; set; }
     }
 }
