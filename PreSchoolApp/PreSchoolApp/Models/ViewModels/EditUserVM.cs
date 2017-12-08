@@ -33,14 +33,7 @@ namespace PreSchoolApp.Models.ViewModels
 
         public int ChildID { get; set; }
 
-        public string GetASPID(string username)
-        {
-            var aspId = context.AspNetUsers
-                .Where(c => c.UserName == username)
-                .Select(c => c.Id);
-            
-            return aspId.ToString();
-        }
+      
 
         //Lägger till en kommentar bara för att kunna pusha igen 
     }
