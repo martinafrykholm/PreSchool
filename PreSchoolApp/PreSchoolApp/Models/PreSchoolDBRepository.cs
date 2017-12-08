@@ -18,18 +18,25 @@ namespace PreSchoolApp.Models
             this.context = context;
         }
 
-        //public ParentStartVM GetYourChild(LoginVM loginVM)
-        //{
-        //    int weekDay = (int)DateTime.Today.DayOfWeek;
+        public ParentStartVM GetYourChild(LoginVM loginVM)
+        {
+            int weekDay = (int)DateTime.Today.DayOfWeek;
 
-        //    var childrenOfParent = context.Users
-        //        .Where(o => o.Id == loginVM.UserName)
-        //        .SelectMany(o => o.C2p.Select(op => op.Cid))
-                
+            string aspId = GetASPID(loginVM.UserName);
+            int userId = GetUserID(aspId);
+            
+            var childrenOfParent = context.Users
+                .Where(o => o.Id == userId)
+                .Select(o => o.C2p.Select(op => op.Cid))
+                .ToArray();
+
             
 
-        //    return null;
-        //}
+
+
+
+            return null;
+        }
 
         public TeacherStartVM GetTodaysSchedules()
         {
