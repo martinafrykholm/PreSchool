@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     border-color: black;
-    background-color:#305473;
+    background-color:lightpink;
     padding: 10px;
     border-radius: 20px;
 }
@@ -48,7 +48,7 @@
 #Logotext {
     text-align: center;
     font-size: 70px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-bottom: -10px;
 }
 
