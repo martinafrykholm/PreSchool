@@ -48,5 +48,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SQLLibrary_new\SQLLibrary_new.csproj">
+      <Project>{e28ace5e-5006-4b0e-b320-b505660569d2}</Project>
+      <Name>SQLLibrary_new</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

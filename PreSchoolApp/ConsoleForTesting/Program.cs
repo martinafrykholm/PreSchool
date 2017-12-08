@@ -35,6 +35,21 @@ namespace ConsoleForTesting
             //Console.ReadKey();
             //SqlClass.EditSchedule(8, 30, 16, 30, 3, 7);
 
+            //SqlClass.AddChild("Ella", "Bengtsson", 3);
+            //SqlClass.AddChild("Bo", "Grumstedt", 3);
+            //SqlClass.AddChild("Lily", "Jonsson", 3);
+
+
+            //SqlClass.AddChild("Olof", "Frykholm", 4);
+            //SqlClass.AddChild("Stella", "Stellsson", 4);
+            //SqlClass.AddChild("Josefin", "Holmström", 4);
+
+            SqlClass.AddChild("Kajsa", "Kavat", 4);
+            SqlClass.AddChild("Pippi", "Långstrump", 4);
+            SqlClass.AddChild("Emil", "Svensson", 4);
+            SqlClass.AddChild("Ronja", "Rövardotter", 4);
+
+
 
         }
     }
