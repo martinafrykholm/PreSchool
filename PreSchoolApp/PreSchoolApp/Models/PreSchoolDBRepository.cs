@@ -41,7 +41,7 @@ namespace PreSchoolApp.Models
             };
 
             ret.PresentChildrenCount = ret.ChildItems
-                .Count(o => o.IsPresent);
+                .Count(o => o.IsPresent && o.IsActive == false);
 
             ret.NotPresentChildrenCount = ret.ChildItems
                 .Count(o => o.IsPresent == false);
