@@ -8,6 +8,8 @@ namespace PreSchoolApp.Models.ViewModels
 {
     public class ParentStartVM
     {
+        //public List <ParentStartItemVM> { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Id { get; set; }

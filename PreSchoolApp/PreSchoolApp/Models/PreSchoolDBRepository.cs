@@ -18,7 +18,7 @@ namespace PreSchoolApp.Models
             this.context = context;
         }
 
-        public ParentStartVM GetYourChild(LoginVM loginVM)
+        public List<ParentStartVM> GetYourChild(LoginVM loginVM)
         {
             int weekDay = (int)DateTime.Today.DayOfWeek;
 
@@ -30,12 +30,21 @@ namespace PreSchoolApp.Models
                 .Select(o => o.C2p.Select(op => op.Cid))
                 .ToArray();
 
+            List <ParentStartVM> parentStartVM = new List<ParentStartVM>();
+
+            //List<Children> children = new List<Children>();
+
+
+            foreach (var item in childrenOfParent)
+            {
+                int intItem = Convert.ToInt32(item);
+                var child = context.Children
+                    .SingleOrDefault(x => x.Id == intItem);
+                parentStartVM.Add(new ParentStartVM { FirstName = child.FirstName, LastName = child.LastName, DropOfTime = context.Schedules.SingleOrDefault(x => x.Id == intItem && x.Weekdays == weekDay).Dropoff.Value, PickupTime = context.Schedules.SingleOrDefault(x => x.Id == intItem&&x.Weekdays==weekDay).PickUp.Value });
+                
+            }
             
-
-
-
-
-            return null;
+            return parentStartVM;
         }
 
         public TeacherStartVM GetTodaysSchedules()
