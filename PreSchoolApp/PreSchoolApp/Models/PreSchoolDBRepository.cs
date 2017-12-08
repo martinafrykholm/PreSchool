@@ -21,14 +21,21 @@ namespace PreSchoolApp.Models
         public ParentStartVM GetYourChild(LoginVM loginVM)
         {
             int weekDay = (int)DateTime.Today.DayOfWeek;
-
+            ParentStartVM startVM = new ParentStartVM();
             string aspId = GetASPID(loginVM.UserName);
             int userId = GetUserID(aspId);
-            
+
             var childrenOfParent = context.Users
                 .Where(o => o.Id == userId)
-                .Select(o => o.C2p.Select(op => op.Cid))
-                .ToArray();
+                .Select(o => o.C2p.Select(op => op.Cid));
+                
+
+            foreach (var item in childrenOfParent)
+            {
+                int item2 = Convert.ToInt32(item);
+                startVM.Id = item2;
+            }
+
 
             
 
