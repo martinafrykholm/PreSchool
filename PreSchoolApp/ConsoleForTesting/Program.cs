@@ -43,10 +43,10 @@ namespace ConsoleForTesting
             //SqlClass.AddChild("Stella", "Stellsson", 4);
             //SqlClass.AddChild("Josefin", "Holmström", 4);
 
-            SqlClass.AddChild("Kajsa", "Kavat", 4);
-            SqlClass.AddChild("Pippi", "Långstrump", 4);
-            SqlClass.AddChild("Emil", "Svensson", 4);
-            SqlClass.AddChild("Ronja", "Rövardotter", 4);
+            //SqlClass.AddChild("Kajsa", "Kavat", 4);
+            //SqlClass.AddChild("Pippi", "Långstrump", 4);
+            //SqlClass.AddChild("Emil", "Svensson", 4);
+            //SqlClass.AddChild("Ronja", "Rövardotter", 4);
 
 
 
