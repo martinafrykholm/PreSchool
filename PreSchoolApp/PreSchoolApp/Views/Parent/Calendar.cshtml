@@ -1,5 +1,10 @@
 ﻿@model ParentCalendarVM
-
+@{
+    string FormatTimeSpan(TimeSpan timeSpan)
+    {
+        return string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes);
+    }
+}
 <center>
     @Model.FirstName kalender
     <br />
@@ -8,21 +13,35 @@
     {
         @Model.Weekdays[i] <br />
         <div class="formContainer" id="formDropOff" style="display: inline-block">
-            <form asp-controller="Parent" asp-action="UpdateCalendar" asp-route-id="@Model.ChildId" asp-route-weekDay=@i asp-route-isDropOff="true">
-                <select onchange="this.form.submit()" asp-for=@Model.DropOffTimes[i]>
+            <form asp-controller="Parent" asp-action="UpdateCalendar" asp-route-id="@Model.ChildId" asp-route-weekDay="@i">
+                <select onchange="this.form.submit()" name="dropOffTime">
                     @foreach (var item in Model.AllTimes)
                     {
-                        <option value=@item>@string.Format("{0:00}:{1:00}", item.Hours, item.Minutes)</option>
+                        @if (Model.DropOffTimes[i] == item)
+                        {
+                            <option selected value="@item">@FormatTimeSpan(item)</option>
+                        }
+                        else
+                        {
+                            <option value="@item">@FormatTimeSpan(item)</option>
+                        }
                     }
                 </select>
             </form>
         </div>
         <div class="formContainer" id="formPickUp" style="display: inline-block">
-            <form asp-controller="Parent" asp-action="UpdateCalendar" asp-route-id="@Model.ChildId" asp-route-weekDay=@i asp-route-isDropOff="false">
-                <select onchange="this.form.submit()" asp-for=@Model.PickupTimes[i]>
+            <form asp-controller="Parent" asp-action="UpdateCalendar" asp-route-id="@Model.ChildId" asp-route-weekDay="@i">
+                <select onchange="this.form.submit()" name="pickupTime">
                     @foreach (var item in Model.AllTimes)
                     {
-                        <option value=@item>@string.Format("{0:00}:{1:00}", item.Hours, item.Minutes)</option>
+                        @if (Model.PickupTimes[i] == item)
+                        {
+                            <option selected value="@item">@FormatTimeSpan(item)</option>
+                        }
+                        else
+                        {
+                            <option value="@item">@FormatTimeSpan(item)</option>
+                        }
                     }
                 </select>
             </form>
