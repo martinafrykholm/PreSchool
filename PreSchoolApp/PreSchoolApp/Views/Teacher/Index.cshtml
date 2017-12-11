@@ -1,8 +1,14 @@
 ﻿@model TeacherStartVM
 
-
 @{
     ViewBag.Title = "Checka barn";
+}
+
+@{
+    string FormatTimeSpan(TimeSpan timeSpan)
+    {
+        return string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes);
+    }
 }
 
 <center>
@@ -15,7 +21,7 @@
         if (item.IsPresent == false && item.IsActive == false)
         {
             <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
-                @item.FirstName @item.DropOfTime<input type="submit" value="Checka in" />
+                @item.FirstName @FormatTimeSpan(item.DropOfTime)<input type="submit" value="Checka in" />
                 <br />
             </form>
         }
@@ -27,7 +33,7 @@
         if (item.IsPresent == true && item.IsActive == false)
         {
             <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
-                @item.FirstName @item.PickupTime<input type="submit" value="Checka ut" />
+                @item.FirstName @FormatTimeSpan(item.PickupTime)<input type="submit" value="Checka ut" />
                 <br />
             </form>
         }
