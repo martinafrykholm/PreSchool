@@ -66,13 +66,20 @@ namespace PreSchoolApp.Controllers
                 
             }
 
-            
-            
-            if(!repository.IsParent(loginVM))
-                return RedirectToAction(nameof(TeacherController));
-            
+            if (User.IsInRole("Parent"))
+            {
+                return RedirectToAction("Index", "Parent");
+            }
             else
-                return RedirectToAction(nameof(ParentController));
+            {
+                return RedirectToAction("Index", "Teacher");
+            }
+            
+            //if(!repository.IsParent(loginVM))
+            //    return RedirectToAction(nameof(TeacherController));
+            
+            //else
+            //    return RedirectToAction(nameof(ParentController));
             
 
             
