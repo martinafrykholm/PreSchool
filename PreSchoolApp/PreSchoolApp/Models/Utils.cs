@@ -27,5 +27,19 @@ namespace PreSchoolApp.Models
 
             return allTimeSpans.ToArray();
         }
+
+        public static string[] GetWeekdays()
+        {
+            string[] weekdays = new string[]
+            {
+                "Måndag",
+                "Tisdag",
+                "Onsdag",
+                "Torsdag",
+                "Fredag"
+            };
+
+            return weekdays;
+        }
     }
 }
