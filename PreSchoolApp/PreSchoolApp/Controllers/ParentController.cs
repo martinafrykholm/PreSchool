@@ -42,6 +42,7 @@ namespace PreSchoolApp.Controllers
             return View(model);
         }
 
+        [HttpGet]
         public IActionResult Calendar(int id)
         {
             var model = TestRepo.GetTestParentCalendarVM(id);
@@ -49,12 +50,12 @@ namespace PreSchoolApp.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        public IActionResult UpdateCalendar(int id, int weekDay, bool isDropOff, TimeSpan time)
+        [HttpPost, Route("UpdateCalendar/{id}/{weekDay}")]
+        public IActionResult UpdateCalendar(int id, int weekDay, TimeSpan? pickUpTime, TimeSpan? dropOffTime)
         {
             //Metod: Uppdatera barnets kalender
 
-            TestRepo.UpdateCalendar(id, weekDay, isDropOff, time);
+            //TestRepo.UpdateCalendar(id, weekDay, isDropOff, time);
             //var model = TestRepo.GetTestParentCalendarVM(id);
 
             return RedirectToAction(nameof(Calendar));

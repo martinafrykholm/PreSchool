@@ -55,9 +55,7 @@
     <p>Ändra kalender</p>
     @foreach (var item in Model.ChildItems)
     {
-        <form asp-controller="Parent" asp-action="Calendar" asp-route-id="@item.Id">
-            @item.FirstName<input type="submit" value="Ändra" />
-            <br />
-        </form>
+        <a asp-controller="Parent" asp-action="Calendar" asp-route-id="@item.Id"><input type="button" value="@item.FirstName" /></a>
+        <br />
     }
 </center>
