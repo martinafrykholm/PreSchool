@@ -15,6 +15,10 @@ namespace PreSchoolApp.Controllers
 {
     public class CreateController : Controller
     {
+        const string RoleParent = "Parent";
+        const string RoleTeacher = "Teacher";
+        const string RoleAdmin = "Admin";
+
 
         IdentityErrorDescriber errorDescriber = new IdentityErrorDescriber();
         IdentityError error = new IdentityError();
@@ -22,6 +26,8 @@ namespace PreSchoolApp.Controllers
         SignInManager<IdentityUser> signInManager;
         RoleManager<IdentityRole> roleManager;
         PreSchoolDBRepository repository;
+
+
 
         public CreateController
             (
@@ -41,6 +47,10 @@ namespace PreSchoolApp.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            //var result = await roleManager.CreateAsync(new IdentityRole(RoleParent));
+            //var result2 = await roleManager.CreateAsync(new IdentityRole(RoleTeacher));
+            //var result3 = await roleManager.CreateAsync(new IdentityRole(RoleAdmin));
+
             return View();
         }
 
@@ -51,9 +61,11 @@ namespace PreSchoolApp.Controllers
             if (!ModelState.IsValid)
             {
                 return View();
-            }         
+            }
+            var user = new IdentityUser(createUserVM.UserName);
             var result =
-                await userManager.CreateAsync(new IdentityUser(createUserVM.UserName), createUserVM.PassWord);
+                await userManager.CreateAsync(user, createUserVM.PassWord);
+            //new IdentityUser(createUserVM.UserName), createUserVM.PassWord);
 
             if (!result.Succeeded)
             {
@@ -66,11 +78,14 @@ namespace PreSchoolApp.Controllers
                 //var toShort = errorDescriber.PasswordTooShort(7);
                 //ModelState.AddModelError(
                 //    nameof(CreateUserVM.PassWord), toShort.ToString());
-                         
+
+
+
                 return View();
 
             }
-            
+            await userManager.AddToRoleAsync(user, RoleParent);
+
             return RedirectToAction(nameof(EditUser));
         }
 
@@ -91,7 +106,7 @@ namespace PreSchoolApp.Controllers
             //string aspID = repository.GetASPID(editUserVM.FirstName);
 
             //var userId = userManager.GetUserId(HttpContext.User);
-           repository.AddParent(editUserVM);
+            repository.AddParent(editUserVM);
 
             return RedirectToAction("/Teacher/Index");
         }
