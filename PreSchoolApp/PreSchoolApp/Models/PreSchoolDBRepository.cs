@@ -18,6 +18,34 @@ namespace PreSchoolApp.Models
             this.context = context;
         }
 
+        internal ParentCalendarVM GetChildsSchedule(int id)
+        {
+            var childsSchedule = context.Schedules
+                .Select(x => x.ChildrenId == id);
+
+
+            ParentCalendarVM parentCalendar = new ParentCalendarVM
+            {
+                //AllTimes=Utils.
+
+
+
+            };
+
+
+            foreach (var item in childsSchedule)
+            {
+                
+            }
+            
+            
+            
+                
+
+
+            return null;
+        }
+
 
         //public ParentStartVM[] GetYourChild(LoginVM loginVM)
         //{
