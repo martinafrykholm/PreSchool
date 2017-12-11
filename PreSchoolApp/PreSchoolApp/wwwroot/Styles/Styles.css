@@ -1,6 +1,6 @@
-﻿body {
+﻿/*body {
     background-color: hotpink;
-}
+}*/
 
 .container {
     width: 400px;
@@ -17,7 +17,7 @@
 }
 
 #headBlock {
-    margin-top:10px;
+    
     border-color: black;
     background-color: #FEFFE7;
     border-radius: 15px;
