@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PreSchoolApp.Models;
+using PreSchoolApp.Models.ViewModels;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,11 +19,45 @@ namespace PreSchoolApp.Controllers
             this.repository = repository;
         }
 
-        //// GET: /<controller>/
-        ////public IActionResult Index()
+        // GET: /<controller>/
+        //public IActionResult Index(LoginVM loginVM)
         //{
-        //    //var model = repository.GetYourChild();
-        //    //return View(model);
+        //    var model = repository.GetYourChild(loginVM);
+        //    return View(model);
         //}
+
+        public IActionResult Index(int id)
+        {
+            var model = TestRepo.GetTestParentStartVM(id);            
+
+            return View(model);
+        }
+
+        
+        public IActionResult Report(int id)
+        {
+            var model = TestRepo.GetTestParentStartVM(id);
+
+            //var model = TestRepo.GetTestParentReportData(id, timeSpan);
+            return View(model);
+        }
+
+        public IActionResult Calendar(int id)
+        {
+            var model = TestRepo.GetTestParentCalendarVM(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateCalendar(int id, int weekDay, bool isDropOff, TimeSpan time)
+        {
+            //Metod: Uppdatera barnets kalender
+
+            TestRepo.UpdateCalendar(id, weekDay, isDropOff, time);
+            //var model = TestRepo.GetTestParentCalendarVM(id);
+
+            return RedirectToAction(nameof(Calendar));
+        }
     }
 }

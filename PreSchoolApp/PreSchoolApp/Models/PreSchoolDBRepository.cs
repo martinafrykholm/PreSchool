@@ -18,44 +18,44 @@ namespace PreSchoolApp.Models
             this.context = context;
         }
 
-        public ParentStartVM[] GetYourChild(LoginVM loginVM)
-        {
-            int weekDay = (int)DateTime.Today.DayOfWeek;
-            ParentStartVM startVM = new ParentStartVM();
-            string aspId = GetASPID(loginVM.UserName);
-            int userId = GetUserID(aspId);
+        //public ParentStartVM[] GetYourChild(LoginVM loginVM)
+        //{
+        //    int weekDay = (int)DateTime.Today.DayOfWeek;
+        //    ParentStartVM startVM = new ParentStartVM();
+        //    string aspId = GetASPID(loginVM.UserName);
+        //    int userId = GetUserID(aspId);
 
-            var childrenOfParent = context.Users
-                .Where(o => o.Id == userId)
-                .Select(o => o.C2p.Select(op => op.Cid));
+        //    var childrenOfParent = context.Users
+        //        .Where(o => o.Id == userId)
+        //        .Select(o => o.C2p.Select(op => op.Cid));
                 
 
-            foreach (var item in childrenOfParent)
-            {
-                int item2 = Convert.ToInt32(item);
-                startVM.Id = item2;
-            }
+        //    foreach (var item in childrenOfParent)
+        //    {
+        //        int item2 = Convert.ToInt32(item);
+        //        startVM.Id = item2;
+        //    }
 
 
-            List<ParentStartVM> parentStartVM = new List<ParentStartVM>();
+        //    List<ParentStartVM> parentStartVM = new List<ParentStartVM>();
 
-            //List<Children> children = new List<Children>();
+        //    //List<Children> children = new List<Children>();
 
-            foreach (var item in childrenOfParent)
-            {
-                int intItem = Convert.ToInt32(item);
-                var child = context.Children
-                    .SingleOrDefault(x => x.Id == intItem);
-                parentStartVM.Add(new ParentStartVM
-                {
-                    FirstName = child.FirstName,
-                    LastName = child.LastName,
-                    DropOfTime = context.Schedules.SingleOrDefault(x => x.Id == intItem && x.Weekdays == weekDay).Dropoff.Value,
-                    PickupTime = context.Schedules.SingleOrDefault(x => x.Id == intItem && x.Weekdays == weekDay).PickUp.Value
-                });
-            }
-            return parentStartVM.ToArray();
-        }
+        //    foreach (var item in childrenOfParent)
+        //    {
+        //        int intItem = Convert.ToInt32(item);
+        //        var child = context.Children
+        //            .SingleOrDefault(x => x.Id == intItem);
+        //        parentStartVM.Add(new ParentStartVM
+        //        {
+        //            FirstName = child.FirstName,
+        //            LastName = child.LastName,
+        //            DropOfTime = context.Schedules.SingleOrDefault(x => x.Id == intItem && x.Weekdays == weekDay).Dropoff.Value,
+        //            PickupTime = context.Schedules.SingleOrDefault(x => x.Id == intItem && x.Weekdays == weekDay).PickUp.Value
+        //        });
+        //    }
+        //    return parentStartVM.ToArray();
+        //}
 
         public TeacherStartVM GetTodaysSchedules()
         {

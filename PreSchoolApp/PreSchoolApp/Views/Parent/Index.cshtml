@@ -1,10 +1,63 @@
 ﻿@model ParentStartVM
-Parent
 <center>
-    <select>
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-    </select>
+    Parent<br />
+    <br />
+    <p>Lämna</p>
+    @foreach (var item in Model.ChildItems)
+    {
+        if (item.IsActive)
+        {
+            <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
+                <span style="color:blue">
+                    @item.FirstName @string.Format("{0:00}:{1:00}", item.DropOfTime.Hours, item.DropOfTime.Minutes)
+                </span>
+                <input type="submit" value="Avvikelse" />
+                <br />
+            </form>
+        }
+        else
+        {
+            <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
+                <span style="color:gray">
+                    @item.FirstName @string.Format("{0:00}:{1:00}", item.DropOfTime.Hours, item.DropOfTime.Minutes)
+                </span>
+                <input type="submit" value="Avvikelse" />
+                <br />
+            </form>
+        }
+    }
+
+    <p>Hämta</p>
+    @foreach (var item in Model.ChildItems)
+    {
+        if (item.IsActive)
+        {
+            <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
+                <span style="color:blue">
+                    @item.FirstName @string.Format("{0:00}:{1:00}", item.PickupTime.Hours, item.PickupTime.Minutes)
+                </span>
+                <input type="submit" value="Avvikelse" />
+                <br />
+            </form>
+        }
+        else
+        {
+            <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
+                <span style="color:gray">
+                    @item.FirstName @string.Format("{0:00}:{1:00}", item.PickupTime.Hours, item.PickupTime.Minutes)
+                </span>
+                <input type="submit" value="Avvikelse" />
+                <br />
+            </form>
+        }
+    }
+
+    <p>Ändra kalender</p>
+    @foreach (var item in Model.ChildItems)
+    {
+        <form asp-controller="Parent" asp-action="Calendar" asp-route-id="@item.Id">
+            @item.FirstName<input type="submit" value="Ändra" />
+            <br />
+        </form>
+    }
 </center>
