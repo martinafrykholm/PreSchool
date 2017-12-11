@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using SQLLibrary_new;
+using PreSchoolApp.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,16 +22,20 @@ namespace PreSchoolApp.Controllers
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
         RoleManager<IdentityRole> roleManager;
+        PreSchoolDBRepository repository;
 
         public LoginController(//IdentityDbContext identityContext,
         UserManager<IdentityUser> userManager,
         SignInManager<IdentityUser> signInManager,
-        RoleManager<IdentityRole> roleManager)
+        RoleManager<IdentityRole> roleManager,
+            PreSchoolDBRepository repository)
+
         {
             //this.identityContext = identityContext;
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.repository = repository;
 
            // identityContext.Database.EnsureCreated();
         }
@@ -60,7 +65,17 @@ namespace PreSchoolApp.Controllers
                 return View();
                 
             }
-            return RedirectToAction(nameof(TeacherController));
+
+            
+            
+            if(!repository.IsParent(loginVM))
+                return RedirectToAction(nameof(TeacherController));
+            
+            else
+                return RedirectToAction(nameof(ParentController));
+            
+
+            
         }
 
 
