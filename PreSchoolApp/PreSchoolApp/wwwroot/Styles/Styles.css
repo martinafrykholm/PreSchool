@@ -1,11 +1,15 @@
-﻿.container {
+﻿body {
+    background-color: hotpink;
+}
+
+.container {
     width: 400px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     flex-direction: column;
     border-color: black;
-    background-color:lightpink;
+    background-color:hotpink;
     /*rgba(134, 183, 240, 1.0)*/
     /*#3883FC;*/
     padding: 10px;
@@ -36,7 +40,7 @@
 
 #logoPic {
     height: 70px;
-    width: 180px;
+    width: 160px;
     resize: both;
     border-color: black;
     display: block;
@@ -68,3 +72,18 @@
     margin-right: auto;
 }
 
+
+#homeindexDiv {
+    display: block;
+    width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+}
+
+/*p{
+
+    position:absolute;
+    top:auto;
+
+}*/
