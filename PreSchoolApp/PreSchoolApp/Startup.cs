@@ -30,7 +30,9 @@ namespace PreSchoolApp
                 o =>
                 {
                     o.Password.RequireNonAlphanumeric = false;
-                    o.Password.RequiredLength = 7;
+                    o.Password.RequiredLength = 0;
+                    o.Password.RequireUppercase = false;
+                    o.Password.RequireDigit = false;
                 }
                 ).AddEntityFrameworkStores<IdentityDbContext>()
                 .AddDefaultTokenProviders();
