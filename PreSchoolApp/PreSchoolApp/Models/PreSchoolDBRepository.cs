@@ -18,6 +18,7 @@ namespace PreSchoolApp.Models
             this.context = context;
         }
 
+
         //public ParentStartVM[] GetYourChild(LoginVM loginVM)
         //{
         //    int weekDay = (int)DateTime.Today.DayOfWeek;
@@ -28,7 +29,7 @@ namespace PreSchoolApp.Models
         //    var childrenOfParent = context.Users
         //        .Where(o => o.Id == userId)
         //        .Select(o => o.C2p.Select(op => op.Cid));
-                
+
 
         //    foreach (var item in childrenOfParent)
         //    {
@@ -162,9 +163,39 @@ namespace PreSchoolApp.Models
         }
 
 
-        public void EditSchedule(int dropOffHrs, int dropOffMins, int pickUpHrs, int pickUpMins, int weekdayNr, int childId)
+        public void UpdateChildCalendar(int id, int weekDay, TimeSpan? pickUpTime, TimeSpan? dropOffTime)
+        {
+            var itemToUpdate = context.Schedules
+                .SingleOrDefault(x => x.Id == id && x.Weekdays == weekDay);
+
+            if (pickUpTime != null)
+            {
+                itemToUpdate.PickUp = pickUpTime;
+            }
+            else if (dropOffTime != null)
+            {
+                itemToUpdate.Dropoff = dropOffTime;
+            }
+            context.SaveChanges();
+        }
+
+        public void EditSchedule(int childId, int weekdayNr, TimeSpan? pickUpTime, TimeSpan? dropOffTime)
         {
 
+            int scheduleItemId = GetScheduleID(childId, weekdayNr);
+
+            var itemToUpdate = context.Schedules
+                .SingleOrDefault(x => x.Id == scheduleItemId);
+
+            itemToUpdate.Dropoff = dropOffTime;
+            itemToUpdate.PickUp = pickUpTime;
+
+            context.SaveChanges();
+
+        }
+
+        public void EditSchedule(int dropOffHrs, int dropOffMins, int pickUpHrs, int pickUpMins, int weekdayNr, int childId)
+        {
             int scheduleItemId = GetScheduleID(childId, weekdayNr);
 
             TimeSpan dropOff = new TimeSpan(dropOffHrs, dropOffMins, seconds);
@@ -177,7 +208,6 @@ namespace PreSchoolApp.Models
             itemToUpdate.PickUp = pickUp;
 
             context.SaveChanges();
-
         }
 
         public void AddParent(EditUserVM edituser)

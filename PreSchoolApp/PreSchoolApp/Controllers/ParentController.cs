@@ -32,13 +32,12 @@ namespace PreSchoolApp.Controllers
 
             return View(model);
         }
-
-        
-        public IActionResult Report(int id)
+                
+        public IActionResult Report()
         {
-            var model = TestRepo.GetTestParentStartVM(id);
+            //var model = TestRepo.GetTestParentStartVM(id);
 
-            //var model = TestRepo.GetTestParentReportData(id, timeSpan);
+            var model = TestRepo.GetTestParentReportData();
             return View(model);
         }
 
@@ -54,11 +53,23 @@ namespace PreSchoolApp.Controllers
         public IActionResult UpdateCalendar(int id, int weekDay, TimeSpan? pickUpTime, TimeSpan? dropOffTime)
         {
             //Metod: Uppdatera barnets kalender
-
             //TestRepo.UpdateCalendar(id, weekDay, isDropOff, time);
-            //var model = TestRepo.GetTestParentCalendarVM(id);
+            //var model = TestRepo.GetTestParentCalendarVM(id);        
+            repository.EditSchedule(id, weekDay, pickUpTime, dropOffTime);
 
             return RedirectToAction(nameof(Calendar));
+        }
+
+        [HttpPost]
+        public IActionResult ReportDelay(int id, int delay)
+        {
+            return RedirectToAction(nameof(Report));
+        }
+
+        [HttpPost]
+        public IActionResult ReportIllness(int id)
+        {
+            return RedirectToAction(nameof(Report));
         }
     }
 }
