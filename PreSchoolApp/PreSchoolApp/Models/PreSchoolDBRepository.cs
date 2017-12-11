@@ -18,7 +18,7 @@ namespace PreSchoolApp.Models
             this.context = context;
         }
 
-        internal ParentCalendarVM GetChildsSchedule(int id)
+        public ParentCalendarVM GetChildsSchedule(int id)
         {
             var childsSchedule = context.Schedules
                 .Select(x => x.ChildrenId == id);
@@ -30,9 +30,9 @@ namespace PreSchoolApp.Models
                 AllTimes = Utils.GetAllTimes(),
                 ChildId = id,
                 DropOffTimes = GetDropOffTimes(id),
-                PickupTimes = GetPickUpTimes(id)
-                //Weekdays = Utils.GetWeekdays()
-
+                PickupTimes = GetPickUpTimes(id),
+                Weekdays = Utils.GetWeekdays()
+                
             };
             return parentCalendar;
 
