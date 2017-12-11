@@ -210,15 +210,16 @@ namespace PreSchoolApp.Models
             context.SaveChanges();
         }
 
-        public void AddParent(EditUserVM edituser)
+        public void AddParent(EditUserVM edituser, int childId)
         {
             string aspnetId = GetASPID(edituser.FirstName);
             context.Users.Add(new Users { FirstName = edituser.FirstName, LastName = edituser.LastName, AspId = aspnetId });
 
             context.SaveChanges();
 
-            var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
 
+            var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
+            //edituser.ChildID = childId;
             context.C2p.Add(new C2p { Uid = userID.Id, Cid = edituser.ChildID });
             context.SaveChanges();
         }
