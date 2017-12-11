@@ -1,4 +1,4 @@
-﻿using SQLLibrary_new;
+﻿//using SQLLibrary_new;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +51,7 @@ namespace ConsoleForTesting
 
             //SqlClass.AddTeacher("Pernilla","Jacobsson", "e6893d53-1696-4cfe-af60-ee2c8213efbc", 4);
 
-            SqlClass.AddParent("Cattis", "Kattson", "07457523-a756-46cd-b498-0e694ef27327", 13);
+            //SqlClass.AddParent("Cattis", "Kattson", "07457523-a756-46cd-b498-0e694ef27327", 13);
 
         }
     }
