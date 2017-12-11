@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLLibrary_new;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -48,7 +49,9 @@ namespace ConsoleForTesting
             //SqlClass.AddChild("Emil", "Svensson", 4);
             //SqlClass.AddChild("Ronja", "Rövardotter", 4);
 
+            //SqlClass.AddTeacher("Pernilla","Jacobsson", "e6893d53-1696-4cfe-af60-ee2c8213efbc", 4);
 
+            SqlClass.AddParent("Cattis", "Kattson", "07457523-a756-46cd-b498-0e694ef27327", 13);
 
         }
     }
