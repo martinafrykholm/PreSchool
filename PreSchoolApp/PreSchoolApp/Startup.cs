@@ -35,7 +35,12 @@ namespace PreSchoolApp
                 ).AddEntityFrameworkStores<IdentityDbContext>()
                 .AddDefaultTokenProviders();
 
+            //services.Configure<IdentityOptions>(options =>
+            //{
+            //    options.User.RequireUniqueEmail = true;
 
+            //});
+                
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(o => o.LoginPath = "/Login/index");
 

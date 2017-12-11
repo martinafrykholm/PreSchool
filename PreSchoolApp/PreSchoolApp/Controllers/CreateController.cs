@@ -88,10 +88,10 @@ namespace PreSchoolApp.Controllers
                 return View();
             }
 
-            string aspID = repository.GetASPID(editUserVM.FirstName);
+            //string aspID = repository.GetASPID(editUserVM.FirstName);
 
             //var userId = userManager.GetUserId(HttpContext.User);
-           // repository.AddParent(editUserVM, userId);
+           repository.AddParent(editUserVM);
 
             return RedirectToAction("/Teacher/Index");
         }
