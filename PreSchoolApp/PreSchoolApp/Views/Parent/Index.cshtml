@@ -1,4 +1,10 @@
 ﻿@model ParentStartVM
+@{
+    string FormatTimeSpan(TimeSpan timeSpan)
+    {
+        return string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes);
+    }
+}
 
 @{
     ViewBag.Title = "Tider idag";
@@ -14,7 +20,7 @@
         {
             <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
                 <span style="color:blue">
-                    @item.FirstName @string.Format("{0:00}:{1:00}", item.DropOfTime.Hours, item.DropOfTime.Minutes)
+                    @item.FirstName @FormatTimeSpan(item.DropOfTime)
                 </span>
                 <input type="submit" value="Avvikelse" />
                 <br />
@@ -24,7 +30,7 @@
         {
             <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
                 <span style="color:gray">
-                    @item.FirstName @string.Format("{0:00}:{1:00}", item.DropOfTime.Hours, item.DropOfTime.Minutes)
+                    @item.FirstName @FormatTimeSpan(item.DropOfTime)
                 </span>
                 <input type="submit" value="Avvikelse" />
                 <br />
@@ -39,7 +45,7 @@
         {
             <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
                 <span style="color:blue">
-                    @item.FirstName @string.Format("{0:00}:{1:00}", item.PickupTime.Hours, item.PickupTime.Minutes)
+                    @item.FirstName @FormatTimeSpan(item.PickupTime)
                 </span>
                 <input type="submit" value="Avvikelse" />
                 <br />
@@ -49,7 +55,7 @@
         {
             <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
                 <span style="color:gray">
-                    @item.FirstName @string.Format("{0:00}:{1:00}", item.PickupTime.Hours, item.PickupTime.Minutes)
+                    @item.FirstName @FormatTimeSpan(item.PickupTime)
                 </span>
                 <input type="submit" value="Avvikelse" />
                 <br />

@@ -55,6 +55,19 @@ namespace PreSchoolApp.Models
             return teacherStartVM;
         }
 
+        internal static ParentReportVM GetTestParentReportData()
+        {
+            ParentReportVM parentReportVM = new ParentReportVM();
+            parentReportVM.DropOffTime = dropOff1;
+            parentReportVM.PickupTime = pickUp1;
+            parentReportVM.FirstName = "Olle";
+            parentReportVM.LastName = "Olsson";
+            parentReportVM.Id = 1;
+            parentReportVM.IsActive = true;
+
+            return parentReportVM;
+        }
+
         public static ParentStartVM GetTestParentStartVM(int id)
         {
             TimeSpan dropOff1 = new TimeSpan(8, 00, 00);
