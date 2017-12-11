@@ -45,6 +45,7 @@ namespace PreSchoolApp.Controllers
         public IActionResult Calendar(int id)
         {
             var model = TestRepo.GetTestParentCalendarVM(id);
+            var modeldb = repository.GetChildsSchedule(id);
 
             return View(model);
         }

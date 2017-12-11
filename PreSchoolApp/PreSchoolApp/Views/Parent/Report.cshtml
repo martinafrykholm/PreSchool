@@ -2,10 +2,10 @@
 
 <center>
     Sjukanmäl @Model.FirstName:
-    <br/>
+    <br />
     <form asp-controller="Parent" asp-action="ReportIllness" asp-route-id="@Model.Id"><input type="submit" value="@Model.FirstName är sjuk" /></form>
     <br />
-Anmäl försening
+    Anmäl försening
     @if (Model.DropOffTime.Hours > 0)
     {
         <p>(angiven avlämningstid: @Model.DropOffTime)</p>
@@ -14,13 +14,25 @@ Anmäl försening
     {
         <p>(angiven avlämningstid: @Model.PickupTime)</p>
     }
-    <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="10"><input type="submit" value="10 minuter" /></form>
-    <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="20"><input type="submit" value="20 minuter" /></form>
-    <br/>
-    <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="30"><input type="submit" value="30 minuter" /></form>
-    <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="40"><input type="submit" value="40 minuter" /></form>
-    <br/>
-    <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="50"><input type="submit" value="50 minuter" /></form>
-    <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="60"><input type="submit" value="60 minuter" /></form>
-
+    <div style="display: inline-block">
+        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="10"><input type="submit" value="10 minuter" /></form>
+    </div>
+    <div style="display: inline-block">
+        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="20"><input type="submit" value="20 minuter" /></form>
+    </div>
+    <br />
+    <div style="display: inline-block">
+        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="30"><input type="submit" value="30 minuter" /></form>
+    </div>
+    <div style="display: inline-block">
+        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="40"><input type="submit" value="40 minuter" /></form>
+    </div>
+    <br />
+    <div style="display: inline-block">
+        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="50"><input type="submit" value="50 minuter" /></form>
+    </div>
+    <div style="display: inline-block">
+        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="60"><input type="submit" value="60 minuter" /></form>
+    </div>
+    <br />
 </center>

@@ -1,44 +1,50 @@
 ﻿@model TeacherStartVM
 
-
 @{
     ViewBag.Title = "Checka barn";
+}
+
+@{
+    string FormatTimeSpan(TimeSpan timeSpan)
+    {
+        return string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes);
+    }
 }
 
 <center>
     Teacher
     <br />
 
-    <p>Ej incheckade (@Model.NotPresentChildrenCount)</p>
+    <p><b>Ej incheckade (@Model.NotPresentChildrenCount)</b></p>
     @foreach (var item in Model.ChildItems)
     {
         if (item.IsPresent == false && item.IsActive == false)
         {
             <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
-                @item.FirstName @item.DropOfTime<input type="submit" value="Checka in" />
+                @item.FirstName @FormatTimeSpan(item.DropOfTime)    <input type="submit" value="Checka in" />
                 <br />
             </form>
         }
     }
 
-    <p>Incheckade (@Model.PresentChildrenCount)</p>
+    <p><b>Incheckade (@Model.PresentChildrenCount)</b></p>
     @foreach (var item in Model.ChildItems)
     {
         if (item.IsPresent == true && item.IsActive == false)
         {
             <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
-                @item.FirstName @item.PickupTime<input type="submit" value="Checka ut" />
+                @item.FirstName @FormatTimeSpan(item.PickupTime)    <input type="submit" value="Checka ut" />
                 <br />
             </form>
         }
     }
-    <p>Utcheckade (@Model.NotActiveCount)</p>
+    <p><b>Utcheckade (@Model.NotActiveCount)</b></p>
     @foreach (var item in Model.ChildItems)
     {
         if (item.IsActive == true)
         {
             <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
-                @item.FirstName<input type="submit" value="Ej incheckad" />
+                @item.FirstName    <input type="submit" value="Ej incheckad" />
                 <br />
             </form>
         }

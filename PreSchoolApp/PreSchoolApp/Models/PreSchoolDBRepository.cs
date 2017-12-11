@@ -18,6 +18,59 @@ namespace PreSchoolApp.Models
             this.context = context;
         }
 
+        public ParentCalendarVM GetChildsSchedule(int id)
+        {
+            var childsSchedule = context.Schedules
+                .Select(x => x.ChildrenId == id);
+
+
+            ParentCalendarVM parentCalendar = new ParentCalendarVM
+            {
+                FirstName = GetChildNameFromID(id),
+                AllTimes = Utils.GetAllTimes(),
+                ChildId = id,
+                DropOffTimes = GetDropOffTimes(id),
+                PickupTimes = GetPickUpTimes(id),
+                Weekdays = Utils.GetWeekdays()
+                
+            };
+            return parentCalendar;
+
+        }
+
+        private TimeSpan[] GetPickUpTimes(int childID)
+        {
+            List<TimeSpan> pickUpTimes = new List<TimeSpan>();
+
+            var times = context.Schedules
+                .Where(x => x.ChildrenId == childID);
+
+            foreach (var item in times)
+            {
+                pickUpTimes.Add((TimeSpan)item.PickUp);
+            }
+
+            return pickUpTimes.ToArray();
+        }
+
+        private TimeSpan[] GetDropOffTimes(int childID)
+        {
+            List<TimeSpan> dropOffTimes = new List<TimeSpan>();
+
+            var times = context.Schedules
+                .Where(x => x.ChildrenId == childID);
+
+            foreach (var item in times)
+            {
+                dropOffTimes.Add((TimeSpan)item.Dropoff);
+            }
+
+            return dropOffTimes.ToArray();
+        }
+
+
+
+
 
         //public ParentStartVM[] GetYourChild(LoginVM loginVM)
         //{
@@ -250,6 +303,15 @@ namespace PreSchoolApp.Models
 
             return context.C2p
                 .SingleOrDefault(x => x.Uid == userId).Cid;
+        }
+
+
+        private string GetChildNameFromID(int childID)
+        {
+            return context.Children
+                .SingleOrDefault(x => x.Id == childID).FirstName;
+
+
         }
     }
 }
