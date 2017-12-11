@@ -68,7 +68,7 @@ namespace PreSchoolApp.Controllers
 
             if (User.IsInRole("Parent"))
             {
-                return RedirectToAction("Index", "Parent");
+                return RedirectToAction("Index", "Parent", loginVM);
             }
             else
             {

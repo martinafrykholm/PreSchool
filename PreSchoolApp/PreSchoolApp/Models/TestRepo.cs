@@ -68,7 +68,7 @@ namespace PreSchoolApp.Models
             return parentReportVM;
         }
 
-        public static ParentStartVM GetTestParentStartVM(int id)
+        public static ParentStartVM GetTestParentStartVM()
         {
             TimeSpan dropOff1 = new TimeSpan(8, 00, 00);
             TimeSpan pickUp1 = new TimeSpan(16, 00, 00);
@@ -79,7 +79,7 @@ namespace PreSchoolApp.Models
             {
                 FirstName = "Kalle",
                 LastName = "Persson",
-                Id = 1,
+                Id = 7,
                 DropOfTime = dropOff1,
                 PickupTime = pickUp1,
                 IsActive = true,
@@ -90,7 +90,7 @@ namespace PreSchoolApp.Models
             {
                 FirstName = "Olle",
                 LastName = "Karlsson",
-                Id = 2,
+                Id = 10,
                 DropOfTime = dropOff2,
                 PickupTime = pickUp2,
                 IsActive = false,
@@ -141,7 +141,7 @@ namespace PreSchoolApp.Models
             ParentStartVM parentStartVM = new ParentStartVM();
             parentStartVM.ChildItems = parentStartChildItemVM.ToArray();
             //parentStartVM.Day = DateTime.Today.DayOfWeek.ToString();
-            parentStartVM.DelayTime = delayTimes;
+            //parentStartVM.DelayTime = delayTimes;
 
             return parentStartVM;
         }

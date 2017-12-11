@@ -23,19 +23,16 @@ namespace PreSchoolApp.Models
             var childsSchedule = context.Schedules
                 .Select(x => x.ChildrenId == id);
 
-
             ParentCalendarVM parentCalendar = new ParentCalendarVM
             {
                 FirstName = GetChildNameFromID(id),
-                AllTimes = Utils.GetAllTimes(),
                 ChildId = id,
+                AllTimes = Utils.GetAllTimes(),
+                Weekdays = Utils.GetWeekdays(),
                 DropOffTimes = GetDropOffTimes(id),
-                PickupTimes = GetPickUpTimes(id),
-                Weekdays = Utils.GetWeekdays()
-                
+                PickupTimes = GetPickUpTimes(id)
             };
             return parentCalendar;
-
         }
 
         private TimeSpan[] GetPickUpTimes(int childID)
@@ -43,14 +40,17 @@ namespace PreSchoolApp.Models
             List<TimeSpan> pickUpTimes = new List<TimeSpan>();
 
             var times = context.Schedules
-                .Where(x => x.ChildrenId == childID);
+                .Where(x => x.ChildrenId == childID)
+                .Select(o => o.PickUp.Value)
+                .ToArray();
 
-            foreach (var item in times)
-            {
-                pickUpTimes.Add((TimeSpan)item.PickUp);
-            }
+            //foreach (var item in times)
+            //{
+            //    pickUpTimes.Add((TimeSpan)item.PickUp);
+            //}
 
-            return pickUpTimes.ToArray();
+            //return pickUpTimes.ToArray();
+            return times;
         }
 
         private TimeSpan[] GetDropOffTimes(int childID)
@@ -58,19 +58,18 @@ namespace PreSchoolApp.Models
             List<TimeSpan> dropOffTimes = new List<TimeSpan>();
 
             var times = context.Schedules
-                .Where(x => x.ChildrenId == childID);
+                .Where(x => x.ChildrenId == childID)
+                .Select(o => o.Dropoff.Value)
+                .ToArray();
 
-            foreach (var item in times)
-            {
-                dropOffTimes.Add((TimeSpan)item.Dropoff);
-            }
+            //foreach (var item in times)
+            //{
+            //    dropOffTimes.Add(item.Dropoff.Value);
+            //}
 
-            return dropOffTimes.ToArray();
+            //return dropOffTimes.ToArray();
+            return times;
         }
-
-
-
-
 
         //public ParentStartVM[] GetYourChild(LoginVM loginVM)
         //{
@@ -110,6 +109,74 @@ namespace PreSchoolApp.Models
         //    }
         //    return parentStartVM.ToArray();
         //}
+
+        public ParentStartVM GetParentStartVM(LoginVM loginVM)
+        {
+            string aspId = GetASPID(loginVM.UserName);
+            int userId = GetUserID(aspId);
+            int[] childIds = GetChildrenId(userId);
+
+            int weekDay = (int)DateTime.Today.DayOfWeek;
+            
+            ParentStartVM parentStartVM = new ParentStartVM();
+            List<ParentStartChildItemVM> pscivm = new List<ParentStartChildItemVM>();
+
+            foreach (var item in childIds)
+            {
+                var ret = context.Schedules
+                    .Where(o => o.Weekdays == weekDay && o.Id == item)
+                    .Select(o => new ParentStartChildItemVM
+                    {
+                        DropOfTime = o.Dropoff.Value,
+                        PickupTime = o.PickUp.Value,
+                        FirstName = o.Children.FirstName,
+                        LastName = o.Children.LastName,
+                        Id = o.Children.Id,
+                        IsActive = o.Children.IsIll.Value,
+                        IsPresent = o.Children.IsPresent
+                    })
+                    .FirstOrDefault();
+                pscivm.Add(ret);
+            }
+
+            parentStartVM.ChildItems = pscivm.ToArray();
+
+            return parentStartVM;
+        }
+
+        public ParentStartVM GetParentStartVM(int userId)
+        {
+            //string aspId = GetASPID(loginVM.UserName);
+            //int userId = GetUserID(aspId);
+            int[] childIds = GetChildrenId(userId);
+
+            int weekDay = (int)DateTime.Today.DayOfWeek;
+
+            ParentStartVM parentStartVM = new ParentStartVM();
+            List<ParentStartChildItemVM> pscivm = new List<ParentStartChildItemVM>();
+
+            foreach (var item in childIds)
+            {
+                var ret = context.Schedules
+                    .Where(o => o.Weekdays == weekDay && o.ChildrenId == item)
+                    .Select(o => new ParentStartChildItemVM
+                    {
+                        DropOfTime = o.Dropoff.Value,
+                        PickupTime = o.PickUp.Value,
+                        FirstName = o.Children.FirstName,
+                        LastName = o.Children.LastName,
+                        Id = o.Children.Id,
+                        IsActive = o.Children.IsIll.Value,
+                        IsPresent = o.Children.IsPresent
+                    })
+                    .FirstOrDefault();
+                pscivm.Add(ret);
+            }
+
+            parentStartVM.ChildItems = pscivm.ToArray();
+
+            return parentStartVM;
+        }
 
         public TeacherStartVM GetTodaysSchedules()
         {
@@ -208,18 +275,16 @@ namespace PreSchoolApp.Models
 
         private int GetScheduleID(int childId, int weekDayNr)
         {
-
             var scheduleID = context.Schedules
-.SingleOrDefault(x => x.Weekdays == weekDayNr && x.ChildrenId == childId);
+            .SingleOrDefault(x => x.Weekdays == weekDayNr && x.ChildrenId == childId);
 
             return Convert.ToInt32(scheduleID);
         }
 
-
         public void UpdateChildCalendar(int id, int weekDay, TimeSpan? pickUpTime, TimeSpan? dropOffTime)
         {
             var itemToUpdate = context.Schedules
-                .SingleOrDefault(x => x.Id == id && x.Weekdays == weekDay);
+                .SingleOrDefault(x => x.ChildrenId == id && x.Weekdays == weekDay + 1);                
 
             if (pickUpTime != null)
             {
@@ -232,36 +297,35 @@ namespace PreSchoolApp.Models
             context.SaveChanges();
         }
 
-        public void EditSchedule(int childId, int weekdayNr, TimeSpan? pickUpTime, TimeSpan? dropOffTime)
-        {
+        //public void EditSchedule(int childId, int weekdayNr, TimeSpan? pickUpTime, TimeSpan? dropOffTime)
+        //{
 
-            int scheduleItemId = GetScheduleID(childId, weekdayNr);
+        //    int scheduleItemId = GetScheduleID(childId, weekdayNr);
 
-            var itemToUpdate = context.Schedules
-                .SingleOrDefault(x => x.Id == scheduleItemId);
+        //    var itemToUpdate = context.Schedules
+        //        .SingleOrDefault(x => x.Id == scheduleItemId);
 
-            itemToUpdate.Dropoff = dropOffTime;
-            itemToUpdate.PickUp = pickUpTime;
+        //    itemToUpdate.Dropoff = dropOffTime;
+        //    itemToUpdate.PickUp = pickUpTime;
 
-            context.SaveChanges();
+        //    context.SaveChanges();
+        //}
 
-        }
+        //public void EditSchedule(int dropOffHrs, int dropOffMins, int pickUpHrs, int pickUpMins, int weekdayNr, int childId)
+        //{
+        //    int scheduleItemId = GetScheduleID(childId, weekdayNr);
 
-        public void EditSchedule(int dropOffHrs, int dropOffMins, int pickUpHrs, int pickUpMins, int weekdayNr, int childId)
-        {
-            int scheduleItemId = GetScheduleID(childId, weekdayNr);
+        //    TimeSpan dropOff = new TimeSpan(dropOffHrs, dropOffMins, seconds);
+        //    TimeSpan pickUp = new TimeSpan(pickUpHrs, pickUpMins, seconds);
 
-            TimeSpan dropOff = new TimeSpan(dropOffHrs, dropOffMins, seconds);
-            TimeSpan pickUp = new TimeSpan(pickUpHrs, pickUpMins, seconds);
+        //    var itemToUpdate = context.Schedules
+        //        .SingleOrDefault(x => x.Id == scheduleItemId);
 
-            var itemToUpdate = context.Schedules
-                .SingleOrDefault(x => x.Id == scheduleItemId);
+        //    itemToUpdate.Dropoff = dropOff;
+        //    itemToUpdate.PickUp = pickUp;
 
-            itemToUpdate.Dropoff = dropOff;
-            itemToUpdate.PickUp = pickUp;
-
-            context.SaveChanges();
-        }
+        //    context.SaveChanges();
+        //}
 
         public void AddParent(EditUserVM edituser)
         {
@@ -276,19 +340,15 @@ namespace PreSchoolApp.Models
             context.SaveChanges();
         }
 
-
         public bool IsParent(LoginVM loginVM)
         {
             string aspId = GetASPID(loginVM.UserName);
             int userId = GetUserID(aspId);
 
-
             //int childId = GetChildId(userId);
 
             return context.C2p
                 .Any(x => x.Uid == userId);
-
-
         }
 
         private int GetUserID(string aspId)
@@ -299,18 +359,22 @@ namespace PreSchoolApp.Models
 
         private int GetChildId(int userId)
         {
-
             return context.C2p
                 .SingleOrDefault(x => x.Uid == userId).Cid;
         }
 
+        private int[] GetChildrenId(int userId)
+        {
+            return context.C2p
+                .Where(x => x.Uid == userId)
+                .Select(x => x.Cid)
+                .ToArray();
+        }
 
         private string GetChildNameFromID(int childID)
         {
             return context.Children
                 .SingleOrDefault(x => x.Id == childID).FirstName;
-
-
         }
     }
 }

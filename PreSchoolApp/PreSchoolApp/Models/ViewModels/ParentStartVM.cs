@@ -9,7 +9,7 @@ namespace PreSchoolApp.Models.ViewModels
     public class ParentStartVM
     {
         //public string Day { get; set; }
-        public string[] DelayTime { get; set; }
+        //public string[] DelayTime { get; set; }
         public ParentStartChildItemVM[] ChildItems { get; set; }
     }
 
