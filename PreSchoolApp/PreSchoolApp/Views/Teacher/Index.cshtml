@@ -9,30 +9,31 @@
         if (item.IsPresent == false && item.IsActive == false)
         {
             <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
-                <p>
-                    @item.FirstName @item.DropOfTime<input type="submit" value="Checka in" />
-                </p><br />
+                @item.FirstName @item.DropOfTime<input type="submit" value="Checka in" />
+                <br />
             </form>
         }
     }
 
     <p>Incheckade (@Model.PresentChildrenCount)</p>
-    @foreach (var item2 in Model.ChildItems)
+    @foreach (var item in Model.ChildItems)
     {
-        if (item2.IsPresent == true && item2.IsActive == false)
+        if (item.IsPresent == true && item.IsActive == false)
         {
-            <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item2.Id">
-                    @item2.FirstName @item2.PickupTime<input type="submit" value="Checka ut" /><br />
+            <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
+                @item.FirstName @item.PickupTime<input type="submit" value="Checka ut" />
+                <br />
             </form>
         }
     }
     <p>Utcheckade (@Model.NotActiveCount)</p>
-    @foreach (var item3 in Model.ChildItems)
+    @foreach (var item in Model.ChildItems)
     {
-        if (item3.IsActive == true)
+        if (item.IsActive == true)
         {
-            <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item3.Id">
-                    @item3.FirstName<input type="submit" value="Ej incheckad" /><br />                
+            <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
+                @item.FirstName<input type="submit" value="Ej incheckad" />
+                <br />
             </form>
         }
     }

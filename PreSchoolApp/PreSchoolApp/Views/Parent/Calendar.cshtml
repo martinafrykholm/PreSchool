@@ -1,0 +1,32 @@
+﻿@model ParentCalendarVM
+
+<center>
+    @Model.FirstName kalender
+    <br />
+
+    @for (int i = 0; i < Model.Weekdays.Length; i++)
+    {
+        @Model.Weekdays[i] <br />
+        <div class="formContainer" id="formDropOff" style="display: inline-block">
+            <form asp-controller="Parent" asp-action="UpdateCalendar" asp-route-id="@Model.ChildId" asp-route-weekDay=@i asp-route-isDropOff="true">
+                <select onchange="this.form.submit()" asp-for=@Model.DropOffTimes[i]>
+                    @foreach (var item in Model.AllTimes)
+                    {
+                        <option value=@item>@string.Format("{0:00}:{1:00}", item.Hours, item.Minutes)</option>
+                    }
+                </select>
+            </form>
+        </div>
+        <div class="formContainer" id="formPickUp" style="display: inline-block">
+            <form asp-controller="Parent" asp-action="UpdateCalendar" asp-route-id="@Model.ChildId" asp-route-weekDay=@i asp-route-isDropOff="false">
+                <select onchange="this.form.submit()" asp-for=@Model.PickupTimes[i]>
+                    @foreach (var item in Model.AllTimes)
+                    {
+                        <option value=@item>@string.Format("{0:00}:{1:00}", item.Hours, item.Minutes)</option>
+                    }
+                </select>
+            </form>
+        </div>
+        <br />
+    }
+</center>

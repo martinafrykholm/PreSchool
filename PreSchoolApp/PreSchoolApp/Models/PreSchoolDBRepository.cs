@@ -18,34 +18,44 @@ namespace PreSchoolApp.Models
             this.context = context;
         }
 
-        public List<ParentStartVM> GetYourChild(LoginVM loginVM)
-        {
-            int weekDay = (int)DateTime.Today.DayOfWeek;
+        //public ParentStartVM[] GetYourChild(LoginVM loginVM)
+        //{
+        //    int weekDay = (int)DateTime.Today.DayOfWeek;
+        //    ParentStartVM startVM = new ParentStartVM();
+        //    string aspId = GetASPID(loginVM.UserName);
+        //    int userId = GetUserID(aspId);
 
-            string aspId = GetASPID(loginVM.UserName);
-            int userId = GetUserID(aspId);
-            
-            var childrenOfParent = context.Users
-                .Where(o => o.Id == userId)
-                .Select(o => o.C2p.Select(op => op.Cid))
-                .ToArray();
-
-            List <ParentStartVM> parentStartVM = new List<ParentStartVM>();
-
-            //List<Children> children = new List<Children>();
-
-
-            foreach (var item in childrenOfParent)
-            {
-                int intItem = Convert.ToInt32(item);
-                var child = context.Children
-                    .SingleOrDefault(x => x.Id == intItem);
-                parentStartVM.Add(new ParentStartVM { FirstName = child.FirstName, LastName = child.LastName, DropOfTime = context.Schedules.SingleOrDefault(x => x.Id == intItem && x.Weekdays == weekDay).Dropoff.Value, PickupTime = context.Schedules.SingleOrDefault(x => x.Id == intItem&&x.Weekdays==weekDay).PickUp.Value });
+        //    var childrenOfParent = context.Users
+        //        .Where(o => o.Id == userId)
+        //        .Select(o => o.C2p.Select(op => op.Cid));
                 
-            }
-            
-            return parentStartVM;
-        }
+
+        //    foreach (var item in childrenOfParent)
+        //    {
+        //        int item2 = Convert.ToInt32(item);
+        //        startVM.Id = item2;
+        //    }
+
+
+        //    List<ParentStartVM> parentStartVM = new List<ParentStartVM>();
+
+        //    //List<Children> children = new List<Children>();
+
+        //    foreach (var item in childrenOfParent)
+        //    {
+        //        int intItem = Convert.ToInt32(item);
+        //        var child = context.Children
+        //            .SingleOrDefault(x => x.Id == intItem);
+        //        parentStartVM.Add(new ParentStartVM
+        //        {
+        //            FirstName = child.FirstName,
+        //            LastName = child.LastName,
+        //            DropOfTime = context.Schedules.SingleOrDefault(x => x.Id == intItem && x.Weekdays == weekDay).Dropoff.Value,
+        //            PickupTime = context.Schedules.SingleOrDefault(x => x.Id == intItem && x.Weekdays == weekDay).PickUp.Value
+        //        });
+        //    }
+        //    return parentStartVM.ToArray();
+        //}
 
         public TeacherStartVM GetTodaysSchedules()
         {
@@ -170,15 +180,15 @@ namespace PreSchoolApp.Models
 
         }
 
-        public void AddParent(EditUserVM edituser)           
+        public void AddParent(EditUserVM edituser)
         {
             string aspnetId = GetASPID(edituser.FirstName);
-            context.Users.Add(new Users {FirstName= edituser.FirstName, LastName= edituser.LastName, AspId = aspnetId });
-            
+            context.Users.Add(new Users { FirstName = edituser.FirstName, LastName = edituser.LastName, AspId = aspnetId });
+
             context.SaveChanges();
 
             var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
-            
+
             context.C2p.Add(new C2p { Uid = userID.Id, Cid = edituser.ChildID });
             context.SaveChanges();
         }
