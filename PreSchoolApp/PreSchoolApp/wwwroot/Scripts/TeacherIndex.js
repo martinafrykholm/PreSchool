@@ -1,34 +1,34 @@
 ﻿$(document).ready(function () {
 
-    //$("#notCheckedInList").hover(function () {
+    $("#notCheckedInList").hover(function () {
 
-    //    $(this).css('background-color', '#AAAFBF')
+        $(this).css('background-color', 'white')
 
-    //}, function () {
-
-
-    //    $(this).css('background-color', '')
-    //    });
-
-    //$("#presentChildrenDiv").hover(function () {
-
-    //    $(this).css('background-color', '#AAAFBF')
-
-    //}, function () {
+    }, function () {
 
 
-    //    $(this).css('background-color', '')
-    //});
+        $(this).css('background-color', '')
+        });
 
-    //$("#checkedOutList").hover(function () {
+    $("#presentChildrenDiv").hover(function () {
 
-    //    $(this).css('background-color', '#AAAFBF')
+        $(this).css('background-color', 'white')
 
-    //}, function () {
+    }, function () {
 
 
-    //    $(this).css('background-color', '')
-    //    });
+        $(this).css('background-color', '')
+    });
+
+    $("#checkedOutList").hover(function () {
+
+        $(this).css('background-color', 'white')
+
+    }, function () {
+
+
+        $(this).css('background-color', '')
+        });
 
     $(".childListRow").hover(function () {
 
