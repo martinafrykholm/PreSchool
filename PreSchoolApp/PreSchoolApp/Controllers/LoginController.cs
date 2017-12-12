@@ -45,7 +45,6 @@ namespace PreSchoolApp.Controllers
         {
             return View();
         }
-
         
         [HttpPost]
         [AllowAnonymous]
@@ -63,26 +62,18 @@ namespace PreSchoolApp.Controllers
                 ModelState.AddModelError(
                     nameof(LoginVM.UserName), "Felaktigt namn eller lösenord"); //lägger in felmeddelande                
                 return View();
-                
             }
 
-            if (User.IsInRole("Parent"))
-            {
-                return RedirectToAction("Index", "Parent", loginVM);
-            }
+            return RedirectToAction(nameof(PostSignIn));
+        }
+
+        public IActionResult PostSignIn()
+        {
+            var isParent = User.IsInRole("Parent");
+            if (isParent)
+                return RedirectToAction("Index", "Parent");
             else
-            {
                 return RedirectToAction("Index", "Teacher");
-            }
-            
-            //if(!repository.IsParent(loginVM))
-            //    return RedirectToAction(nameof(TeacherController));
-            
-            //else
-            //    return RedirectToAction(nameof(ParentController));
-            
-
-            
         }
     }
 }
