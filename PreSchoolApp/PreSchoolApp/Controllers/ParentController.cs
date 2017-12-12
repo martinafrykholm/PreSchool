@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PreSchoolApp.Models;
 using PreSchoolApp.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PreSchoolApp.Controllers
 {
+    [Authorize]
     public class ParentController : Controller
     {
         PreSchoolDBRepository repository;
@@ -22,6 +24,7 @@ namespace PreSchoolApp.Controllers
         // GET: /<controller>/
         public IActionResult Index(LoginVM loginVM)
         {
+
             //var model = TestRepo.GetTestParentStartVM(id);
             var model = repository.GetParentStartVM(loginVM);
 
