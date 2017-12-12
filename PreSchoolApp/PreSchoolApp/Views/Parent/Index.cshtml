@@ -1,4 +1,4 @@
-﻿@model ParentStartVM
+﻿@model ParentStartVM[]
 @{
     string FormatTimeSpan(TimeSpan timeSpan)
     {
@@ -14,7 +14,7 @@
     Parent<br />
     <br />
     <p>Lämna</p>
-    @foreach (var item in Model.ChildItems)
+    @foreach (var item in Model)
     {
         if (item.IsActive)
         {
@@ -39,7 +39,7 @@
     }
 
     <p>Hämta</p>
-    @foreach (var item in Model.ChildItems)
+    @foreach (var item in Model)
     {
         if (item.IsActive)
         {
@@ -64,7 +64,7 @@
     }
 
     <p>Ändra kalender</p>
-    @foreach (var item in Model.ChildItems)
+    @foreach (var item in Model)
     {
         <a asp-controller="Parent" asp-action="Calendar" asp-route-id="@item.Id"><input type="button" value="@item.FirstName" /></a>
         <br />

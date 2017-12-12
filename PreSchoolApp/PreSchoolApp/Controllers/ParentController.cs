@@ -26,17 +26,25 @@ namespace PreSchoolApp.Controllers
         //    return View(model);
         //}
 
-        public IActionResult Index(int id)
+        public IActionResult Index()
         {
-            var model = TestRepo.GetTestParentStartVM(id);            
+            //var model = TestRepo.GetTestParentStartVM();
+            var model = repository.GetParentStartVM(1);
+            //var model = repository.GetYourChild(9);
 
             return View(model);
         }
-                
+
+        //public IActionResult Index(LoginVM loginVM)
+        //{
+        //    //var model = TestRepo.GetTestParentStartVM(id);
+        //    var model = repository.GetParentStartVM(loginVM);
+
+        //    return View(model);
+        //}
+
         public IActionResult Report()
         {
-            //var model = TestRepo.GetTestParentStartVM(id);
-
             var model = TestRepo.GetTestParentReportData();
             return View(model);
         }
@@ -44,8 +52,8 @@ namespace PreSchoolApp.Controllers
         [HttpGet]
         public IActionResult Calendar(int id)
         {
-            var model = TestRepo.GetTestParentCalendarVM(id);
-            var modeldb = repository.GetChildsSchedule(id);
+            //var model = TestRepo.GetTestParentCalendarVM(id);
+            var model = repository.GetChildsSchedule(id);
 
             return View(model);
         }
@@ -55,10 +63,9 @@ namespace PreSchoolApp.Controllers
         {
             //Metod: Uppdatera barnets kalender
             //TestRepo.UpdateCalendar(id, weekDay, isDropOff, time);
-            //var model = TestRepo.GetTestParentCalendarVM(id);        
-            repository.EditSchedule(id, weekDay, pickUpTime, dropOffTime);
+            repository.UpdateChildCalendar(id, weekDay, pickUpTime, dropOffTime);
 
-            return RedirectToAction(nameof(Calendar));
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
