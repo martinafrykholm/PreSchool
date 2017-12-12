@@ -30,7 +30,9 @@ namespace PreSchoolApp.Models
                 AllTimes = Utils.GetAllTimes(),
                 Weekdays = Utils.GetWeekdays(),
                 DropOffTimes = GetDropOffTimes(id),
-                PickupTimes = GetPickUpTimes(id)
+                PickupTimes = GetPickUpTimes(id),
+                Weekdays = Utils.GetWeekdays()
+
             };
             return parentCalendar;
         }
@@ -429,17 +431,23 @@ namespace PreSchoolApp.Models
         //    context.SaveChanges();
         //}
 
-        public void AddParent(EditUserVM edituser)
+        public void AddParent(EditUserVM edituser, int childCode)
         {
             string aspnetId = GetASPID(edituser.FirstName);
             context.Users.Add(new Users { FirstName = edituser.FirstName, LastName = edituser.LastName, AspId = aspnetId });
 
             context.SaveChanges();
 
-            var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
 
-            context.C2p.Add(new C2p { Uid = userID.Id, Cid = edituser.ChildID });
+            var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
+            //edituser.ChildID = childId;
+            context.C2p.Add(new C2p
+            {
+                Uid = userID.Id,
+                Cid = childCode
+            });
             context.SaveChanges();
+           
         }
 
         public bool IsParent(LoginVM loginVM)
@@ -480,5 +488,20 @@ namespace PreSchoolApp.Models
             return context.Children
                 .SingleOrDefault(x => x.Id == childID).FirstName;
         }
+
+        //public void ChildToParent(CreateUserVM createuserVM)
+        //{
+        //    string aspnetId = GetASPID(createuserVM.UserName);
+        //    var userId = GetUserID(aspnetId);
+        //    //var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
+        //    //edituser.ChildID = childId;
+        //    context.C2p.Add(new C2p
+        //    {
+        //        Uid = userId,
+        //        Cid = createuserVM.ChildCode
+        //    });
+        //    context.SaveChanges();
+
+        //}
     }
 }

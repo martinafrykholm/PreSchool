@@ -19,7 +19,7 @@ namespace PreSchoolApp.Models.ViewModels
         public string PassWord { get; set; }
 
         [Display(Name = "Kod")]
-        public string ChildCode { get; set; }
+        public int ChildCode { get; set; }
 
     }
 }

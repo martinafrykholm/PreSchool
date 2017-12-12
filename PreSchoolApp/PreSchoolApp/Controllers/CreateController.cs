@@ -79,36 +79,46 @@ namespace PreSchoolApp.Controllers
                 //ModelState.AddModelError(
                 //    nameof(CreateUserVM.PassWord), toShort.ToString());
 
-
-
                 return View();
 
             }
             await userManager.AddToRoleAsync(user, RoleParent);
 
-            return RedirectToAction(nameof(EditUser));
+            int childCode = createUserVM.ChildCode;
+            //repository.ChildToParent(createUserVM);
+
+
+            return RedirectToAction("EditUser", new { ChildCode = childCode });
         }
 
         [HttpGet]
+        public IActionResult EditUser(int ChildCode)
+        {
+            ViewBag.ChildCode = ChildCode;
+            return View();
+        }
+
         public IActionResult EditUser()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult EditUser(EditUserVM editUserVM)
+        public IActionResult EditUser(EditUserVM editUserVM, int ChildCode)
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.ChildCode = ChildCode;
                 return View();
             }
 
+            int childid = ChildCode;
             //string aspID = repository.GetASPID(editUserVM.FirstName);
 
             //var userId = userManager.GetUserId(HttpContext.User);
-            repository.AddParent(editUserVM);
+            repository.AddParent(editUserVM, childid);
 
-            return RedirectToAction("/Teacher/Index");
+            return RedirectToAction("Index", "Teacher");
         }
     }
 }
