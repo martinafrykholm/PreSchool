@@ -28,8 +28,9 @@ namespace PreSchoolApp.Controllers
 
         public IActionResult Index()
         {
-            var model = TestRepo.GetTestParentStartVM();
-            //var model = repository.GetParentStartVM(9);
+            //var model = TestRepo.GetTestParentStartVM();
+            var model = repository.GetParentStartVM(1);
+            //var model = repository.GetYourChild(9);
 
             return View(model);
         }
@@ -62,7 +63,6 @@ namespace PreSchoolApp.Controllers
         {
             //Metod: Uppdatera barnets kalender
             //TestRepo.UpdateCalendar(id, weekDay, isDropOff, time);
-            //var model = TestRepo.GetTestParentCalendarVM(id);        
             repository.UpdateChildCalendar(id, weekDay, pickUpTime, dropOffTime);
 
             return RedirectToAction("Index");
