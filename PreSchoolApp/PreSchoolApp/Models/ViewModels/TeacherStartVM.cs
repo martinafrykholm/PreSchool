@@ -24,7 +24,6 @@ namespace PreSchoolApp.Models.ViewModels
         public TimeSpan PickupTime { get; set; }
         public bool IsPresent { get; set; }
         public bool IsActive { get; set; }
-        public int MinLate { get; set; }
     }
 }
 
