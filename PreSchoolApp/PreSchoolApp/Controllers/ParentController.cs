@@ -22,11 +22,11 @@ namespace PreSchoolApp.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index(LoginVM loginVM)
+        public IActionResult Index()
         {
-
+            var userName = User.Identity.Name;
             //var model = TestRepo.GetTestParentStartVM(id);
-            var model = repository.GetParentStartVM(loginVM);
+            var model = repository.GetParentStartVM(userName);
 
             return View(model);
         }
