@@ -15,7 +15,7 @@
         <p>(angiven avlämningstid: @Model.PickupTime)</p>
     }
     <div style="display: inline-block">
-        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay=10><input type="submit" value="10 minuter" /></form>
+        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="10"><input type="submit" value="10 minuter" /></form>
     </div>
     <br />
     <div style="display: inline-block">

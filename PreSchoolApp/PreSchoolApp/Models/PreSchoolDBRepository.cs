@@ -215,6 +215,7 @@ namespace PreSchoolApp.Models
                             parentStartVM.Id = schedule.Children.Id;
                             parentStartVM.IsActive = schedule.Children.IsIll == null ? false : (bool)schedule.Children.IsIll;
                             parentStartVM.IsPresent = schedule.Children.IsPresent;
+                            parentStartVM.MinutesLate = schedule.Children.MinLate == null ? default(int) : (int)schedule.Children.MinLate; //ta bort om denna strular
                             pscivm.Add(parentStartVM);
                         }
                     }
@@ -271,6 +272,7 @@ namespace PreSchoolApp.Models
                             parentStartVM.Id = schedule.Children.Id;
                             parentStartVM.IsActive = schedule.Children.IsIll == null ? false : (bool)schedule.Children.IsIll;
                             parentStartVM.IsPresent = schedule.Children.IsPresent;
+                            //parentStartVM.MinutesLate = schedule.Children.MinLate == null ? default(int) : (int)schedule.Children.MinLate; //ta bort om denna strular
                             pscivm.Add(parentStartVM);
                         }
                     }
@@ -296,7 +298,8 @@ namespace PreSchoolApp.Models
                         FirstName = o.Children.FirstName,
                         LastName = o.Children.LastName,
                         Id = o.Children.Id,
-                        IsActive = (bool)o.Children.IsIll
+                        IsActive = (bool)o.Children.IsIll,
+                        //MinutesLate = o.Children.MinLate.Value //ta bort vid strul
                     })
                     .OrderBy(o => o.IsPresent)
                     .ToArray()
@@ -507,7 +510,7 @@ namespace PreSchoolApp.Models
             var itemToUpdate = context.Children
                 .SingleOrDefault(x => x.Id == childID);
 
-            itemToUpdate.MinLate = itemToUpdate.MinLate + delay;
+            itemToUpdate.MinLate = delay;
 
             context.SaveChanges();
         

@@ -20,25 +20,19 @@ namespace PreSchoolApp.Controllers
         }
 
         // GET: /<controller>/
-        //public IActionResult Index(LoginVM loginVM)
-        //{
-        //    var model = repository.GetYourChild(loginVM);
-        //    return View(model);
-        //}
+        public IActionResult Index(LoginVM loginVM)
+        {
+            //var model = TestRepo.GetTestParentStartVM(id);
+            var model = repository.GetParentStartVM(loginVM);
+
+            return View(model);
+        }
 
         //public IActionResult Index()
         //{
         //    //var model = TestRepo.GetTestParentStartVM();
         //    var model = repository.GetParentStartVM(1);
         //    //var model = repository.GetYourChild(9);
-
-        //    return View(model);
-        //}
-
-        //public IActionResult Index(LoginVM loginVM)
-        //{
-        //    //var model = TestRepo.GetTestParentStartVM(id);
-        //    var model = repository.GetParentStartVM(loginVM);
 
         //    return View(model);
         //}
@@ -71,7 +65,6 @@ namespace PreSchoolApp.Controllers
         [HttpPost]
         public IActionResult ReportDelay(int id, int delay)
         {
-
             repository.AddDelayTime(id, delay);
             return RedirectToAction(nameof(Report));
         }
