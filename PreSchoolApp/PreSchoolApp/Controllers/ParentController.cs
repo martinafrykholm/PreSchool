@@ -35,13 +35,13 @@ namespace PreSchoolApp.Controllers
             return View(model);
         }
 
-        //public IActionResult Index(LoginVM loginVM)
-        //{
-        //    //var model = TestRepo.GetTestParentStartVM(id);
-        //    var model = repository.GetParentStartVM(loginVM);
+        public IActionResult Index(LoginVM loginVM)
+        {
+            //var model = TestRepo.GetTestParentStartVM(id);
+            var model = repository.GetParentStartVM(loginVM);
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
         public IActionResult Report()
         {
