@@ -154,7 +154,7 @@ p.listheaders {
 
 .inputText {
     display: block;
-    margin-left: 5px;
+    margin-left: 10px;
     border-radius: 5px;
     height: 27px;
 }
@@ -165,7 +165,7 @@ p.listheaders {
 
 }*/
 
-form {
+form.createForm {
     font-size: 20px;
     font-family: 'open sans';
     margin-top: 10px;
