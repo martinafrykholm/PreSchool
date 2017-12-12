@@ -242,6 +242,46 @@ namespace PreSchoolApp.Models
             return pscivm.ToArray();
         }
 
+        public ParentStartVM[] GetParentStartVM(LoginVM loginVM)
+        {
+            string aspId = GetASPID(loginVM.UserName);
+            int userId = GetUserID(aspId);
+            int[] childIds = GetChildrenId(userId);
+
+            int weekDay = (int)DateTime.Today.DayOfWeek;
+
+            List<ParentStartVM> pscivm = new List<ParentStartVM>();
+
+            for (int i = 0; i < childIds.Length; i++)
+            {
+
+                var tmp = context.Children
+                    .Include("Schedules")
+                    .Where(c => c.Id == childIds[i])
+                    .ToList();
+
+                foreach (Children child in tmp)
+                {
+                    foreach (Schedules schedule in child.Schedules)
+                    {
+                        if (schedule.Weekdays == weekDay)
+                        {
+                            ParentStartVM parentStartVM = new ParentStartVM();
+                            parentStartVM.DropOfTime = schedule.Dropoff == null ? default(TimeSpan) : (TimeSpan)schedule.Dropoff;
+                            parentStartVM.PickupTime = schedule.PickUp == null ? default(TimeSpan) : (TimeSpan)schedule.PickUp;
+                            parentStartVM.FirstName = schedule.Children.FirstName;
+                            parentStartVM.Id = schedule.Children.Id;
+                            parentStartVM.IsActive = schedule.Children.IsIll == null ? false : (bool)schedule.Children.IsIll;
+                            parentStartVM.IsPresent = schedule.Children.IsPresent;
+                            pscivm.Add(parentStartVM);
+                        }
+                    }
+                }
+            }
+          
+            return pscivm.ToArray();
+        }
+
         public TeacherStartVM GetTodaysSchedules()
         {
             int weekDay = (int)DateTime.Today.DayOfWeek;
