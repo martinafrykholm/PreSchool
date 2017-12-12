@@ -301,7 +301,7 @@ namespace PreSchoolApp.Models
                         IsActive = (bool)o.Children.IsIll,
                         //MinutesLate = o.Children.MinLate.Value //ta bort vid strul
                     })
-                    .OrderBy(o => o.IsPresent)
+                    .OrderBy(o => o.DropOfTime)
                     .ToArray()
             };
 
