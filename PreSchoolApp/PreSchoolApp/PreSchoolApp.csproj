@@ -17,4 +17,8 @@
     <Folder Include="wwwroot\Images and icons\" />
   </ItemGroup>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="taskkill /F /IM dotnet.exe 2&gt;&amp;1 | exit /B 0&#xD;&#xA;" />
+  </Target>
+
 </Project>
