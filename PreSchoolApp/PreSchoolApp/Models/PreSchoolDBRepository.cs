@@ -32,7 +32,7 @@ namespace PreSchoolApp.Models
                 DropOffTimes = GetDropOffTimes(id),
                 PickupTimes = GetPickUpTimes(id),
                 Weekdays = Utils.GetWeekdays()
-                
+
             };
             return parentCalendar;
 
@@ -263,7 +263,7 @@ namespace PreSchoolApp.Models
             context.SaveChanges();
         }
 
-        public void AddParent(EditUserVM edituser, int childId)
+        public void AddParent(EditUserVM edituser, int childCode)
         {
             string aspnetId = GetASPID(edituser.FirstName);
             context.Users.Add(new Users { FirstName = edituser.FirstName, LastName = edituser.LastName, AspId = aspnetId });
@@ -273,8 +273,13 @@ namespace PreSchoolApp.Models
 
             var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
             //edituser.ChildID = childId;
-            context.C2p.Add(new C2p { Uid = userID.Id, Cid = edituser.ChildID });
+            context.C2p.Add(new C2p
+            {
+                Uid = userID.Id,
+                Cid = childCode
+            });
             context.SaveChanges();
+           
         }
 
 
@@ -313,5 +318,20 @@ namespace PreSchoolApp.Models
 
 
         }
+
+        //public void ChildToParent(CreateUserVM createuserVM)
+        //{
+        //    string aspnetId = GetASPID(createuserVM.UserName);
+        //    var userId = GetUserID(aspnetId);
+        //    //var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
+        //    //edituser.ChildID = childId;
+        //    context.C2p.Add(new C2p
+        //    {
+        //        Uid = userId,
+        //        Cid = createuserVM.ChildCode
+        //    });
+        //    context.SaveChanges();
+
+        //}
     }
 }
