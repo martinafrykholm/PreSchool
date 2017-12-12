@@ -7,18 +7,29 @@
 
 <center>
     @*Fixa asp-action!*@
-    <form asp-controller="Login" asp-action="Index">
-        <label asp-for="UserName"></label>
-        <input asp-for="UserName" />
-        <span asp-validation-for="UserName"></span>
+    <div class="formContainer">
+        <form class="createForm" asp-controller="Login" asp-action="Index">
 
-        <label asp-for="Password"></label>
-        <input asp-for="Password" />
-        <span asp-validation-for="Password"></span>
-
-        <br />
-        <input type="submit" style="background-color:white" value="Login" />
-    </form>
+            <div class="formRow">
+                <label class="labelItem" asp-for="UserName"></label>
+                <input class="inputText" asp-for="UserName" />
+                <span asp-validation-for="UserName"></span>
+            </div>
+            <br />
+            <div class="formRow">
+                <label class="labelItem" asp-for="Password"></label>
+                <input class="inputText" asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <br />
+            <input type="submit" value="Logga in" class="ButtonStyleLarge" />
+        </form>
+    </div>
+    <br />
 
     <a href="Create">Skapa ny inloggning</a>
+
+    <br />
+    <br />
+
 </center>
