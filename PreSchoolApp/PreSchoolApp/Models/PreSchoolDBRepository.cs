@@ -31,7 +31,6 @@ namespace PreSchoolApp.Models
                 Weekdays = Utils.GetWeekdays(),
                 DropOffTimes = GetDropOffTimes(id),
                 PickupTimes = GetPickUpTimes(id)
-
             };
             return parentCalendar;
         }
