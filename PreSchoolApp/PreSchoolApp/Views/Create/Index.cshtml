@@ -5,24 +5,37 @@
 }
 
 <center>
-    @*fixa asp-action!*@
-    <form asp-controller="Create" asp-action="Index">
-        <label asp-for="UserName"></label>
-        <input asp-for="UserName" />
-        <span asp-validation-for="UserName"></span>
+    <div class="formContainer">
+        @*fixa asp-action!*@
+        <form asp-controller="Create" asp-action="Index">
 
-        <label asp-for="PassWord"></label>
-        <input asp-for="PassWord" />
-        <span asp-validation-for="PassWord"></span>
+            <div class="formRow">
+                <label class="labelItem" asp-for="UserName"></label>
+                <input class="inputText" asp-for="UserName" />
+                <span asp-validation-for="UserName"></span>
+            </div>
 
-        <label asp-for="ChildCode"></label>
-        <input asp-for="ChildCode" />
-        <span asp-validation-for="ChildCode"></span>
+            <br />
+            <div class="formRow">
+                <label class="labelItem" asp-for="PassWord"></label>
+                <input class="inputText" asp-for="PassWord" />
+                <span asp-validation-for="PassWord"></span>
+            </div>
 
-        <br />
-        <input type="submit" style="background-color:white" value="Skapa!" />
-        
-    </form>
+            <br />
 
-    
+            <div class="formRow">
+                <label class="labelItem" asp-for="ChildCode"></label>
+                <input class="inputText" asp-for="ChildCode" />
+                <span asp-validation-for="ChildCode"></span>
+            </div>
+
+            <br />
+            <br />
+            <input class="ButtonStyleLarge" type="submit" value="Skapa!" />
+
+        </form>
+    </div>
+    <br />
+    <br />
 </center>
