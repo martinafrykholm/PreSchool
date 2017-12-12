@@ -149,6 +149,11 @@ p.listheaders {
     font-size: 25px;
 }
 
+p.listheadersCenter {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+}
 
 .labelItem {
     display: block;
@@ -193,10 +198,21 @@ form.createForm {
     font-size: 20px;
     font-family: "Open Sans";
     border-color: grey;
-    padding: 5px;
+    padding: 10px;
 }
 
 span {
     font-size: 10px;
     color: red;
+}
+
+.ButtonStyleLargeAutoSize {
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    background-color: rgba(249,110,175, 1.0);
+    font-size: 20px;
+    font-family: "Open Sans";
+    border-color: grey;
+    padding: 10px;
 }

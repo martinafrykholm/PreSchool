@@ -30,15 +30,15 @@
         $(this).css('background-color', '')
         });
 
-    $(".childListRow").hover(function () {
+    //$(".childListRow").hover(function () {
 
-        $(this).css('background-color', '#FFFCF9')
+    //    $(this).css('background-color', '#B4C5E8')
 
-    }, function () {
+    //}, function () {
 
 
-        $(this).css('background-color', '')
-        });
+    //    $(this).css('background-color', '')
+    //    });
 
     $(".ButtonStyle").hover(function () {
 
