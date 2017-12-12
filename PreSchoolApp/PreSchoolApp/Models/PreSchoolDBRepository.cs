@@ -31,7 +31,6 @@ namespace PreSchoolApp.Models
                 Weekdays = Utils.GetWeekdays(),
                 DropOffTimes = GetDropOffTimes(id),
                 PickupTimes = GetPickUpTimes(id)
-
             };
             return parentCalendar;
         }
@@ -502,5 +501,16 @@ namespace PreSchoolApp.Models
         //    context.SaveChanges();
 
         //}
+
+        public void AddDelayTime(int childID, int delay)
+        {
+            var itemToUpdate = context.Children
+                .SingleOrDefault(x => x.Id == childID);
+
+            itemToUpdate.MinLate = itemToUpdate.MinLate + delay;
+
+            context.SaveChanges();
+        
+        }
     }
 }
