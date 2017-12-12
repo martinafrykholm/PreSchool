@@ -68,83 +68,121 @@ namespace PreSchoolApp.Models
             return parentReportVM;
         }
 
-        public static ParentStartVM GetTestParentStartVM(int id)
+        public static ParentStartVM[] GetTestParentStartVM()
         {
             TimeSpan dropOff1 = new TimeSpan(8, 00, 00);
             TimeSpan pickUp1 = new TimeSpan(16, 00, 00);
             TimeSpan dropOff2 = new TimeSpan(9, 00, 00);
             TimeSpan pickUp2 = new TimeSpan(17, 00, 00);
 
-            ParentStartChildItemVM parentStartVM1 = new ParentStartChildItemVM
+            ParentStartVM parentStartVM1 = new ParentStartVM
             {
                 FirstName = "Kalle",
-                LastName = "Persson",
-                Id = 1,
+                Id = 7,
                 DropOfTime = dropOff1,
                 PickupTime = pickUp1,
                 IsActive = true,
                 IsPresent = false
             };
 
-            ParentStartChildItemVM parentStartVM2 = new ParentStartChildItemVM
+            ParentStartVM parentStartVM2 = new ParentStartVM
             {
                 FirstName = "Olle",
-                LastName = "Karlsson",
-                Id = 2,
+                Id = 10,
                 DropOfTime = dropOff2,
                 PickupTime = pickUp2,
                 IsActive = false,
                 IsPresent = true
             };
 
-            ParentStartChildItemVM parentStartVM3 = new ParentStartChildItemVM
-            {
-                FirstName = "Sara",
-                LastName = "Andersson",
-                Id = 3,
-                DropOfTime = dropOff1,
-                PickupTime = pickUp2,
-                IsActive = false,
-                IsPresent = true
-            };
+            List<ParentStartVM> parentStartVMs = new List<ParentStartVM>();
 
-            ParentStartChildItemVM parentStartVM4 = new ParentStartChildItemVM
-            {
-                FirstName = "Anna",
-                LastName = "Olsson",
-                Id = 4,
-                DropOfTime = dropOff2,
-                PickupTime = pickUp1,
-                IsPresent = false,
-                IsActive = false,
-            };
+            parentStartVMs.Add(parentStartVM1);
+            parentStartVMs.Add(parentStartVM2);
 
-            //ParentStartChildItemVM[] parentStartChildItemVM = new ParentStartChildItemVM[4];
-            List<ParentStartChildItemVM> parentStartChildItemVM = new List<ParentStartChildItemVM>();
-
-            parentStartChildItemVM.Add(parentStartVM1);
-            parentStartChildItemVM.Add(parentStartVM2);
-            //parentStartChildItemVM.Add(parentStartVM3);
-            //parentStartChildItemVM.Add(parentStartVM4);
-
-
-            string[] delayTimes = new string[7];
-            delayTimes[0] = "Meddela försening";
-            delayTimes[1] = "10 minuter";
-            delayTimes[2] = "20 minuter";
-            delayTimes[3] = "30 minuter";
-            delayTimes[4] = "40 minuter";
-            delayTimes[5] = "50 minuter";
-            delayTimes[6] = "60 minuter";
-
-
-            ParentStartVM parentStartVM = new ParentStartVM();
-            parentStartVM.ChildItems = parentStartChildItemVM.ToArray();
             //parentStartVM.Day = DateTime.Today.DayOfWeek.ToString();
-            parentStartVM.DelayTime = delayTimes;
+            //parentStartVM.DelayTime = delayTimes;
 
-            return parentStartVM;
+            return parentStartVMs.ToArray();
         }
+
+        //public static ParentStartVM GetTestParentStartVM() //gammal
+        //{
+        //    TimeSpan dropOff1 = new TimeSpan(8, 00, 00);
+        //    TimeSpan pickUp1 = new TimeSpan(16, 00, 00);
+        //    TimeSpan dropOff2 = new TimeSpan(9, 00, 00);
+        //    TimeSpan pickUp2 = new TimeSpan(17, 00, 00);
+
+        //    ParentStartChildItemVM parentStartVM1 = new ParentStartChildItemVM
+        //    {
+        //        FirstName = "Kalle",
+        //        LastName = "Persson",
+        //        Id = 7,
+        //        DropOfTime = dropOff1,
+        //        PickupTime = pickUp1,
+        //        IsActive = true,
+        //        IsPresent = false
+        //    };
+
+        //    ParentStartChildItemVM parentStartVM2 = new ParentStartChildItemVM
+        //    {
+        //        FirstName = "Olle",
+        //        LastName = "Karlsson",
+        //        Id = 10,
+        //        DropOfTime = dropOff2,
+        //        PickupTime = pickUp2,
+        //        IsActive = false,
+        //        IsPresent = true
+        //    };
+
+        //    ParentStartChildItemVM parentStartVM3 = new ParentStartChildItemVM
+        //    {
+        //        FirstName = "Sara",
+        //        LastName = "Andersson",
+        //        Id = 3,
+        //        DropOfTime = dropOff1,
+        //        PickupTime = pickUp2,
+        //        IsActive = false,
+        //        IsPresent = true
+        //    };
+
+        //    ParentStartChildItemVM parentStartVM4 = new ParentStartChildItemVM
+        //    {
+        //        FirstName = "Anna",
+        //        LastName = "Olsson",
+        //        Id = 4,
+        //        DropOfTime = dropOff2,
+        //        PickupTime = pickUp1,
+        //        IsPresent = false,
+        //        IsActive = false,
+        //    };
+
+        //    //ParentStartChildItemVM[] parentStartChildItemVM = new ParentStartChildItemVM[4];
+        //    List<ParentStartChildItemVM> parentStartChildItemVM = new List<ParentStartChildItemVM>();
+
+        //    parentStartChildItemVM.Add(parentStartVM1);
+        //    parentStartChildItemVM.Add(parentStartVM2);
+        //    //parentStartChildItemVM.Add(parentStartVM3);
+        //    //parentStartChildItemVM.Add(parentStartVM4);
+
+
+        //    string[] delayTimes = new string[7];
+        //    delayTimes[0] = "Meddela försening";
+        //    delayTimes[1] = "10 minuter";
+        //    delayTimes[2] = "20 minuter";
+        //    delayTimes[3] = "30 minuter";
+        //    delayTimes[4] = "40 minuter";
+        //    delayTimes[5] = "50 minuter";
+        //    delayTimes[6] = "60 minuter";
+
+
+        //    ParentStartVM parentStartVM = new ParentStartVM();
+        //    parentStartVM.ChildItems = parentStartChildItemVM.ToArray();
+        //    //parentStartVM.Day = DateTime.Today.DayOfWeek.ToString();
+        //    //parentStartVM.DelayTime = delayTimes;
+
+        //    return parentStartVM;
+        //}
 
         internal static void UpdateCalendar(int id, int weekDay, bool isDropOff, TimeSpan time)
         {
