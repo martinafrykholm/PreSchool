@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PreSchoolApp.Models;
 using PreSchoolApp.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace PreSchoolApp.Controllers
 {
+    [Authorize]
     public class ParentController : Controller
     {
         PreSchoolDBRepository repository;
@@ -20,9 +22,12 @@ namespace PreSchoolApp.Controllers
         }
 
         // GET: /<controller>/
-        //public IActionResult Index(LoginVM loginVM)
-        //{
-        //    var model = repository.GetYourChild(loginVM);
+        public IActionResult Index()
+        {
+            var userName = User.Identity.Name;
+            //var model = TestRepo.GetTestParentStartVM(id);
+            var model = repository.GetParentStartVM(userName);
+
         //    return View(model);
         //}
 
@@ -34,14 +39,6 @@ namespace PreSchoolApp.Controllers
 
         //    return View(model);
         //}
-
-        public IActionResult Index(LoginVM loginVM)
-        {
-            //var model = TestRepo.GetTestParentStartVM(id);
-            var model = repository.GetParentStartVM(loginVM);
-            
-            return View(model);
-        }
 
         public IActionResult Report()
         {
@@ -71,6 +68,7 @@ namespace PreSchoolApp.Controllers
         [HttpPost]
         public IActionResult ReportDelay(int id, int delay)
         {
+            repository.AddDelayTime(id, delay);
             return RedirectToAction(nameof(Report));
         }
 

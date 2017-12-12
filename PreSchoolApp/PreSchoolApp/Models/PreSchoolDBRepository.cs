@@ -30,9 +30,7 @@ namespace PreSchoolApp.Models
                 AllTimes = Utils.GetAllTimes(),
                 Weekdays = Utils.GetWeekdays(),
                 DropOffTimes = GetDropOffTimes(id),
-                PickupTimes = GetPickUpTimes(id),
-                
-
+                PickupTimes = GetPickUpTimes(id)
             };
             return parentCalendar;
         }
@@ -186,65 +184,66 @@ namespace PreSchoolApp.Models
             return parentStartVM.ToArray();
         }
 
-        public ParentStartVM[] GetParentStartVM(int userId)
+        //public ParentStartVM[] GetParentStartVM(int userId)
+        //{
+        //    //string aspId = GetASPID(loginVM.UserName);
+        //    //int userId = GetUserID(aspId);
+        //    int[] childIds = GetChildrenId(userId);
+
+        //    int weekDay = (int)DateTime.Today.DayOfWeek;
+
+        //    List<ParentStartVM> pscivm = new List<ParentStartVM>();
+
+        //    for (int i = 0; i < childIds.Length; i++)
+        //    {
+
+        //        var tmp = context.Children
+        //            .Include("Schedules")
+        //            .Where(c => c.Id == childIds[i])
+        //            .ToList();
+
+        //        foreach (Children child in tmp)
+        //        {
+        //            foreach (Schedules schedule in child.Schedules)
+        //            {
+        //                if (schedule.Weekdays == weekDay)
+        //                {
+        //                    ParentStartVM parentStartVM = new ParentStartVM();
+        //                    parentStartVM.DropOfTime = schedule.Dropoff == null ? default(TimeSpan) : (TimeSpan)schedule.Dropoff;
+        //                    parentStartVM.PickupTime = schedule.PickUp == null ? default(TimeSpan) : (TimeSpan)schedule.PickUp;
+        //                    parentStartVM.FirstName = schedule.Children.FirstName;
+        //                    parentStartVM.Id = schedule.Children.Id;
+        //                    parentStartVM.IsActive = schedule.Children.IsIll == null ? false : (bool)schedule.Children.IsIll;
+        //                    parentStartVM.IsPresent = schedule.Children.IsPresent;
+        //                    parentStartVM.MinutesLate = schedule.Children.MinLate == null ? default(int) : (int)schedule.Children.MinLate; //ta bort om denna strular
+        //                    pscivm.Add(parentStartVM);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    //foreach (var item in childIds)
+        //    //{
+        //    //    var ret = context.Schedules
+        //    //        .Where(o => o.Weekdays == weekDay && o.ChildrenId == item)
+        //    //        .Select(o => new ParentStartVM
+        //    //        {
+        //    //            DropOfTime = o.Dropoff.Value,
+        //    //            PickupTime = o.PickUp.Value,
+        //    //            FirstName = o.Children.FirstName,
+        //    //            Id = o.Children.Id,
+        //    //            IsActive = o.Children.IsIll.Value,
+        //    //            IsPresent = o.Children.IsPresent,
+        //    //            MinutesLate = o.Children.MinLate.Value
+        //    //        })
+        //    //        .SingleOrDefault();
+        //    //    pscivm.Add(ret);
+        //    //}
+        //    return pscivm.ToArray();
+        //}
+
+        public ParentStartVM[] GetParentStartVM(string username)
         {
-            //string aspId = GetASPID(loginVM.UserName);
-            //int userId = GetUserID(aspId);
-            int[] childIds = GetChildrenId(userId);
-
-            int weekDay = (int)DateTime.Today.DayOfWeek;
-
-            List<ParentStartVM> pscivm = new List<ParentStartVM>();
-
-            for (int i = 0; i < childIds.Length; i++)
-            {
-
-                var tmp = context.Children
-                    .Include("Schedules")
-                    .Where(c => c.Id == childIds[i])
-                    .ToList();
-
-                foreach (Children child in tmp)
-                {
-                    foreach (Schedules schedule in child.Schedules)
-                    {
-                        if (schedule.Weekdays == weekDay)
-                        {
-                            ParentStartVM parentStartVM = new ParentStartVM();
-                            parentStartVM.DropOfTime = schedule.Dropoff == null ? default(TimeSpan) : (TimeSpan)schedule.Dropoff;
-                            parentStartVM.PickupTime = schedule.PickUp == null ? default(TimeSpan) : (TimeSpan)schedule.PickUp;
-                            parentStartVM.FirstName = schedule.Children.FirstName;
-                            parentStartVM.Id = schedule.Children.Id;
-                            parentStartVM.IsActive = schedule.Children.IsIll == null ? false : (bool)schedule.Children.IsIll;
-                            parentStartVM.IsPresent = schedule.Children.IsPresent;
-                            pscivm.Add(parentStartVM);
-                        }
-                    }
-                }
-            }
-            //foreach (var item in childIds)
-            //{
-            //    var ret = context.Schedules
-            //        .Where(o => o.Weekdays == weekDay && o.ChildrenId == item)
-            //        .Select(o => new ParentStartVM
-            //        {
-            //            DropOfTime = o.Dropoff.Value,
-            //            PickupTime = o.PickUp.Value,
-            //            FirstName = o.Children.FirstName,
-            //            Id = o.Children.Id,
-            //            IsActive = o.Children.IsIll.Value,
-            //            IsPresent = o.Children.IsPresent,
-            //            MinutesLate = o.Children.MinLate.Value
-            //        })
-            //        .SingleOrDefault();
-            //    pscivm.Add(ret);
-            //}
-            return pscivm.ToArray();
-        }
-
-        public ParentStartVM[] GetParentStartVM(LoginVM loginVM)
-        {
-            string aspId = GetASPID(loginVM.UserName);
+            string aspId = GetASPID(username);
             int userId = GetUserID(aspId);
             int[] childIds = GetChildrenId(userId);
 
@@ -254,9 +253,8 @@ namespace PreSchoolApp.Models
 
             for (int i = 0; i < childIds.Length; i++)
             {
-
                 var tmp = context.Children
-                    .Include("Schedules")
+                    .Include(o => o.Schedules)
                     .Where(c => c.Id == childIds[i])
                     .ToList();
 
@@ -273,6 +271,7 @@ namespace PreSchoolApp.Models
                             parentStartVM.Id = schedule.Children.Id;
                             parentStartVM.IsActive = schedule.Children.IsIll == null ? false : (bool)schedule.Children.IsIll;
                             parentStartVM.IsPresent = schedule.Children.IsPresent;
+                            //parentStartVM.MinutesLate = schedule.Children.MinLate == null ? default(int) : (int)schedule.Children.MinLate; //ta bort om denna strular
                             pscivm.Add(parentStartVM);
                         }
                     }
@@ -298,9 +297,10 @@ namespace PreSchoolApp.Models
                         FirstName = o.Children.FirstName,
                         LastName = o.Children.LastName,
                         Id = o.Children.Id,
-                        IsActive = (bool)o.Children.IsIll
+                        IsActive = (bool)o.Children.IsIll,
+                        //MinutesLate = o.Children.MinLate.Value //ta bort vid strul
                     })
-                    .OrderBy(o => o.IsPresent)
+                    .OrderBy(o => o.DropOfTime)
                     .ToArray()
             };
 
@@ -503,5 +503,31 @@ namespace PreSchoolApp.Models
         //    context.SaveChanges();
 
         //}
+
+        public void AddDelayTime(int childID, int delay)
+        {
+            var itemToUpdate = context.Children
+                .SingleOrDefault(x => x.Id == childID);
+
+            itemToUpdate.MinLate = delay;
+
+            context.SaveChanges();
+
+            //TeacherStartChildItemVM teacherVM = new TeacherStartChildItemVM();
+            //teacherVM.MinutesLate = delay;
+
+            //TimeSpan ts = new TimeSpan(delay);
+            //if (!teacherVM.IsPresent)
+            //{
+            //    teacherVM.DropOfTime.Add(ts);
+            //}
+            //else
+            //{
+            //    teacherVM.PickupTime.Add(ts);
+            //}
+
+
+        
+        }
     }
 }

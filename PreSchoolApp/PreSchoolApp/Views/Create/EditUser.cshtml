@@ -4,35 +4,42 @@
 }
 
 <center>
-   
-    <form asp-controller="Create" asp-action="EditUser">
-        <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" />
-        <span asp-validation-for="FirstName"></span>
+    <div class="formContainer">
+        <form class="createForm" asp-controller="Create" asp-action="EditUser">
+            <div class="formRow">
+                <label class="labelItem" asp-for="FirstName"></label>
+                <input class="inputText" asp-for="FirstName" />
+                <span asp-validation-for="FirstName"></span>
+            </div>
+            <br />
+            <div class="formRow">
+                <label class="labelItem" asp-for="LastName"></label>
+                <input class="inputText" asp-for="LastName" />
+                <span asp-validation-for="LastName"></span>
+            </div>
+            <br />
+            <div class="formRow">
+                <label class="labelItem" asp-for="PhoneNumber"></label>
+                <input class="inputText" asp-for="PhoneNumber" />
+                <span asp-validation-for="PhoneNumber"></span>
+            </div>
+            <br />
+            <div class="formRow">
+                <label class="labelItem" asp-for="EmailAdress"></label>
+                <input class="inputText" asp-for="EmailAdress" />
+                <span asp-validation-for="EmailAdress"></span>
+            </div>
+            <br />
+            <input type="hidden" name="ChildCode" value="@ViewBag.ChildCode" />
+            @*<label asp-for="ChildID"></label>
+                <input asp-for="ChildID" />
+                <span asp-validation-for="ChildID"></span>*@
 
-        <label asp-for="LastName"></label>
-        <input asp-for="LastName" />
-        <span asp-validation-for="LastName"></span>
 
-        <label asp-for="PhoneNumber"></label>
-        <input asp-for="PhoneNumber" />
-        <span asp-validation-for="PhoneNumber"></span>
+            
+            <input type="submit" value="Spara" class="ButtonStyleLarge"/>
 
-        <label asp-for="EmailAdress"></label>
-        <input asp-for="EmailAdress" />
-        <span asp-validation-for="EmailAdress"></span>
-
-        <input type="hidden" name="ChildCode" value="@ViewBag.ChildCode" />
-        <input type="hidden" name="ChildCode" value="@ViewBag.loginVM" />
-        @*<label asp-for="ChildID"></label>
-        <input asp-for="ChildID" />
-        <span asp-validation-for="ChildID"></span>*@
-      
-
-        <br />
-        <input type="submit" style="background-color:white" value="Spara" />
-
-    </form>
-
+        </form>
+    </div>
 
 </center>

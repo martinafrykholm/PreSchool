@@ -12,43 +12,58 @@
 }
 
 <center>
-    Teacher
+    
+    <div id="notCheckedInList" class="ListOfChildren">
+        <p class="listheaders"><b>Ej incheckade (@Model.NotPresentChildrenCount)</b></p>
+        @foreach (var item in Model.ChildItems)
+        {
+            if (item.IsPresent == false && item.IsActive == false)
+            {
+                <div class="childListRow">
+                    <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
+                        <div class="NameItem">@item.FirstName</div> <div class="TimeItem">@FormatTimeSpan(item.DropOfTime)</div>  <div class="ButtonItem"><input class="ButtonStyle" type="submit" value="Checka in" /></div>
+                        <br />
+                    </form>
+                </div>
+            }
+        }
+
+    </div>
+    
+    <div id="presentChildrenDiv" class="ListOfChildren">
+        <p class="listheaders"><b>Incheckade (@Model.PresentChildrenCount)</b></p>
+        @foreach (var item in Model.ChildItems)
+        {
+            if (item.IsPresent == true && item.IsActive == false)
+            {
+                <div class="childListRow">
+                    <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
+                        <div class="NameItem"> @item.FirstName</div> <div class="TimeItem"> @FormatTimeSpan(item.PickupTime) </div>   <div class="ButtonItem"><input class="ButtonStyle" type="submit" value="Checka ut" /></div>
+                        <br />
+                    </form>
+                </div>
+            }
+        }
+    </div>
+
+    <div id="checkedOutList" class="ListOfChildren">
+        <p class="listheaders"><b>Utcheckade (@Model.NotActiveCount)</b></p>
+        @foreach (var item in Model.ChildItems)
+        {
+            if (item.IsActive == true)
+            {
+                <div class="childListRow">
+                    <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
+                        <div class="NameItem">@item.FirstName </div>   <div class="ButtonItem"><input class="ButtonStyle" type="submit" value="Ångra in- och utcheckning" /></div>
+                        <br />
+                    </form>
+                </div>
+            }
+        }
+    </div>
     <br />
-
-    <p><b>Ej incheckade (@Model.NotPresentChildrenCount)</b></p>
-    @foreach (var item in Model.ChildItems)
-    {
-        if (item.IsPresent == false && item.IsActive == false)
-        {
-            <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
-                @item.FirstName @FormatTimeSpan(item.DropOfTime)    <input type="submit" value="Checka in" />
-                <br />
-            </form>
-        }
-    }
-
-    <p><b>Incheckade (@Model.PresentChildrenCount)</b></p>
-    @foreach (var item in Model.ChildItems)
-    {
-        if (item.IsPresent == true && item.IsActive == false)
-        {
-            <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
-                @item.FirstName @FormatTimeSpan(item.PickupTime)    <input type="submit" value="Checka ut" />
-                <br />
-            </form>
-        }
-    }
-    <p><b>Utcheckade (@Model.NotActiveCount)</b></p>
-    @foreach (var item in Model.ChildItems)
-    {
-        if (item.IsActive == true)
-        {
-            <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
-                @item.FirstName    <input type="submit" value="Ej incheckad" />
-                <br />
-            </form>
-        }
-    }
+    <br />
+    
 </center>
 
 

@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     border-color: black;
-    background-color:hotpink;
+    background-color: hotpink;
     /*rgba(134, 183, 240, 1.0)*/
     /*#3883FC;*/
     padding: 10px;
@@ -17,7 +17,6 @@
 }
 
 #headBlock {
-    
     border-color: black;
     background-color: #FEFFE7;
     border-radius: 15px;
@@ -31,7 +30,7 @@
 }
 
 #contentBlock {
-    width: 380px;
+    width: 400px;
     margin-top: 10px;
     display: block;
     border-color: black;
@@ -65,7 +64,7 @@
 
 
 
-#headerPicDiv{
+#headerPicDiv {
     height: 63px;
     width: 220px;
     display: block;
@@ -79,12 +78,125 @@
     width: 220px;
     margin-left: auto;
     margin-right: auto;
-    text-align:center;
+    text-align: center;
+    font-size:20px;
+    font-family:'open sans';
 }
 
-/*p{
 
-    position:absolute;
-    top:auto;
+
+
+div.childListRow {
+    display: table-row;
+    line-height: 20px;
+    /*empty-cells:hide;*/
+    padding-bottom: -10px;
+    /*height:20px;*/
+    /*flex-direction:row;*/
+}
+
+div.ListOfChildren {
+    display: inline-table;
+    empty-cells: hide;
+    line-height: 20px;
+}
+
+
+div.NameItem {
+    display: table-cell;
+    width: 120px;
+    height: 18px;
+    font-family: "Open Sans";
+    font-size: 20px;
+}
+
+div.TimeItem {
+    display: table-cell;
+    width: 120px;
+    height: 18px;
+    font-family: "Open Sans";
+    font-size: 20px;
+}
+
+div.ButtonItem {
+    display: table-cell;
+    width: 120px;
+    height: 20px;
+}
+
+.ButtonStyle {
+    width: auto;
+    height: 35px;
+    border-radius: 10px;
+    background-color: rgba(249,110,175, 1.0);
+    font-size: 15px;
+    font-family: "Open Sans";
+    border-color: grey;
+    padding: 7px;
+    text-align: center;
+    text-decoration-color:white;
+}
+
+/*b{
+text-align:left;
+
 
 }*/
+
+p.listheaders {
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+}
+
+
+.labelItem {
+    display: block;
+    width: 200px;
+    text-align: right;
+}
+
+.inputText {
+    display: block;
+    margin-left: 10px;
+    border-radius: 5px;
+    height: 27px;
+}
+
+/*.formContainer{
+
+
+
+}*/
+
+form.createForm {
+    font-size: 20px;
+    font-family: 'open sans';
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 15px;
+    margin-right: 25px;
+}
+
+.formRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.ButtonStyleLarge {
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgba(249,110,175, 1.0);
+    font-size: 20px;
+    font-family: "Open Sans";
+    border-color: grey;
+    padding: 5px;
+}
+
+span {
+    font-size: 10px;
+    color: red;
+}
