@@ -512,6 +512,21 @@ namespace PreSchoolApp.Models
             itemToUpdate.MinLate = delay;
 
             context.SaveChanges();
+
+            //TeacherStartChildItemVM teacherVM = new TeacherStartChildItemVM();
+            //teacherVM.MinutesLate = delay;
+
+            //TimeSpan ts = new TimeSpan(delay);
+            //if (!teacherVM.IsPresent)
+            //{
+            //    teacherVM.DropOfTime.Add(ts);
+            //}
+            //else
+            //{
+            //    teacherVM.PickupTime.Add(ts);
+            //}
+
+
         
         }
     }
