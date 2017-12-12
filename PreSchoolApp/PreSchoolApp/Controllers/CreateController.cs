@@ -22,6 +22,7 @@ namespace PreSchoolApp.Controllers
 
         IdentityErrorDescriber errorDescriber = new IdentityErrorDescriber();
         IdentityError error = new IdentityError();
+        LoginVM loginVM = new LoginVM();
         UserManager<IdentityUser> userManager;
         SignInManager<IdentityUser> signInManager;
         RoleManager<IdentityRole> roleManager;
@@ -84,17 +85,33 @@ namespace PreSchoolApp.Controllers
             }
             await userManager.AddToRoleAsync(user, RoleParent);
 
+            loginVM.Password = createUserVM.PassWord;
+            loginVM.UserName = createUserVM.UserName;
+
+            //LoginVM loginVM = new LoginVM
+            //{
+            //    UserName = createUserVM.UserName,
+            //    Password = createUserVM.PassWord,
+                
+            //}
+
             int childCode = createUserVM.ChildCode;
+
             //repository.ChildToParent(createUserVM);
 
 
-            return RedirectToAction("EditUser", new { ChildCode = childCode });
+            return RedirectToAction("EditUser", new { ChildCode = childCode});
+               // new { loginVM = loginVM });
+
+
         }
+        
 
         [HttpGet]
         public IActionResult EditUser(int ChildCode)
         {
             ViewBag.ChildCode = ChildCode;
+            //ViewBag.loginVM = loginVM;
             return View();
         }
 
@@ -109,16 +126,30 @@ namespace PreSchoolApp.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.ChildCode = ChildCode;
+                //ViewBag.loginVM = loginVM;
                 return View();
             }
 
             int childid = ChildCode;
+            //LoginVM LoginVM = loginVM;
+
+            string name = User.Identity.Name; //den inloggades namn
+            
             //string aspID = repository.GetASPID(editUserVM.FirstName);
 
             //var userId = userManager.GetUserId(HttpContext.User);
             repository.AddParent(editUserVM, childid);
 
-            return RedirectToAction("Index", "Teacher");
+            if (User.IsInRole("Parent"))
+            {
+                return RedirectToAction("Index", "Parent");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Teacher");
+            }
+
+
         }
     }
 }
