@@ -5,6 +5,8 @@
 }
 
 <center>
+    <p id="GetDay" class="listheadersCenter"></p>
+
     <p class="listheadersCenter">Sjukanmäl @Model.FirstName</p>
    
     <form asp-controller="Parent" asp-action="ReportIllness" asp-route-id="@Model.ChildId"><input class="ButtonStyleLargeAutoSizeIll"type="submit" value="@Model.FirstName är sjuk" /></form>
