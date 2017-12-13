@@ -84,10 +84,11 @@ namespace PreSchoolApp.Controllers
                 return View();
 
             }
-            await userManager.AddToRoleAsync(user, RoleParent);
+            //await userManager.AddToRoleAsync(user, RoleParent);
+            await userManager.AddToRoleAsync(user, RoleTeacher);
 
-            loginVM.Password = createUserVM.PassWord;
-            loginVM.UserName = createUserVM.UserName;
+            //loginVM.Password = createUserVM.PassWord;
+            //loginVM.UserName = createUserVM.UserName;
 
             //LoginVM loginVM = new LoginVM
             //{

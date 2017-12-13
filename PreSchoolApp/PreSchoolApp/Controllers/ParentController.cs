@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace PreSchoolApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Parent")]
     public class ParentController : Controller
     {
         PreSchoolDBRepository repository;
