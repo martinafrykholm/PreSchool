@@ -379,10 +379,12 @@ namespace PreSchoolApp.Models
             if (itemToUpdate.IsPresent == false && itemToUpdate.IsIll == false)
             {
                 itemToUpdate.IsPresent = true;
+                itemToUpdate.MinLate = 0;
             }
             else if (itemToUpdate.IsPresent == true && itemToUpdate.IsIll == false)
             {
                 itemToUpdate.IsIll = true;
+                itemToUpdate.MinLate = 0;
             }
             else if (itemToUpdate.IsIll == true && itemToUpdate.IsPresent == true)
             {
