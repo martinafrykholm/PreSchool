@@ -14,6 +14,7 @@
     @*<p class="listheadersCenter">Dina barn:</p>*@
     
 
+
     @foreach (var item in Model)
     {
         <p class="listheadersCenter">@item.FirstName</p>
@@ -38,7 +39,7 @@
                         <div class="childListRow">
                             <div class="NameItem">Ska hämtas </div> <div class="TimeItem">Kl: @FormatTimeSpan(item.PickupTime)</div>
 
-                            <input class="ButtonStyle" type="submit" value="Anmäl sen" />
+                            @*<input class="ButtonStyle" type="submit" value="Anmäl sen" />*@
                         </div>
                         @*}*@
                         

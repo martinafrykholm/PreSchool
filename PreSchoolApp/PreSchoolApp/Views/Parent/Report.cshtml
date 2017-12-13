@@ -7,29 +7,29 @@
 <center>
     <p class="listheadersCenter">Sjukanmäl @Model.FirstName</p>
    
-    <form asp-controller="Parent" asp-action="ReportIllness" asp-route-id="@Model.Id"><input class="ButtonStyleLargeAutoSizeIll"type="submit" value="@Model.FirstName är sjuk" /></form>
+    <form asp-controller="Parent" asp-action="ReportIllness" asp-route-id="@Model.ChildId"><input class="ButtonStyleLargeAutoSizeIll"type="submit" value="@Model.FirstName är sjuk" /></form>
     <br />
     <p class="listheadersCenter">Anmäl försening</p>
     @if (Model.IsPresent)
     {
-        <p class="listheadersCenterSmall" style="margin-top:-10px;">(angiven avlämningstid: @Model.DropOffTime)</p>
+        <p class="listheadersCenterSmall" style="margin-top:-10px;">(angiven upphämtningstid: @Model.PickupTime)</p>
     }
     else
     {
-        <p class="listheadersCenterSmall" style="margin-top:-10px;">(angiven avlämningstid: @Model.PickupTime)</p>
+        <p class="listheadersCenterSmall" style="margin-top:-10px;">(angiven avlämningstid: @Model.DropOffTime)</p>
     }
     <div style="display: inline-block">
-        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="10"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="10 minuter" /></form>
+        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.ChildId" asp-route-delay="10"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="10 minuter" /></form>
     </div>
     <br />
     <br />
     <div style="display: inline-block">
-        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="20"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="20 minuter" /></form>
+        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.ChildId" asp-route-delay="20"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="20 minuter" /></form>
     </div>
     <br />
     <br />
     <div style="display: inline-block">
-        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.Id" asp-route-delay="30"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="30 minuter" /></form>
+        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.ChildId" asp-route-delay="30"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="30 minuter" /></form>
     </div>
 
     <br />
