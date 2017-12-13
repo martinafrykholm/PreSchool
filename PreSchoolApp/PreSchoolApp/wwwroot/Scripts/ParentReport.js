@@ -17,18 +17,14 @@
 
 
         $(this).css('background-color', '')
-        })
+    });
 
 
     $(".ButtonStyleLargeAutoSizeIll").click(function () {
 
-        alert("Okej." + name +" är sjuk idag");
+        alert("Okej." + name + " är sjuk idag");
 
-    }, function () {
-
-
-        $(this).css('background-color', '')
-    })
+    });
 
     $(".ButtonStyleLargeAutoSizeIll").hover(function () {
 
@@ -38,6 +34,6 @@
 
 
         $(this).css('background-color', '')
-    })
+    });
 
 });

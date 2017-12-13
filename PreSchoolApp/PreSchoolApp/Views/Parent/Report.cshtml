@@ -1,7 +1,7 @@
 ﻿@model ParentReportVM
 
 <center>
-    <p class="listheadersCenter">Sjukanmäl <p class="listheadersCenter"id="FirstName">@Model.FirstName</p>
+    <p class="listheadersCenter">Sjukanmäl @Model.FirstName</p>
    
     <form asp-controller="Parent" asp-action="ReportIllness" asp-route-id="@Model.Id"><input class="ButtonStyleLargeAutoSizeIll"type="submit" value="@Model.FirstName är sjuk" /></form>
     <br />
