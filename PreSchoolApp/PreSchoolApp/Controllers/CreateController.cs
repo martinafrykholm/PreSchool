@@ -74,7 +74,7 @@ namespace PreSchoolApp.Controllers
                 //ModelState.AddModelError(
                 //    nameof(CreateUserVM.PassWord), needsUpper.ToString());
                 ModelState.AddModelError(
-                    nameof(CreateUserVM.UserName), "Användarnamnet existerar redan ange ett nytt");
+                    nameof(CreateUserVM.UserName), "Användarnamnet existerar redan, ange ett nytt");
                 ModelState.AddModelError(
                     nameof(CreateUserVM.PassWord), "Felaktigt format på lösenord");
                 //var toShort = errorDescriber.PasswordTooShort(7);
