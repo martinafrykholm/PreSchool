@@ -13,12 +13,12 @@ namespace PreSchoolApp.Models
     {
         private const int seconds = 0;
         PreSchoolAppContext context;
-     
+
 
         public PreSchoolDBRepository(PreSchoolAppContext context)
         {
             this.context = context;
-           
+
         }
 
         public ParentCalendarVM GetChildsSchedule(int id)
@@ -351,7 +351,7 @@ namespace PreSchoolApp.Models
                 .Count(o => o.IsActive);
 
             return ret;
-        }
+        }        
 
         private void UpdateChildTime(TeacherStartChildItemVM child)
         {
@@ -543,7 +543,7 @@ namespace PreSchoolApp.Models
                 .SingleOrDefault(x => x.Id == childID).FirstName;
         }
 
-    
+
 
         public void AddDelayTime(int childID, int delay)
         {

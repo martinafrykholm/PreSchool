@@ -75,7 +75,7 @@ namespace PreSchoolApp.Controllers
         public IActionResult ReportDelay(int id, int delay)
         {
             repository.AddDelayTime(id, delay);
-            return RedirectToAction(nameof(Report));
+            return RedirectToAction("Report", new { id = id });
         }
 
         [HttpPost]
