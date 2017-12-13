@@ -20,7 +20,7 @@ namespace PreSchoolApp.Models.ViewModels
         public int MinutesLate { get; set; }
         public bool IsPresent { get; set; }
         public bool IsActive { get; set; }
-        public TimeSpan DropOfTime { get; set; }
-        public TimeSpan PickupTime { get; set; }
+        public TimeSpan? DropOfTime { get; set; }
+        public TimeSpan? PickupTime { get; set; }
     }
 }

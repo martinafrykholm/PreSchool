@@ -74,6 +74,16 @@ namespace PreSchoolApp.Models
             return times;
         }
 
+        internal void ReportSick(int childId)
+        {
+            var itemToUpdate = context.Children
+                .SingleOrDefault(x => x.Id == childId);
+
+            itemToUpdate.IsIll = true;
+
+            context.SaveChanges();
+        }
+
         //public ParentStartVM[] GetYourChild(LoginVM loginVM)
         //{
         //    int weekDay = (int)DateTime.Today.DayOfWeek;
@@ -252,36 +262,20 @@ namespace PreSchoolApp.Models
 
             int weekDay = (int)DateTime.Today.DayOfWeek;
 
-            List<ParentStartVM> pscivm = new List<ParentStartVM>();
-
-            for (int i = 0; i < childIds.Length; i++)
-            {
-                var tmp = context.Children
-                    .Include(o => o.Schedules)
-                    .Where(c => c.Id == childIds[i])
-                    .ToList();
-
-                foreach (Children child in tmp)
+            var ret = context.Schedules
+                .Where(o => o.Weekdays == weekDay && childIds.Contains(o.Children.Id))
+                .Select(schedule => new ParentStartVM
                 {
-                    foreach (Schedules schedule in child.Schedules)
-                    {
-                        if (schedule.Weekdays == weekDay)
-                        {
-                            ParentStartVM parentStartVM = new ParentStartVM();
-                            parentStartVM.DropOfTime = schedule.Dropoff == null ? default(TimeSpan) : (TimeSpan)schedule.Dropoff;
-                            parentStartVM.PickupTime = schedule.PickUp == null ? default(TimeSpan) : (TimeSpan)schedule.PickUp;
-                            parentStartVM.FirstName = schedule.Children.FirstName;
-                            parentStartVM.Id = schedule.Children.Id;
-                            parentStartVM.IsActive = schedule.Children.IsIll == null ? false : (bool)schedule.Children.IsIll;
-                            parentStartVM.IsPresent = schedule.Children.IsPresent;
-                            //parentStartVM.MinutesLate = schedule.Children.MinLate == null ? default(int) : (int)schedule.Children.MinLate; //ta bort om denna strular
-                            pscivm.Add(parentStartVM);
-                        }
-                    }
-                }
-            }
+                    DropOfTime = schedule.Dropoff,
+                    PickupTime = schedule.PickUp,
+                    FirstName = schedule.Children.FirstName,
+                    Id = schedule.Children.Id,
+                    IsActive = schedule.Children.IsIll == null ? false : (bool)schedule.Children.IsIll,
+                    IsPresent = schedule.Children.IsPresent
+                })
+                .ToArray();
 
-            return pscivm.ToArray();
+            return ret;
         }
 
         public ParentReportVM GetParentReportVM(int childId)
@@ -314,9 +308,7 @@ namespace PreSchoolApp.Models
         {
             int weekDay = (int)DateTime.Today.DayOfWeek;
 
-            var ret = new TeacherStartVM
-            {
-                ChildItems = context.Schedules
+            var items = context.Schedules
                     .Where(o => o.Weekdays == weekDay)
                     .Select(o => new TeacherStartChildItemVM
                     {
@@ -330,28 +322,40 @@ namespace PreSchoolApp.Models
                         MinutesLate = o.Children.MinLate == null ? default(int) : (int)o.Children.MinLate //ta bort vid strul
                     })
                     .OrderBy(o => o.DropOfTime)
-                    .ToArray()
-            };
+                    .ToArray();
 
-            foreach (var child in ret.ChildItems)
+            foreach (var child in items)
             {
                 if (child.MinutesLate > 0)
-                {
                     UpdateChildTime(child);
-                }
             }
+            
+            return new TeacherStartVM
+            {
+                CheckInChildItems = items
+                    .Where(o => o.IsPresent && !o.IsActive)
+                    .OrderBy(o => o.PickupTime)
+                    .ToArray(),
+                NotCheckedInChildItems = items
+                    .Where(o => !o.IsPresent)
+                    .OrderBy(o => o.DropOfTime)
+                    .ToArray(),
+                CheckOutChildItems = items
+                    .Where(o => o.IsActive)
+                    .OrderBy(o => o.DropOfTime)
+                    .ToArray()
+            };
+            //ret.PresentChildrenCount = ret.ChildItems
+            //    .Count(o => o.IsPresent && o.IsActive == false);
 
-            ret.PresentChildrenCount = ret.ChildItems
-                .Count(o => o.IsPresent && o.IsActive == false);
+            //ret.NotPresentChildrenCount = ret.ChildItems
+            //    .Count(o => o.IsPresent == false);
 
-            ret.NotPresentChildrenCount = ret.ChildItems
-                .Count(o => o.IsPresent == false);
+            //ret.NotActiveCount = ret.ChildItems
+            //    .Count(o => o.IsActive);
 
-            ret.NotActiveCount = ret.ChildItems
-                .Count(o => o.IsActive);
-
-            return ret;
-        }        
+            //return ret;
+        }
 
         private void UpdateChildTime(TeacherStartChildItemVM child)
         {
@@ -381,6 +385,11 @@ namespace PreSchoolApp.Models
                 itemToUpdate.IsIll = true;
             }
             else if (itemToUpdate.IsIll == true && itemToUpdate.IsPresent == true)
+            {
+                itemToUpdate.IsIll = false;
+                itemToUpdate.IsPresent = false;
+            }
+            else
             {
                 itemToUpdate.IsIll = false;
                 itemToUpdate.IsPresent = false;

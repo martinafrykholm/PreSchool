@@ -82,7 +82,8 @@ namespace PreSchoolApp.Controllers
         [AllowAnonymous]
         public IActionResult ReportIllness(int id)
         {
-            return RedirectToAction(nameof(Report));
+            repository.ReportSick(id);
+            return RedirectToAction("Report", new { id = id });
         }
     }
 }
