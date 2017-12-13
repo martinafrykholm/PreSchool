@@ -22,6 +22,7 @@ namespace PreSchoolApp.Controllers
         }
 
         // GET: /<controller>/
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var userName = User.Identity.Name;
@@ -40,12 +41,14 @@ namespace PreSchoolApp.Controllers
         //    return View(model);
         //}
 
+        [AllowAnonymous]
         public IActionResult Report()
         {
             var model = TestRepo.GetTestParentReportData();
             return View(model);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Calendar(int id)
         {
@@ -55,6 +58,7 @@ namespace PreSchoolApp.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         [HttpPost, Route("UpdateCalendar/{id}/{weekDay}")]
         public IActionResult UpdateCalendar(int id, int weekDay, TimeSpan? pickUpTime, TimeSpan? dropOffTime)
         {
@@ -62,10 +66,12 @@ namespace PreSchoolApp.Controllers
             //TestRepo.UpdateCalendar(id, weekDay, isDropOff, time);
             repository.UpdateChildCalendar(id, weekDay, pickUpTime, dropOffTime);
 
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            return RedirectToAction("Calendar", new { id = id });
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult ReportDelay(int id, int delay)
         {
             repository.AddDelayTime(id, delay);
@@ -73,6 +79,7 @@ namespace PreSchoolApp.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult ReportIllness(int id)
         {
             return RedirectToAction(nameof(Report));
