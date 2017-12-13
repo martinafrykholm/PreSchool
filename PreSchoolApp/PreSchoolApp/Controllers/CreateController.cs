@@ -87,11 +87,9 @@ namespace PreSchoolApp.Controllers
             await userManager.AddToRoleAsync(user, RoleParent);
             //await userManager.AddToRoleAsync(user, RoleTeacher);
             //await userManager.AddToRoleAsync(user, RoleAdmin);
-
-
+            
             int childCode = createUserVM.ChildCode;
-
-         
+            
             return RedirectToAction("EditUser", new { ChildCode = childCode});
               
         }
