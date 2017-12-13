@@ -86,26 +86,14 @@ namespace PreSchoolApp.Controllers
             }
             await userManager.AddToRoleAsync(user, RoleParent);
             //await userManager.AddToRoleAsync(user, RoleTeacher);
+            //await userManager.AddToRoleAsync(user, RoleAdmin);
 
-            //loginVM.Password = createUserVM.PassWord;
-            //loginVM.UserName = createUserVM.UserName;
-
-            //LoginVM loginVM = new LoginVM
-            //{
-            //    UserName = createUserVM.UserName,
-            //    Password = createUserVM.PassWord,
-                
-            //}
 
             int childCode = createUserVM.ChildCode;
 
-            //repository.ChildToParent(createUserVM);
-
-
+         
             return RedirectToAction("EditUser", new { ChildCode = childCode});
-               // new { loginVM = loginVM });
-
-
+              
         }
         
         //lägg till TeacherCode och koppla till Teacher Role vid registrering
