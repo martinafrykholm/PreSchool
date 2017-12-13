@@ -12,7 +12,7 @@
 }
 
 <center>
-    
+
     <div id="notCheckedInList" class="ListOfChildren">
         <p class="listheaders"><b>Ej incheckade (@Model.NotPresentChildrenCount)</b></p>
         @foreach (var item in Model.ChildItems)
@@ -21,7 +21,16 @@
             {
                 <div class="childListRow">
                     <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
-                        <div class="NameItem">@item.FirstName</div> <div class="TimeItem">@FormatTimeSpan(item.DropOfTime)</div>  <div class="ButtonItem"><input class="ButtonStyle" type="submit" value="Checka in" /></div>
+                        <div class="NameItem">@item.FirstName</div>
+                        @if (item.MinutesLate > 0)
+                        {
+                            <div class="TimeItem"  style="color:red">@FormatTimeSpan(item.DropOfTime)</div>
+                        }
+                        else
+                        {
+                            <div class="TimeItem">@FormatTimeSpan(item.DropOfTime)</div>
+                        }
+                        <div class="ButtonItem"><input class="ButtonStyle" type="submit" value="Checka in" /></div>
                         <br />
                     </form>
                 </div>
@@ -29,7 +38,7 @@
         }
 
     </div>
-    
+
     <div id="presentChildrenDiv" class="ListOfChildren">
         <p class="listheaders"><b>Incheckade (@Model.PresentChildrenCount)</b></p>
         @foreach (var item in Model.ChildItems)
@@ -38,7 +47,16 @@
             {
                 <div class="childListRow">
                     <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
-                        <div class="NameItem"> @item.FirstName</div> <div class="TimeItem"> @FormatTimeSpan(item.PickupTime) </div>   <div class="ButtonItem"><input class="ButtonStyle" type="submit" value="Checka ut" /></div>
+                        <div class="NameItem"> @item.FirstName</div> 
+                        @if (item.MinutesLate > 0)
+                        {
+                            <div class="TimeItem" style="color:red">@FormatTimeSpan(item.PickupTime)</div>
+                        }
+                        else
+                        {
+                            <div class="TimeItem">@FormatTimeSpan(item.PickupTime)</div>
+                        }   
+                        <div class="ButtonItem"><input class="ButtonStyle" type="submit" value="Checka ut" /></div>
                         <br />
                     </form>
                 </div>
@@ -63,8 +81,5 @@
     </div>
     <br />
     <br />
-    
+
 </center>
-
-
-

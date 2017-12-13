@@ -66,7 +66,8 @@ namespace PreSchoolApp.Controllers
             //TestRepo.UpdateCalendar(id, weekDay, isDropOff, time);
             repository.UpdateChildCalendar(id, weekDay, pickUpTime, dropOffTime);
 
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            return RedirectToAction("Calendar", new { id = id });
         }
 
         [HttpPost]
