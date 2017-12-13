@@ -21,6 +21,7 @@ namespace PreSchoolApp.Controllers
         }
         // GET: /<controller>/
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             //var model = TestChildrenRepo.GetTestData();
@@ -29,6 +30,7 @@ namespace PreSchoolApp.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Index(int id)
         {
             repository.SetChildPresence(id);
