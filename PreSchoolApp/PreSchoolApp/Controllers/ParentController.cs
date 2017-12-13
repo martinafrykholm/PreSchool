@@ -42,7 +42,7 @@ namespace PreSchoolApp.Controllers
         //}
 
         [AllowAnonymous]
-        public IActionResult Report()
+        public IActionResult Report(int childId)
         {
             var model = TestRepo.GetTestParentReportData();
             return View(model);

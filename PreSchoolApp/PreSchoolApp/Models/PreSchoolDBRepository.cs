@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PreSchoolApp.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace PreSchoolApp.Models
 {
@@ -12,10 +13,12 @@ namespace PreSchoolApp.Models
     {
         private const int seconds = 0;
         PreSchoolAppContext context;
+     
 
         public PreSchoolDBRepository(PreSchoolAppContext context)
         {
             this.context = context;
+           
         }
 
         public ParentCalendarVM GetChildsSchedule(int id)
@@ -281,6 +284,32 @@ namespace PreSchoolApp.Models
             return pscivm.ToArray();
         }
 
+        public ParentReportVM GetParentReportVM(int childId)
+        {
+            int weekDay = (int)DateTime.Today.DayOfWeek;
+
+            var child = context.Children
+                .Include(o => o.Schedules)
+                .Where(c => c.Id == childId)
+                .SingleOrDefault();
+
+            ParentReportVM parentReportVM = new ParentReportVM();
+
+            foreach (Schedules schedule in child.Schedules)
+            {
+                if (schedule.Weekdays == weekDay)
+                {
+                    parentReportVM.DropOffTime = schedule.Dropoff == null ? default(TimeSpan) : (TimeSpan)schedule.Dropoff;
+                    parentReportVM.PickupTime = schedule.PickUp == null ? default(TimeSpan) : (TimeSpan)schedule.PickUp;
+                    parentReportVM.FirstName = schedule.Children.FirstName;
+                    parentReportVM.ChildId = schedule.Children.Id;
+                    parentReportVM.IsActive = schedule.Children.IsIll == null ? false : (bool)schedule.Children.IsIll;
+                    parentReportVM.IsPresent = schedule.Children.IsPresent;
+                }
+            }
+            return parentReportVM;
+        }
+
         public TeacherStartVM GetTodaysSchedules()
         {
             int weekDay = (int)DateTime.Today.DayOfWeek;
@@ -309,7 +338,7 @@ namespace PreSchoolApp.Models
                 if (child.MinutesLate > 0)
                 {
                     UpdateChildTime(child);
-                }                
+                }
             }
 
             ret.PresentChildrenCount = ret.ChildItems
@@ -326,7 +355,7 @@ namespace PreSchoolApp.Models
 
         private void UpdateChildTime(TeacherStartChildItemVM child)
         {
-            TimeSpan tmp = new TimeSpan(0, child.MinutesLate, 00);            
+            TimeSpan tmp = new TimeSpan(0, child.MinutesLate, 00);
 
             if (child.IsPresent == false)
             {
@@ -453,9 +482,12 @@ namespace PreSchoolApp.Models
         //    context.SaveChanges();
         //}
 
-        public void AddParent(EditUserVM edituser, int childCode)
+        public void AddParent(EditUserVM edituser, int childCode, string name)
         {
-            string aspnetId = GetASPID(edituser.FirstName);
+
+            //string userName = User.Identity.Name;
+            //string aspnetId = GetASPID(edituser.FirstName);
+            string aspnetId = GetASPID(name);
             context.Users.Add(new Users { FirstName = edituser.FirstName, LastName = edituser.LastName, AspId = aspnetId });
 
             context.SaveChanges();
@@ -511,20 +543,7 @@ namespace PreSchoolApp.Models
                 .SingleOrDefault(x => x.Id == childID).FirstName;
         }
 
-        //public void ChildToParent(CreateUserVM createuserVM)
-        //{
-        //    string aspnetId = GetASPID(createuserVM.UserName);
-        //    var userId = GetUserID(aspnetId);
-        //    //var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
-        //    //edituser.ChildID = childId;
-        //    context.C2p.Add(new C2p
-        //    {
-        //        Uid = userId,
-        //        Cid = createuserVM.ChildCode
-        //    });
-        //    context.SaveChanges();
-
-        //}
+    
 
         public void AddDelayTime(int childID, int delay)
         {

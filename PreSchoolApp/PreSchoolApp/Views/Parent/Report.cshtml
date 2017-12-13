@@ -10,7 +10,7 @@
     <form asp-controller="Parent" asp-action="ReportIllness" asp-route-id="@Model.Id"><input class="ButtonStyleLargeAutoSizeIll"type="submit" value="@Model.FirstName är sjuk" /></form>
     <br />
     <p class="listheadersCenter">Anmäl försening</p>
-    @if (Model.DropOffTime.Hours > 0)
+    @if (Model.IsPresent)
     {
         <p class="listheadersCenterSmall" style="margin-top:-10px;">(angiven avlämningstid: @Model.DropOffTime)</p>
     }
