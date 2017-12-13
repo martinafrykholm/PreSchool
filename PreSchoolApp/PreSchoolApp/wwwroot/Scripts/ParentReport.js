@@ -22,6 +22,18 @@
 
 
         $(this).css('background-color', '')
+        })
+
+    $(".ButtonStyleLargeAutoSizeLate").click(function () {
+
+        alert("Vi har noterat din försening.")
+
+    })
+
+    $(".ButtonStyleLargeAutoSizeIll").click(function () {
+
+        alert("Vi har noterat din sjukanmälan.")
+
     })
 
 });
