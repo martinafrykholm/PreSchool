@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PreSchoolApp.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace PreSchoolApp.Models
 {
@@ -12,10 +13,12 @@ namespace PreSchoolApp.Models
     {
         private const int seconds = 0;
         PreSchoolAppContext context;
+     
 
         public PreSchoolDBRepository(PreSchoolAppContext context)
         {
             this.context = context;
+           
         }
 
         public ParentCalendarVM GetChildsSchedule(int id)
@@ -433,6 +436,8 @@ namespace PreSchoolApp.Models
 
         public void AddParent(EditUserVM edituser, int childCode)
         {
+             
+            //string userName = User.Identity.Name;
             string aspnetId = GetASPID(edituser.FirstName);
             context.Users.Add(new Users { FirstName = edituser.FirstName, LastName = edituser.LastName, AspId = aspnetId });
 
@@ -489,20 +494,7 @@ namespace PreSchoolApp.Models
                 .SingleOrDefault(x => x.Id == childID).FirstName;
         }
 
-        //public void ChildToParent(CreateUserVM createuserVM)
-        //{
-        //    string aspnetId = GetASPID(createuserVM.UserName);
-        //    var userId = GetUserID(aspnetId);
-        //    //var userID = context.Users.SingleOrDefault(x => x.AspId == aspnetId);
-        //    //edituser.ChildID = childId;
-        //    context.C2p.Add(new C2p
-        //    {
-        //        Uid = userId,
-        //        Cid = createuserVM.ChildCode
-        //    });
-        //    context.SaveChanges();
-
-        //}
+    
 
         public void AddDelayTime(int childID, int delay)
         {

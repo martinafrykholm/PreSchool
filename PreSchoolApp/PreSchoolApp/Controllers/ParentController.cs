@@ -28,8 +28,8 @@ namespace PreSchoolApp.Controllers
             //var model = TestRepo.GetTestParentStartVM(id);
             var model = repository.GetParentStartVM(userName);
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
         //public IActionResult Index()
         //{

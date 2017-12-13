@@ -106,7 +106,7 @@ namespace PreSchoolApp.Controllers
 
         }
         
-
+        //lägg till TeacherCode och koppla till Teacher Role vid registrering
         [HttpGet]
         public IActionResult EditUser(int ChildCode)
         {
