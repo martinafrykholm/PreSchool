@@ -42,9 +42,9 @@ namespace PreSchoolApp.Controllers
         //}
 
         [AllowAnonymous]
-        public IActionResult Report(int childId)
+        public IActionResult Report(int id)
         {
-            var model = TestRepo.GetTestParentReportData();
+            var model = repository.GetParentReportVM(id);
             return View(model);
         }
 
