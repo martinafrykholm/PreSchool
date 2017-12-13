@@ -456,11 +456,12 @@ namespace PreSchoolApp.Models
         //    context.SaveChanges();
         //}
 
-        public void AddParent(EditUserVM edituser, int childCode)
+        public void AddParent(EditUserVM edituser, int childCode, string name)
         {
-             
+
             //string userName = User.Identity.Name;
-            string aspnetId = GetASPID(edituser.FirstName);
+            //string aspnetId = GetASPID(edituser.FirstName);
+            string aspnetId = GetASPID(name);
             context.Users.Add(new Users { FirstName = edituser.FirstName, LastName = edituser.LastName, AspId = aspnetId });
 
             context.SaveChanges();
