@@ -61,10 +61,9 @@ namespace PreSchoolApp.Models
             parentReportVM.DropOffTime = dropOff1;
             parentReportVM.PickupTime = pickUp1;
             parentReportVM.FirstName = "Olle";
-            parentReportVM.LastName = "Olsson";
-            parentReportVM.Id = 1;
             parentReportVM.IsActive = true;
-
+            parentReportVM.IsPresent = true;
+            parentReportVM.ChildId = 1;
             return parentReportVM;
         }
 
