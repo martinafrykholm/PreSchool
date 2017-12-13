@@ -73,7 +73,8 @@ namespace PreSchoolApp.Controllers
                 //var needsUpper = errorDescriber.PasswordRequiresUpper();
                 //ModelState.AddModelError(
                 //    nameof(CreateUserVM.PassWord), needsUpper.ToString());
-
+                ModelState.AddModelError(
+                    nameof(CreateUserVM.UserName), "Användarnamnet existerar redan ange ett nytt");
                 ModelState.AddModelError(
                     nameof(CreateUserVM.PassWord), "Felaktigt format på lösenord");
                 //var toShort = errorDescriber.PasswordTooShort(7);
@@ -106,7 +107,7 @@ namespace PreSchoolApp.Controllers
 
         }
         
-
+        //lägg till TeacherCode och koppla till Teacher Role vid registrering
         [HttpGet]
         public IActionResult EditUser(int ChildCode)
         {
@@ -138,7 +139,7 @@ namespace PreSchoolApp.Controllers
             //string aspID = repository.GetASPID(editUserVM.FirstName);
 
             //var userId = userManager.GetUserId(HttpContext.User);
-            repository.AddParent(editUserVM, childid);
+            repository.AddParent(editUserVM, childid, name);
 
             if (User.IsInRole("Parent"))
             {

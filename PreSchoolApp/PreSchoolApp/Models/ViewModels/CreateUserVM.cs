@@ -19,6 +19,7 @@ namespace PreSchoolApp.Models.ViewModels
         public string PassWord { get; set; }
 
         [Display(Name = "Kod")]
+        [Required(ErrorMessage ="Ange en kod")]
         public int ChildCode { get; set; }
 
     }
