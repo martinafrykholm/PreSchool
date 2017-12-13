@@ -28,7 +28,7 @@ namespace PreSchoolApp.Controllers
         [HttpPost]
         public IActionResult Index()
         {
-            int temp = SQLLibrary_new.SqlClass.AddChild("Nova", "Lo", 4);
+            //int temp = SQLLibrary_new.SqlClass.AddChild("Nova", "Lo", 4);
             return View();
         }
     }

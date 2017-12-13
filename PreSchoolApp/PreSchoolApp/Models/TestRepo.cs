@@ -26,34 +26,34 @@ namespace PreSchoolApp.Models
 
         public List<TimeSpan> dropOffTimes = new List<TimeSpan>();
 
-        public static TeacherStartVM GetTestTeacherStartVM()
-        {
-            TeacherStartChildItemVM[] children = new TeacherStartChildItemVM[5]
-            {
-            new TeacherStartChildItemVM{FirstName = "Sara", LastName = "Andersson", IsPresent = true, DropOfTime = dropOff1, PickupTime = pickUp1},
-            new TeacherStartChildItemVM{FirstName = "Kalle", LastName = "Johansson", IsPresent = false, DropOfTime = dropOff1, PickupTime = pickUp2},
-            new TeacherStartChildItemVM{FirstName = "Olle", LastName = "Lundmark", IsPresent = true, DropOfTime = dropOff2, PickupTime = pickUp1},
-            new TeacherStartChildItemVM{FirstName = "Anna", LastName = "Marklund", IsPresent = false, DropOfTime = dropOff1, PickupTime = pickUp2},
-            new TeacherStartChildItemVM{FirstName = "Pelle", LastName = "Eriksson", IsPresent = true, DropOfTime = dropOff2, PickupTime = pickUp2}
-            };
+        //public static TeacherStartVM GetTestTeacherStartVM()
+        //{
+        //    TeacherStartChildItemVM[] children = new TeacherStartChildItemVM[5]
+        //    {
+        //    new TeacherStartChildItemVM{FirstName = "Sara", LastName = "Andersson", IsPresent = true, DropOfTime = dropOff1, PickupTime = pickUp1},
+        //    new TeacherStartChildItemVM{FirstName = "Kalle", LastName = "Johansson", IsPresent = false, DropOfTime = dropOff1, PickupTime = pickUp2},
+        //    new TeacherStartChildItemVM{FirstName = "Olle", LastName = "Lundmark", IsPresent = true, DropOfTime = dropOff2, PickupTime = pickUp1},
+        //    new TeacherStartChildItemVM{FirstName = "Anna", LastName = "Marklund", IsPresent = false, DropOfTime = dropOff1, PickupTime = pickUp2},
+        //    new TeacherStartChildItemVM{FirstName = "Pelle", LastName = "Eriksson", IsPresent = true, DropOfTime = dropOff2, PickupTime = pickUp2}
+        //    };
 
-            TeacherStartVM teacherStartVM = new TeacherStartVM();
+        //    TeacherStartVM teacherStartVM = new TeacherStartVM();
 
-            teacherStartVM.ChildItems = children;
+        //    teacherStartVM.ChildItems = children;
 
-            int counter = 0;
-            foreach (var item in children)
-            {
-                if (item.IsPresent)
-                {
-                    counter++;
-                }
-            }
+        //    int counter = 0;
+        //    foreach (var item in children)
+        //    {
+        //        if (item.IsPresent)
+        //        {
+        //            counter++;
+        //        }
+        //    }
 
-            teacherStartVM.PresentChildrenCount = counter;
+        //    teacherStartVM.PresentChildrenCount = counter;
 
-            return teacherStartVM;
-        }
+        //    return teacherStartVM;
+        //}
 
         internal static ParentReportVM GetTestParentReportData()
         {
