@@ -28,8 +28,8 @@ namespace PreSchoolApp.Controllers
             //var model = TestRepo.GetTestParentStartVM(id);
             var model = repository.GetParentStartVM(userName);
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
         //public IActionResult Index()
         //{
@@ -62,7 +62,8 @@ namespace PreSchoolApp.Controllers
             //TestRepo.UpdateCalendar(id, weekDay, isDropOff, time);
             repository.UpdateChildCalendar(id, weekDay, pickUpTime, dropOffTime);
 
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            return RedirectToAction("Calendar", new { id = id });
         }
 
         [HttpPost]

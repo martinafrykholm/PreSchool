@@ -277,7 +277,7 @@ namespace PreSchoolApp.Models
                     }
                 }
             }
-          
+
             return pscivm.ToArray();
         }
 
@@ -298,11 +298,19 @@ namespace PreSchoolApp.Models
                         LastName = o.Children.LastName,
                         Id = o.Children.Id,
                         IsActive = (bool)o.Children.IsIll,
-                        //MinutesLate = o.Children.MinLate.Value //ta bort vid strul
+                        MinutesLate = o.Children.MinLate == null ? default(int) : (int)o.Children.MinLate //ta bort vid strul
                     })
                     .OrderBy(o => o.DropOfTime)
                     .ToArray()
             };
+
+            foreach (var child in ret.ChildItems)
+            {
+                if (child.MinutesLate > 0)
+                {
+                    UpdateChildTime(child);
+                }                
+            }
 
             ret.PresentChildrenCount = ret.ChildItems
                 .Count(o => o.IsPresent && o.IsActive == false);
@@ -314,6 +322,20 @@ namespace PreSchoolApp.Models
                 .Count(o => o.IsActive);
 
             return ret;
+        }
+
+        private void UpdateChildTime(TeacherStartChildItemVM child)
+        {
+            TimeSpan tmp = new TimeSpan(0, child.MinutesLate, 00);            
+
+            if (child.IsPresent == false)
+            {
+                child.DropOfTime += tmp;
+            }
+            else if (child.IsPresent == true)
+            {
+                child.PickupTime += tmp;
+            }
         }
 
         public void SetChildPresence(int childId)
@@ -447,7 +469,7 @@ namespace PreSchoolApp.Models
                 Cid = childCode
             });
             context.SaveChanges();
-           
+
         }
 
         public bool IsParent(LoginVM loginVM)
@@ -527,7 +549,7 @@ namespace PreSchoolApp.Models
             //}
 
 
-        
+
         }
     }
 }
