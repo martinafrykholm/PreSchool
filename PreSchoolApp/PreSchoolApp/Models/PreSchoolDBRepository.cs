@@ -74,6 +74,16 @@ namespace PreSchoolApp.Models
             return times;
         }
 
+        internal void ReportSick(int childId)
+        {
+            var itemToUpdate = context.Children
+                .SingleOrDefault(x => x.Id == childId);
+
+            itemToUpdate.IsIll = true;
+
+            context.SaveChanges();
+        }
+
         //public ParentStartVM[] GetYourChild(LoginVM loginVM)
         //{
         //    int weekDay = (int)DateTime.Today.DayOfWeek;
