@@ -17,7 +17,7 @@
         <p class="listheadersCenter">Sjukanmälan</p>
         <form asp-controller="Parent" asp-action="ReportIllness" asp-route-id="@Model.ChildId"><input class="ButtonStyleLargeAutoSizeIll" type="submit" value="@Model.FirstName är sjuk" /></form>
     }
-    
+
     <br />
     <p class="listheadersCenter">Anmäl försening</p>
     @if (Model.IsPresent)
@@ -28,21 +28,45 @@
     {
         <p class="listheadersCenterSmall" style="margin-top:-10px;">(angiven avlämningstid: @Model.DropOffTime)</p>
     }
+
     <div style="display: inline-block">
-        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.ChildId" asp-route-delay="10"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="10 minuter" /></form>
+        @if (Model.MinLate > 0)
+        {
+            <input class="ButtonStyleLargeAutoSizeUseless" type="button" disabled value="10 minuter"/>
+        }
+        else
+        {
+            <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.ChildId" asp-route-delay="10"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="10 minuter" /></form>
+        }
     </div>
     <br />
     <br />
     <div style="display: inline-block">
-        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.ChildId" asp-route-delay="20"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="20 minuter" /></form>
+        @if (Model.MinLate > 10)
+        {
+            <input class="ButtonStyleLargeAutoSizeUseless" type="button" disabled value="20 minuter" />
+        }
+        else
+        {
+            <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.ChildId" asp-route-delay="20"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="20 minuter" /></form>
+        }
     </div>
     <br />
     <br />
     <div style="display: inline-block">
-        <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.ChildId" asp-route-delay="30"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="30 minuter" /></form>
+        @if (Model.MinLate > 20)
+        {
+            <input class="ButtonStyleLargeAutoSizeUseless" type="button" disabled value="30 minuter" />
+        }
+        else
+        {
+            <form asp-controller="Parent" asp-action="ReportDelay" asp-route-id="@Model.ChildId" asp-route-delay="30"><input class="ButtonStyleLargeAutoSizeLate" type="submit" value="30 minuter" /></form>
+        }
     </div>
 
     <br />
     <br />
-
+    <a style="font-size:18px;" href="/Parent/Index">Till Start</a>
+    <br />
+    <br />
 </center>

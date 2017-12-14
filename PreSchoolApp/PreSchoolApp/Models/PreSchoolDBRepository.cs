@@ -308,6 +308,7 @@ namespace PreSchoolApp.Models
                     parentReportVM.ChildId = schedule.Children.Id;
                     parentReportVM.IsActive = schedule.Children.IsIll == null ? false : (bool)schedule.Children.IsIll;
                     parentReportVM.IsPresent = schedule.Children.IsPresent;
+                    parentReportVM.MinLate = (int)schedule.Children.MinLate;
                 }
             }
             return parentReportVM;
