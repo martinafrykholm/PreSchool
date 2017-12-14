@@ -104,8 +104,28 @@ div.ListOfChildren {
     line-height: 20px;
 }
 
+div.ListOfChildrenIll {
+
+
+}
+
+childListIllrow {
+
+
+
+}
+
+
 
 div.NameItem {
+    display: table-cell;
+    width: 120px;
+    height: 18px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+
+div.NameItemIll {
     display: table-cell;
     width: 120px;
     height: 18px;

@@ -69,13 +69,14 @@
             </div>
         }
     </div>
+    <br />
 
-    <div id="SickKidsList" class="ListOfChildren">
+    <div id="SickKidsList" class="ListOfChildrenIll">
         <p class="listheaders"><b>Sjuka idag (@Model.SickChildren.Length)</b></p>
         @foreach (var item in Model.SickChildren)
         {
-            <div class="childListRow">
-                    <div class="NameItem">@item.FirstName </div>
+            <div class="childListIllrow">
+                    <div class="NameItemIll">@item.FirstName </div>
                     <br />
             </div>
         }
