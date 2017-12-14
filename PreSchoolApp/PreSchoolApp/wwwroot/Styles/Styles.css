@@ -115,9 +115,17 @@ childListIllrow {
 
 }*/
 
+.Everything {
+    /*display: flex;*/
+    align-items:center;
+    justify-content:center
+}
+
 
 
 div.NameItem {
+    text-align: left;
+    padding-left: 30px;
     display: table-cell;
     width: 120px;
     height: 18px;
