@@ -24,9 +24,11 @@
         $(this).css('background-color', '')
         })
 
-    $(".ButtonStyleLargeAutoSizeLate").click(function () {
-
+    $(".ButtonStyleLargeAutoSizeLate").click(function ($event) {
+        
         alert("Vi har noterat din försening.")
+        //$('.modal').show();
+        //return false;
 
     })
 
