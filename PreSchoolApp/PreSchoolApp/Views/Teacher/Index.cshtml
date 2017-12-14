@@ -69,14 +69,16 @@
             </div>
         }
     </div>
-
+    <br/>
     <div id="SickKidsList" class="ListOfChildren">
         <p class="listheaders"><b>Sjuka idag (@Model.SickChildren.Length)</b></p>
         @foreach (var item in Model.SickChildren)
         {
             <div class="childListRow">
-                    <div class="NameItem">@item.FirstName </div>
+                <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
+                    <div class="NameItem">@item.FirstName </div>   <div class="ButtonItem"><input class="ButtonStyle" type="submit" value="Ange som frisk" /></div>
                     <br />
+                </form>
             </div>
         }
     </div>
