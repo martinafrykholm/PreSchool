@@ -11,9 +11,10 @@
     }
 }
 
+<center>
 
+        <p class="listheadersaboveTable"><b>Ej incheckade (@Model.NotCheckedInChildItems.Length)</b></p>
     <div id="notCheckedInList" class="ListOfChildren">
-        <p class="listheaders"><b>Ej incheckade (@Model.NotCheckedInChildItems.Length)</b></p>
         @foreach (var item in Model.NotCheckedInChildItems)
         {
             <div class="childListRow">
@@ -34,8 +35,8 @@
         }
     </div>
 
+        <p class="listheadersaboveTable"><b>Incheckade (@Model.CheckInChildItems.Length)</b></p>
     <div id="presentChildrenDiv" class="ListOfChildren">
-        <p class="listheaders"><b>Incheckade (@Model.CheckInChildItems.Length)</b></p>
         @foreach (var item in Model.CheckInChildItems)
         {
             <div class="childListRow">
@@ -56,8 +57,8 @@
         }
     </div>
 
+        <p class="listheadersaboveTable"><b>Utcheckade (@Model.CheckOutChildItems.Length)</b></p>
     <div id="checkedOutList" class="ListOfChildren">
-        <p class="listheaders"><b>Utcheckade (@Model.CheckOutChildItems.Length)</b></p>
         @foreach (var item in Model.CheckOutChildItems)        {
 
             <div class="childListRow">
@@ -69,8 +70,8 @@
         }
     </div>
     <br/>
+    <p class="listheadersaboveTable"><b>Sjuka idag (@Model.SickChildren.Length)</b></p>
     <div id="SickKidsList" class="ListOfChildren">
-    <p class="listheaders"><b>Sjuka idag (@Model.SickChildren.Length)</b></p>
         @foreach (var item in Model.SickChildren)
         {
             <div class="childListRow">
@@ -84,3 +85,4 @@
     <br />
     <br />
 
+</center>
