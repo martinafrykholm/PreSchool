@@ -18,13 +18,23 @@ namespace PreSchoolApp
 {
     public class Startup
     {
+
+        IConfiguration config;
+
+        public Startup(IConfiguration config)
+        {
+            this.config = config;
+
+        }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var connString = @"Server=tcp:preschoolserver.database.windows.net,1433;Initial Catalog=PreSchoolDB;Persist Security Info=False;User ID=preschoolAdmin;Password=Grupp1C#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
-            services.AddDbContext<PreSchoolAppContext>(o => o.UseSqlServer(connString));
-            services.AddDbContext<IdentityDbContext>(o => o.UseSqlServer(connString));
+            //var configAzure = @"Server=tcp:preschoolserver.database.windows.net,1433;Initial Catalog=PreSchoolDB;Persist Security Info=False;User ID=preschoolAdmin;Password=Grupp1C#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
+            var configAzure = config.GetConnectionString("connString");
+            services.AddDbContext<PreSchoolAppContext>(o => o.UseSqlServer(configAzure));
+            services.AddDbContext<IdentityDbContext>(o => o.UseSqlServer(configAzure));
+
 
             services.AddIdentity<IdentityUser, IdentityRole>(
                 o =>
@@ -42,7 +52,7 @@ namespace PreSchoolApp
             //    options.User.RequireUniqueEmail = true;
 
             //});
-                
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(o => o.LoginPath = "/Login/index");
 
@@ -60,7 +70,7 @@ namespace PreSchoolApp
             {
                 app.UseDeveloperExceptionPage();
             }
-            
+
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
