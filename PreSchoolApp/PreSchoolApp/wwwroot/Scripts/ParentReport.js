@@ -43,11 +43,11 @@
     });
 
 
-    $(".ButtonStyleLargeAutoSizeIll").click(function () {
+    //$(".ButtonStyleLargeAutoSizeIll").click(function () {
 
-        alert("Vi har noterat din sjukanmälan.")
+    //    alert("Vi har noterat din sjukanmälan.")
 
-    });
+    //});
 
 
     var d = new Date();
