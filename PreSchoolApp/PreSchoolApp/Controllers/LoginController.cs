@@ -75,5 +75,20 @@ namespace PreSchoolApp.Controllers
             else
                 return RedirectToAction("Index", "Teacher");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LogOut()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction(nameof(LoginController.Index));
+        }
+
+        [HttpGet]
+        public IActionResult NoAccess()
+        {
+            return View();
+        }
+
     }
 }
