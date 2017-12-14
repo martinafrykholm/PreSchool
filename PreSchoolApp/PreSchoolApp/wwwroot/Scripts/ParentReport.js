@@ -11,9 +11,6 @@
         $(this).css('background-color', '');
     });
 
-
-
-
     $(".ButtonStyleLargeAutoSizeIll").hover(function () {
 
         $(this).css('background-color', 'rgba(249,110,175, 0.2)');
@@ -22,7 +19,19 @@
 
 
         $(this).css('background-color', '');
-    });
+        });
+
+    //$(".ButtonStyleLargeAutoSizeUseless").hover(function () {
+
+    //    $(this).css('background-color', 'rgba(214,214,214, 0.2)');
+
+    //}, function () {
+
+
+    //    $(this).css('background-color', '');
+    //});
+
+    document.getElementById("#Button10Minutes").disabled = true;
 
 
 

@@ -13,5 +13,6 @@ namespace PreSchoolApp.Models.ViewModels
         public bool IsActive { get; set; }
         public TimeSpan DropOffTime { get; set; }
         public TimeSpan PickupTime { get; set; }
+        public int MinLate { get; set; }
     }
 }
