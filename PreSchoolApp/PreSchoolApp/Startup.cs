@@ -56,6 +56,13 @@ namespace PreSchoolApp
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(o => o.LoginPath = "/Login/index");
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Login/index";
+                options.LogoutPath = "/Login/LogOut";
+                options.AccessDeniedPath = "/Login/NoAccess";
+            });
+
             services.AddTransient<PreSchoolDBRepository>();
 
             //services.ConfigureApplicationCookie(o => o.LoginPath = "/Home/Login")
