@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PreSchoolApp.Models;
 
@@ -18,18 +19,9 @@ namespace PreSchoolApp.Controllers
             this.repository = repository;
         }
 
-        // GET: /<controller>/
-        public IActionResult Index(int temp)
-        {
-            repository.GetTodaysSchedules();
-            return View();
-        }
-
-        [HttpPost]
         public IActionResult Index()
         {
-            //int temp = SQLLibrary_new.SqlClass.AddChild("Nova", "Lo", 4);
-            return View();
+            return RedirectToAction("Index", "Login");
         }
     }
 }
