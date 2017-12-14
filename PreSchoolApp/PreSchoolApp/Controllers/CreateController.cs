@@ -92,8 +92,7 @@ namespace PreSchoolApp.Controllers
 
             int childCode = createUserVM.ChildCode;
             
-            return RedirectToAction("EditUser", new { ChildCode = childCode});
-              
+            return RedirectToAction("EditUser", new { ChildCode = childCode});     
         }
         
         [HttpGet]
@@ -115,7 +114,6 @@ namespace PreSchoolApp.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.ChildCode = ChildCode;
-                //ViewBag.loginVM = loginVM;
                 return View();
             }
 
@@ -134,8 +132,6 @@ namespace PreSchoolApp.Controllers
             {
                 return RedirectToAction("Index", "Teacher");
             }
-
-
         }
     }
 }
