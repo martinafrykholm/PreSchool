@@ -30,8 +30,8 @@ namespace PreSchoolApp
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //var configAzure = @"Server=tcp:preschoolserver.database.windows.net,1433;Initial Catalog=PreSchoolDB;Persist Security Info=False;User ID=preschoolAdmin;Password=Grupp1C#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
-            var configAzure = config.GetConnectionString("connString");
+            var configAzure = @"Server=tcp:preschoolserver.database.windows.net,1433;Initial Catalog=PreSchoolDB;Persist Security Info=False;User ID=preschoolAdmin;Password=Grupp1C#;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30";
+            //var configAzure = config.GetConnectionString("connString");
             services.AddDbContext<PreSchoolAppContext>(o => o.UseSqlServer(configAzure));
             services.AddDbContext<IdentityDbContext>(o => o.UseSqlServer(configAzure));
 
