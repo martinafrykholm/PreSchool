@@ -1,8 +1,8 @@
 ﻿@model ParentStartVM[]
 @{
-    string FormatTimeSpan(TimeSpan timeSpan)
+    string FormatTimeSpan(TimeSpan? timeSpan)
     {
-        return string.Format("{0:00}:{1:00}", timeSpan.Hours, timeSpan.Minutes);
+        return timeSpan.HasValue ? string.Format("{0:00}:{1:00}", timeSpan.Value.Hours, timeSpan.Value.Minutes) : string.Empty;
     }
 }
 
@@ -12,41 +12,42 @@
 
 <center>
     @*<p class="listheadersCenter">Dina barn:</p>*@
-    
 
 
+
+        <p id="GetDay" class="listheadersCenter"></p>
     @foreach (var item in Model)
     {
         <p class="listheadersCenter">@item.FirstName</p>
-        
-            
-            
-                
-                    <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
-                        
-                        @*if @(item.IsActive)
-                        {*@
-                        <div class="childListRow">
-
-                            <div class="NameItem">Ska lämnas </div><div class="TimeItem">Kl: @FormatTimeSpan(item.DropOfTime)</div>
 
 
-                            <input class="ButtonStyle" type="submit" value="Anmäl sen/sjuk" />
-                        </div>
-                        @*  *@@*}*@
-                        @*else if(!item.IsActive)
-                        {*@
-                        <div class="childListRow">
-                            <div class="NameItem">Ska hämtas </div> <div class="TimeItem">Kl: @FormatTimeSpan(item.PickupTime)</div>
 
-                            @*<input class="ButtonStyle" type="submit" value="Anmäl sen" />*@
-                        </div>
-                        @*}*@
-                        
 
-                    </form>
-                
-        
+        <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
+
+            @*if @(item.IsActive)
+                {*@
+            <div class="childListRow">
+
+                <div class="NameItem">Ska lämnas </div><div class="TimeItem">Kl: @FormatTimeSpan(item.DropOfTime)</div>
+
+
+                <input class="ButtonStyle" type="submit" value="Anmäl sen/sjuk" />
+            </div>
+            @*  *@@*}*@
+            @*else if(!item.IsActive)
+                {*@
+            <div class="childListRow">
+                <div class="NameItem">Ska hämtas </div> <div class="TimeItem">Kl: @FormatTimeSpan(item.PickupTime)</div>
+
+                @*<input class="ButtonStyle" type="submit" value="Anmäl sen" />*@
+            </div>
+            @*}*@
+
+
+        </form>
+
+
         //else
         //{
         //    <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
@@ -58,38 +59,38 @@
         //    </form>
         //}
     }
-    
+
     @*<div id="PickUpView">
-        <p class="listheadersCenter">Hämta</p>
-        @foreach (var item in Model)
-        {
-            if (item.IsActive)
+            <p class="listheadersCenter">Hämta</p>
+            @foreach (var item in Model)
             {
-                <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
-                    <div class="childListRow">
-                        <div class="NameItem">@item.FirstName</div> <div class="TimeItem">@FormatTimeSpan(item.PickupTime)</div>
+                if (item.IsActive)
+                {
+                    <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
+                        <div class="childListRow">
+                            <div class="NameItem">@item.FirstName</div> <div class="TimeItem">@FormatTimeSpan(item.PickupTime)</div>
 
-                        <input class="ButtonStyle" type="submit" value="Anmäl sen" />
-                    </div>
-                </form>
-            }
-            else
-            {
-                <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
-                    <div class="childListRow">
-                        <div class="NameItem">@item.FirstName</div> <div class="TimeItem">@FormatTimeSpan(item.PickupTime)</div>
+                            <input class="ButtonStyle" type="submit" value="Anmäl sen" />
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <form asp-controller="Parent" asp-action="Report" asp-route-id="@item.Id">
+                        <div class="childListRow">
+                            <div class="NameItem">@item.FirstName</div> <div class="TimeItem">@FormatTimeSpan(item.PickupTime)</div>
 
-                        <input class="ButtonStyle" type="submit" value="Anmäl sen" />
-                    </div>
-                </form>
+                            <input class="ButtonStyle" type="submit" value="Anmäl sen" />
+                        </div>
+                    </form>
+                }
             }
-        }
-    </div>*@
+        </div>*@
     <p class="listheadersCenter">Ändra schema?</p>
     @foreach (var item in Model)
     {
         <a asp-controller="Parent" asp-action="Calendar" asp-route-id="@item.Id"><input class="ButtonStyleLargeAutoSize" type="button" value="@item.FirstName" /></a>
-        
+
     }
     <br />
     <br />

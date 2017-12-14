@@ -9,10 +9,9 @@ namespace PreSchoolApp.Models.ViewModels
 {
     public class TeacherStartVM
     {
-        public int PresentChildrenCount { get; set; }
-        public int NotPresentChildrenCount { get; set; }
-        public int NotActiveCount { get; set; }
-        public TeacherStartChildItemVM[] ChildItems { get; set; }
+        public TeacherStartChildItemVM[] CheckInChildItems { get; set; }
+        public TeacherStartChildItemVM[] CheckOutChildItems { get; set; }
+        public TeacherStartChildItemVM[] NotCheckedInChildItems { get; set; }
     }
     
     public class TeacherStartChildItemVM

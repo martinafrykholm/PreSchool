@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace PreSchoolApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Teacher")]
     public class TeacherController : Controller
     {
         PreSchoolDBRepository repository;
