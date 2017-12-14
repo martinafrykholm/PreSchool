@@ -53,8 +53,8 @@ namespace PreSchoolApp
 
             //});
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(o => o.LoginPath = "/Login/index");
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                //.AddCookie(o => o.LoginPath = "/Login/index");
 
             services.ConfigureApplicationCookie(options =>
             {
