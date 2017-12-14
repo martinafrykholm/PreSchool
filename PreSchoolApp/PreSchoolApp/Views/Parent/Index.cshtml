@@ -10,12 +10,12 @@
     ViewBag.Title = "Tider idag";
 }
 
-<div class="Everything">
+<center>
     @*<p class="listheadersCenter">Dina barn:</p>*@
 
 
 
-        <p id="GetDay" class="listheadersCenter"></p>
+    <p id="GetDay" class="listheadersCenter"></p>
     @foreach (var item in Model)
     {
         <p class="listheadersCenter">@item.FirstName</p>
@@ -94,4 +94,4 @@
     }
     <br />
     <br />
-</div>
+</center>
