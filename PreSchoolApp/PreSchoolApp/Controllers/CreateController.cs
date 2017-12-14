@@ -85,21 +85,22 @@ namespace PreSchoolApp.Controllers
 
             }
             await userManager.AddToRoleAsync(user, RoleParent);
+
+             await signInManager.PasswordSignInAsync(createUserVM.UserName, createUserVM.PassWord, false, false);
             //await userManager.AddToRoleAsync(user, RoleTeacher);
             //await userManager.AddToRoleAsync(user, RoleAdmin);
-            
+
             int childCode = createUserVM.ChildCode;
             
             return RedirectToAction("EditUser", new { ChildCode = childCode});
               
         }
         
-        //lägg till TeacherCode och koppla till Teacher Role vid registrering
         [HttpGet]
         public IActionResult EditUser(int ChildCode)
         {
             ViewBag.ChildCode = ChildCode;
-            //ViewBag.loginVM = loginVM;
+           
             return View();
         }
 
@@ -119,12 +120,9 @@ namespace PreSchoolApp.Controllers
             }
 
             int childid = ChildCode;
-            //LoginVM LoginVM = loginVM;
-
-            string name = User.Identity.Name; //den inloggades namn
+           
+            string name = User.Identity.Name; //den inloggades usernamn
             
-            //string aspID = repository.GetASPID(editUserVM.FirstName);
-
             //var userId = userManager.GetUserId(HttpContext.User);
             repository.AddParent(editUserVM, childid, name);
 
