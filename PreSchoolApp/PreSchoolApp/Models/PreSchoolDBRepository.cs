@@ -355,7 +355,7 @@ namespace PreSchoolApp.Models
                     .ToArray(),
                 SickChildren = items
                     .Where(o => o.IsPresent && o.IsActive)
-                    .OrderBy(o => o.DropOfTime)
+                    .OrderBy(o => o.FirstName)
                     .ToArray()
             };
             //ret.PresentChildrenCount = ret.ChildItems
@@ -397,6 +397,7 @@ namespace PreSchoolApp.Models
             else if (itemToUpdate.IsPresent == true && itemToUpdate.IsIll == false)
             {
                 itemToUpdate.IsIll = true;
+                itemToUpdate.IsPresent = false;
                 itemToUpdate.MinLate = 0;
             }
             else if (itemToUpdate.IsIll == true && itemToUpdate.IsPresent == true)
