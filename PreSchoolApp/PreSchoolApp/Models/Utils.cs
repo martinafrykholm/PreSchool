@@ -10,10 +10,10 @@ namespace PreSchoolApp.Models
         public static TimeSpan[] GetAllTimes()
         {
             List<TimeSpan> allTimeSpans = new List<TimeSpan>();
-            int hour = 8;
+            int hour = 7;
             int minute = 0;
 
-            for (int i = 0; i < 55; i++)
+            for (int i = 0; i < 61; i++)
             {
                 TimeSpan allTimes = new TimeSpan(hour, minute, 00);
                 allTimeSpans.Add(allTimes);

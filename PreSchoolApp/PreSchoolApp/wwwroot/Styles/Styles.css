@@ -1,6 +1,4 @@
-﻿/*body {
-    background-color: hotpink;
-}*/
+﻿/*Klasser för sidans struktur*/
 
 .container {
     width: 400px;
@@ -10,8 +8,6 @@
     flex-direction: column;
     border-color: black;
     background-color: hotpink;
-    /*rgba(134, 183, 240, 1.0)*/
-    /*#3883FC;*/
     padding: 10px;
     border-radius: 20px;
 }
@@ -87,15 +83,12 @@
 }
 
 
-
+/*Klasser för pattern styla lista över barn*/
 
 div.childListRow {
     display: table-row;
     line-height: 20px;
-    /*empty-cells:hide;*/
     padding-bottom: -10px;
-    /*height:20px;*/
-    /*flex-direction:row;*/
 }
 
 div.ListOfChildren {
@@ -103,17 +96,6 @@ div.ListOfChildren {
     empty-cells: hide;
     line-height: 20px;
 }
-
-/*div.ListOfChildrenIll {
-
-
-}
-
-childListIllrow {
-
-
-
-}*/
 
 
 
@@ -141,6 +123,9 @@ div.TimeItem {
     font-size: 20px;
 }
 
+
+/*Klasser för pattern styla knappar*/
+
 div.ButtonItem {
     display: table-cell;
     width: 120px;
@@ -160,79 +145,11 @@ div.ButtonItem {
     text-decoration-color: white;
 }
 
-/*b{
-text-align:left;
-
-
-}*/
-
-p.listheaders {
-    text-align: left;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 25px;
-}
-
-p.listheadersCenter {
-    text-align: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 25px;
-}
-
-.labelItem {
-    display: block;
-    width: 200px;
-    text-align: right;
-}
-
-.inputText {
-    display: block;
-    margin-left: 10px;
-    border-radius: 5px;
-    height: 27px;
-}
-
-/*.formContainer{
-
-
-
-}*/
-
-form.createForm {
-    font-size: 20px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    padding: 15px;
-    margin-right: 25px;
-}
-
-.formRow {
-    display: flex;
-    flex-direction: row;
-}
-
-.ButtonStyleLarge {
-    width: 150px;
-    height: 40px;
-    border-radius: 10px;
-    background-color: rgba(249,110,175, 1.0);
-    font-size: 20px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border-color: grey;
-    padding: 10px;
-}
-
-span {
-    font-size: 10px;
-    color: red;
-}
 
 .ButtonStyleLargeAutoSize {
     /*width: auto;
     height: auto;*/
-    max-width:170px;
+    max-width: 170px;
     border-radius: 10px;
     background-color: rgba(249,110,175, 1.0);
     font-size: 20px;
@@ -274,6 +191,26 @@ span {
     padding: 10px;
 }
 
+/*Klasser för pattern style rubriker*/
+
+p.listheaders {
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+
+}
+
+.listheadersaboveTable {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+}
+
+p.listheadersCenter {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 25px;
+}
+
 p.listheadersCenterSmall {
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -287,33 +224,56 @@ p.listheadersCenterSmallMinMargin {
     margin-bottom: -10px;
 }
 
+/*Klasser för pattern styla login och edit user forms*/
+.labelItem {
+    display: block;
+    width: 200px;
+    text-align: right;
+}
+
+.inputText {
+    display: block;
+    margin-left: 10px;
+    border-radius: 5px;
+    height: 27px;
+}
 
 
+form.createForm {
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 15px;
+    margin-right: 25px;
+}
+
+.formRow {
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+span {
+    font-size: 10px;
+    color: red;
+}
+
+
+/*Klasser för att styla dropdown*/
 select.StyleSelect {
     font-size: 17px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-radius: 7px;
-    /*width: 50px;
-    height: 30px;*/
     padding: 10px;
     background-color: rgba(249,110,175, 0.2);
 }
 
-/* modal */
-/*.modal {
-    display: none;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+/*Klasser för att styla hyperlänkar*/ 
+a.link:hover {
+    color: rgba(249,110,175, 0.2);
 }
-.modal__box {
-    background-color: white;
-    width: 300px;
-    padding: 20px;
-    border: 1px solid lightgray;
-    position: relative;
-    margin: 200px auto;
-}*/
+

@@ -30,13 +30,13 @@
     }
     @if (Model.MinLate > 0)
     {
-        <p class="listheadersCenterSmall"  style="margin-top:-10px; color:red">angiven försening: @Model.MinLate minuter</p>
+        <p class="listheadersCenterSmall" style="margin-top:-10px; color:red">angiven försening: @Model.MinLate minuter</p>
     }
 
     <div style="display: inline-block">
         @if (Model.MinLate > 0)
         {
-            <input class="ButtonStyleLargeAutoSizeUseless" type="button" disabled value="10 minuter"/>
+            <input class="ButtonStyleLargeAutoSizeUseless" type="button" disabled value="10 minuter" />
         }
         else
         {
@@ -70,16 +70,8 @@
 
     <br />
     <br />
-    <a style="font-size:18px;" href="/Parent/index">Till startsidan</a>
+    <a class="link" style="font-size:18px;" href="/Parent/index">Till startsidan</a>
+    <br />
+    <br />
 
 </center>
-
-@*<div class="modal">
-    <div class="modal__box">
-        <h3>Är du säker?</h3>
-        <p>
-            <button type="button">Ja</button>
-            <button type="button">Nej</button>
-        </p>
-    </div>
-</div>*@
