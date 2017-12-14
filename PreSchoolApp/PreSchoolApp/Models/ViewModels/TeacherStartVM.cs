@@ -12,6 +12,7 @@ namespace PreSchoolApp.Models.ViewModels
         public TeacherStartChildItemVM[] CheckInChildItems { get; set; }
         public TeacherStartChildItemVM[] CheckOutChildItems { get; set; }
         public TeacherStartChildItemVM[] NotCheckedInChildItems { get; set; }
+        public TeacherStartChildItemVM[] SickChildren { get; set; }
     }
     
     public class TeacherStartChildItemVM

@@ -79,7 +79,16 @@ namespace PreSchoolApp.Models
             var itemToUpdate = context.Children
                 .SingleOrDefault(x => x.Id == childId);
 
-            itemToUpdate.IsIll = true;
+            if ((bool)itemToUpdate.IsIll)
+            {
+                itemToUpdate.IsIll = false;
+                itemToUpdate.IsPresent = false;
+            }
+            else
+            {
+                itemToUpdate.IsIll = true;
+                itemToUpdate.IsPresent = true;
+            }
 
             context.SaveChanges();
         }
@@ -329,7 +338,7 @@ namespace PreSchoolApp.Models
                 if (child.MinutesLate > 0)
                     UpdateChildTime(child);
             }
-            
+
             return new TeacherStartVM
             {
                 CheckInChildItems = items
@@ -337,12 +346,16 @@ namespace PreSchoolApp.Models
                     .OrderBy(o => o.PickupTime)
                     .ToArray(),
                 NotCheckedInChildItems = items
-                    .Where(o => !o.IsPresent)
+                    .Where(o => !o.IsPresent && !o.IsActive)
                     .OrderBy(o => o.DropOfTime)
                     .ToArray(),
                 CheckOutChildItems = items
-                    .Where(o => o.IsActive)
+                    .Where(o => !o.IsPresent && o.IsActive)
                     .OrderBy(o => o.DropOfTime)
+                    .ToArray(),
+                SickChildren = items
+                    .Where(o => o.IsPresent && o.IsActive)
+                    .OrderBy(o => o.FirstName)
                     .ToArray()
             };
             //ret.PresentChildrenCount = ret.ChildItems
@@ -384,6 +397,7 @@ namespace PreSchoolApp.Models
             else if (itemToUpdate.IsPresent == true && itemToUpdate.IsIll == false)
             {
                 itemToUpdate.IsIll = true;
+                itemToUpdate.IsPresent = false;
                 itemToUpdate.MinLate = 0;
             }
             else if (itemToUpdate.IsIll == true && itemToUpdate.IsPresent == true)
