@@ -18,6 +18,11 @@
     border-radius: 15px;
 }
 
+/*.Everything {
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+}*/
 
 #bodyDiv {
     margin-left: auto;
@@ -60,8 +65,6 @@
     background-color:transparent;
 }
 
-
-
 #headerPicDiv {
     height: 63px;
     width: 220px;
@@ -70,7 +73,6 @@
     margin-right: auto;
     background-color: transparent;
 }
-
 
 #homeindexDiv {
     display: block;
@@ -97,10 +99,9 @@ div.ListOfChildren {
     line-height: 20px;
 }
 
-
-
 div.NameItem {
     display: table-cell;
+    padding-left: 15px;
     width: 120px;
     height: 18px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -123,7 +124,6 @@ div.TimeItem {
     font-size: 20px;
 }
 
-
 /*Klasser för pattern styla knappar*/
 
 div.ButtonItem {
@@ -145,17 +145,18 @@ div.ButtonItem {
     text-decoration-color: white;
 }
 
-
 .ButtonStyleLargeAutoSize {
     /*width: auto;
     height: auto;*/
     max-width: 170px;
+    min-width: 150px;
     border-radius: 10px;
     background-color: rgba(249,110,175, 1.0);
     font-size: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-color: grey;
     padding: 10px;
+    align-self: center;
 }
 
 .ButtonStyleLargeAutoSizeLate {
@@ -238,7 +239,6 @@ p.listheadersCenterSmallMinMargin {
     height: 27px;
 }
 
-
 form.createForm {
     font-size: 20px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -255,13 +255,10 @@ form.createForm {
     flex-direction: row;
 }
 
-
-
 span {
     font-size: 10px;
     color: red;
 }
-
 
 /*Klasser för att styla dropdown*/
 select.StyleSelect {

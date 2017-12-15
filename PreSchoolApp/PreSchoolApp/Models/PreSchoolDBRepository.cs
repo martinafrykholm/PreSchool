@@ -175,7 +175,7 @@ namespace PreSchoolApp.Models
                         LastName = o.Children.LastName,
                         Id = o.Children.Id,
                         IsActive = (bool)o.Children.IsIll,
-                        MinutesLate = o.Children.MinLate == null ? default(int) : (int)o.Children.MinLate //ta bort vid strul
+                        MinutesLate = o.Children.MinLate == null ? default(int) : (int)o.Children.MinLate
                     })
                     .OrderBy(o => o.DropOfTime)
                     .ToArray();
