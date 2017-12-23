@@ -11,9 +11,8 @@
     }
 }
 
-<center>
-
-        <p class="listheadersaboveTable"><b>Ej incheckade (@Model.NotCheckedInChildItems.Length)</b></p>
+<div class="Everything" style="text-align:center">
+    <p class="listheadersaboveTable"><b>Ej incheckade (@Model.NotCheckedInChildItems.Length)</b></p>
     <div id="notCheckedInList" class="ListOfChildren">
         @foreach (var item in Model.NotCheckedInChildItems)
         {
@@ -35,7 +34,7 @@
         }
     </div>
 
-        <p class="listheadersaboveTable"><b>Incheckade (@Model.CheckInChildItems.Length)</b></p>
+    <p class="listheadersaboveTable"><b>Incheckade (@Model.CheckInChildItems.Length)</b></p>
     <div id="presentChildrenDiv" class="ListOfChildren">
         @foreach (var item in Model.CheckInChildItems)
         {
@@ -57,9 +56,10 @@
         }
     </div>
 
-        <p class="listheadersaboveTable"><b>Utcheckade (@Model.CheckOutChildItems.Length)</b></p>
+    <p class="listheadersaboveTable"><b>Utcheckade (@Model.CheckOutChildItems.Length)</b></p>
     <div id="checkedOutList" class="ListOfChildren">
-        @foreach (var item in Model.CheckOutChildItems)        {
+        @foreach (var item in Model.CheckOutChildItems)
+        {
 
             <div class="childListRow">
                 <form asp-controller="Teacher" asp-action="Index" asp-route-id="@item.Id">
@@ -69,7 +69,7 @@
             </div>
         }
     </div>
-    <br/>
+    <br />
     <p class="listheadersaboveTable"><b>Sjuka idag (@Model.SickChildren.Length)</b></p>
     <div id="SickKidsList" class="ListOfChildren">
         @foreach (var item in Model.SickChildren)
@@ -87,4 +87,5 @@
     <form asp-controller="Login" asp-action="LogOut"><input class="ButtonStyle" type="submit" value="Logga ut" /></form>
     <br />
     <br />
-</center>
+</div>
+
